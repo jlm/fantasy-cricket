@@ -5,6 +5,22 @@
     <tr>
       <th>Name</th>
       <th>Age category</th>
+      <th>Bat innings</th>
+      <th>Bat runs scored</th>
+      <th>Bat fifties</th>
+      <th>Bat hundreds</th>
+      <th>Bat ducks</th>
+      <th>Bat not outs</th>
+      <th>Bowl overs</th>
+      <th>Bowl runs</th>
+      <th>Bowl wickets</th>
+      <th>Bowl 4 wickets</th>
+      <th>Bowl 6 wickets</th>
+      <th>Field catches</th>
+      <th>Field runouts</th>
+      <th>Field stumpings</th>
+      <th>Field drops</th>
+      <th>Field mom</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,6 +32,22 @@
       <tr>
         <td><%= player.name %></td>
         <td><%= player.age_category %></td>
+        <td><%= player.bat_innings %></td>
+        <td><%= player.bat_runs_scored %></td>
+        <td><%= player.bat_fifties %></td>
+        <td><%= player.bat_hundreds %></td>
+        <td><%= player.bat_ducks %></td>
+        <td><%= player.bat_not_outs %></td>
+        <td><%= player.bowl_overs %></td>
+        <td><%= player.bowl_runs %></td>
+        <td><%= player.bowl_wickets %></td>
+        <td><%= player.bowl_4_wickets %></td>
+        <td><%= player.bowl_6_wickets %></td>
+        <td><%= player.field_catches %></td>
+        <td><%= player.field_runouts %></td>
+        <td><%= player.field_stumpings %></td>
+        <td><%= player.field_drops %></td>
+        <td><%= player.field_mom %></td>
         <td><%= link_to 'Show', player %></td>
         <td><%= link_to 'Edit', edit_player_path(player) %></td>
         <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>

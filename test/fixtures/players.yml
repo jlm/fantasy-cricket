@@ -3,7 +3,39 @@
 one:
   name: MyString
   age_category: MyString
+  bat_innings: 1
+  bat_runs_scored: 1
+  bat_fifties: 1
+  bat_hundreds: 1
+  bat_ducks: 1
+  bat_not_outs: 1
+  bowl_overs: 1
+  bowl_runs: 1
+  bowl_wickets: 1
+  bowl_4_wickets: 1
+  bowl_6_wickets: 1
+  field_catches: 1
+  field_runouts: 1
+  field_stumpings: 1
+  field_drops: 1
+  field_mom: 1
 
 two:
   name: MyString
   age_category: MyString
+  bat_innings: 1
+  bat_runs_scored: 1
+  bat_fifties: 1
+  bat_hundreds: 1
+  bat_ducks: 1
+  bat_not_outs: 1
+  bowl_overs: 1
+  bowl_runs: 1
+  bowl_wickets: 1
+  bowl_4_wickets: 1
+  bowl_6_wickets: 1
+  field_catches: 1
+  field_runouts: 1
+  field_stumpings: 1
+  field_drops: 1
+  field_mom: 1
