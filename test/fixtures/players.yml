@@ -19,6 +19,7 @@ one:
   field_stumpings: 1
   field_drops: 1
   field_mom: 1
+  team: 1
 
 two:
   name: MyString
@@ -39,3 +40,4 @@ two:
   field_stumpings: 1
   field_drops: 1
   field_mom: 1
+  team: 1

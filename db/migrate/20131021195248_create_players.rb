@@ -19,6 +19,7 @@ class CreatePlayers < ActiveRecord::Migration
       t.integer :field_stumpings
       t.integer :field_drops
       t.integer :field_mom
+      t.integer :team
 
       t.timestamps
     end

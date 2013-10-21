@@ -18,7 +18,7 @@ class PlayersControllerTest < ActionController::TestCase
 
   test "should create player" do
     assert_difference('Player.count') do
-      post :create, player: { age_category: @player.age_category, bat_ducks: @player.bat_ducks, bat_fifties: @player.bat_fifties, bat_hundreds: @player.bat_hundreds, bat_innings: @player.bat_innings, bat_not_outs: @player.bat_not_outs, bat_runs_scored: @player.bat_runs_scored, bowl_4_wickets: @player.bowl_4_wickets, bowl_6_wickets: @player.bowl_6_wickets, bowl_overs: @player.bowl_overs, bowl_runs: @player.bowl_runs, bowl_wickets: @player.bowl_wickets, field_catches: @player.field_catches, field_drops: @player.field_drops, field_mom: @player.field_mom, field_runouts: @player.field_runouts, field_stumpings: @player.field_stumpings, name: @player.name }
+      post :create, player: { age_category: @player.age_category, bat_ducks: @player.bat_ducks, bat_fifties: @player.bat_fifties, bat_hundreds: @player.bat_hundreds, bat_innings: @player.bat_innings, bat_not_outs: @player.bat_not_outs, bat_runs_scored: @player.bat_runs_scored, bowl_4_wickets: @player.bowl_4_wickets, bowl_6_wickets: @player.bowl_6_wickets, bowl_overs: @player.bowl_overs, bowl_runs: @player.bowl_runs, bowl_wickets: @player.bowl_wickets, field_catches: @player.field_catches, field_drops: @player.field_drops, field_mom: @player.field_mom, team: @player.team, field_runouts: @player.field_runouts, field_stumpings: @player.field_stumpings, name: @player.name }
     end
 
     assert_redirected_to player_path(assigns(:player))
@@ -35,7 +35,7 @@ class PlayersControllerTest < ActionController::TestCase
   end
 
   test "should update player" do
-    patch :update, id: @player, player: { age_category: @player.age_category, bat_ducks: @player.bat_ducks, bat_fifties: @player.bat_fifties, bat_hundreds: @player.bat_hundreds, bat_innings: @player.bat_innings, bat_not_outs: @player.bat_not_outs, bat_runs_scored: @player.bat_runs_scored, bowl_4_wickets: @player.bowl_4_wickets, bowl_6_wickets: @player.bowl_6_wickets, bowl_overs: @player.bowl_overs, bowl_runs: @player.bowl_runs, bowl_wickets: @player.bowl_wickets, field_catches: @player.field_catches, field_drops: @player.field_drops, field_mom: @player.field_mom, field_runouts: @player.field_runouts, field_stumpings: @player.field_stumpings, name: @player.name }
+    patch :update, id: @player, player: { age_category: @player.age_category, bat_ducks: @player.bat_ducks, bat_fifties: @player.bat_fifties, bat_hundreds: @player.bat_hundreds, bat_innings: @player.bat_innings, bat_not_outs: @player.bat_not_outs, bat_runs_scored: @player.bat_runs_scored, bowl_4_wickets: @player.bowl_4_wickets, bowl_6_wickets: @player.bowl_6_wickets, bowl_overs: @player.bowl_overs, bowl_runs: @player.bowl_runs, bowl_wickets: @player.bowl_wickets, field_catches: @player.field_catches, field_drops: @player.field_drops, field_mom: @player.field_mom, team: @player.team, field_runouts: @player.field_runouts, field_stumpings: @player.field_stumpings, name: @player.name }
     assert_redirected_to player_path(assigns(:player))
   end
 

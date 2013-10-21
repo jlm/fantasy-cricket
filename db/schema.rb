@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20131021195248) do
     t.integer  "field_stumpings"
     t.integer  "field_drops"
     t.integer  "field_mom"
+    t.integer  "team"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
