@@ -1,10 +1,11 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /players
   # GET /players.json
   def index
-    @players = Player.all
+    @players = Player.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /players/1
@@ -70,5 +71,9 @@ class PlayersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
       params.require(:player).permit(:name, :age_category, :bat_innings, :bat_runs_scored, :bat_fifties, :bat_hundreds, :bat_ducks, :bat_not_outs, :bowl_overs, :bowl_runs, :bowl_wickets, :bowl_4_wickets, :bowl_6_wickets, :field_catches, :field_runouts, :field_stumpings, :field_drops, :field_mom, :team)
+    end
+
+    def admin_user
+      redirect_to players_url, notice: "Only administrators are allowed to update the list of players." unless admin_user?
     end
 end

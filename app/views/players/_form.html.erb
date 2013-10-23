@@ -1,93 +1,97 @@
-<%= form_for(@player) do |f| %>
-  <% if @player.errors.any? %>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@player) do |f| %>
+    <% if @player.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
 
       <ul>
-      <% @player.errors.full_messages.each do |msg| %>
+        <% @player.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
-      <% end %>
+        <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :age_category %><br>
+      <%= f.text_field :age_category %>
+    </div>
+    <div class="field">
+      <%= f.label :bat_innings %><br>
+      <%= f.number_field :bat_innings %>
+    </div>
+    <div class="field">
+      <%= f.label :bat_runs_scored %><br>
+      <%= f.number_field :bat_runs_scored %>
+    </div>
+    <div class="field">
+      <%= f.label :bat_fifties %><br>
+      <%= f.number_field :bat_fifties %>
+    </div>
+    <div class="field">
+      <%= f.label :bat_hundreds %><br>
+      <%= f.number_field :bat_hundreds %>
+    </div>
+    <div class="field">
+      <%= f.label :bat_ducks %><br>
+      <%= f.number_field :bat_ducks %>
+    </div>
+    <div class="field">
+      <%= f.label :bat_not_outs %><br>
+      <%= f.number_field :bat_not_outs %>
+    </div>
+    <div class="field">
+      <%= f.label :bowl_overs %><br>
+      <%= f.number_field :bowl_overs %>
+    </div>
+    <div class="field">
+      <%= f.label :bowl_runs %><br>
+      <%= f.number_field :bowl_runs %>
+    </div>
+    <div class="field">
+      <%= f.label :bowl_wickets %><br>
+      <%= f.number_field :bowl_wickets %>
+    </div>
+    <div class="field">
+      <%= f.label :bowl_4_wickets %><br>
+      <%= f.number_field :bowl_4_wickets %>
+    </div>
+    <div class="field">
+      <%= f.label :bowl_6_wickets %><br>
+      <%= f.number_field :bowl_6_wickets %>
+    </div>
+    <div class="field">
+      <%= f.label :field_catches %><br>
+      <%= f.number_field :field_catches %>
+    </div>
+    <div class="field">
+      <%= f.label :field_runouts %><br>
+      <%= f.number_field :field_runouts %>
+    </div>
+    <div class="field">
+      <%= f.label :field_stumpings %><br>
+      <%= f.number_field :field_stumpings %>
+    </div>
+    <div class="field">
+      <%= f.label :field_drops %><br>
+      <%= f.number_field :field_drops %>
+    </div>
+    <div class="field">
+      <%= f.label :field_mom %><br>
+      <%= f.number_field :field_mom %>
+    </div>
+    <div class="field">
+      <%= f.label :team %><br>
+      <%= f.number_field :team %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :age_category %><br>
-    <%= f.text_field :age_category %>
-  </div>
-  <div class="field">
-    <%= f.label :bat_innings %><br>
-    <%= f.number_field :bat_innings %>
-  </div>
-  <div class="field">
-    <%= f.label :bat_runs_scored %><br>
-    <%= f.number_field :bat_runs_scored %>
-  </div>
-  <div class="field">
-    <%= f.label :bat_fifties %><br>
-    <%= f.number_field :bat_fifties %>
-  </div>
-  <div class="field">
-    <%= f.label :bat_hundreds %><br>
-    <%= f.number_field :bat_hundreds %>
-  </div>
-  <div class="field">
-    <%= f.label :bat_ducks %><br>
-    <%= f.number_field :bat_ducks %>
-  </div>
-  <div class="field">
-    <%= f.label :bat_not_outs %><br>
-    <%= f.number_field :bat_not_outs %>
-  </div>
-  <div class="field">
-    <%= f.label :bowl_overs %><br>
-    <%= f.number_field :bowl_overs %>
-  </div>
-  <div class="field">
-    <%= f.label :bowl_runs %><br>
-    <%= f.number_field :bowl_runs %>
-  </div>
-  <div class="field">
-    <%= f.label :bowl_wickets %><br>
-    <%= f.number_field :bowl_wickets %>
-  </div>
-  <div class="field">
-    <%= f.label :bowl_4_wickets %><br>
-    <%= f.number_field :bowl_4_wickets %>
-  </div>
-  <div class="field">
-    <%= f.label :bowl_6_wickets %><br>
-    <%= f.number_field :bowl_6_wickets %>
-  </div>
-  <div class="field">
-    <%= f.label :field_catches %><br>
-    <%= f.number_field :field_catches %>
-  </div>
-  <div class="field">
-    <%= f.label :field_runouts %><br>
-    <%= f.number_field :field_runouts %>
-  </div>
-  <div class="field">
-    <%= f.label :field_stumpings %><br>
-    <%= f.number_field :field_stumpings %>
-  </div>
-  <div class="field">
-    <%= f.label :field_drops %><br>
-    <%= f.number_field :field_drops %>
-  </div>
-  <div class="field">
-    <%= f.label :field_mom %><br>
-    <%= f.number_field :field_mom %>
-  </div>
-  <div class="field">
-    <%= f.label :team %><br>
-    <%= f.number_field :team %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
