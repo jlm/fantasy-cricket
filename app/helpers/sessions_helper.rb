@@ -24,7 +24,14 @@ module SessionsHelper
     !current_user.nil?
   end
 
-  # JLM wrote this and has no idea if it's right. Yea! It works!
+   def signed_in_user
+    unless signed_in?
+        store_location
+      	redirect_to signin_url, notice: "Please sign in."
+    end
+  end
+
+ # JLM wrote this and has no idea if it's right. Yea! It works!
   def admin_user?
     !current_user.nil? && current_user.admin?
   end
