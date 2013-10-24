@@ -8,5 +8,16 @@
       </h1>
     </section>
   </aside>
+<!--
+  <div class="span8">
+    <% if @user.players.any? %>
+      <h3>Team: (<%= @user.players.count %> players)</h3>
+      <ol class="players">
+        <%= render @players %>
+      </ol>
+      <%= will_paginate @players %>
+    <% end %>
+
 </div>
+-->
 <%= @user.name %>, <%= @user.email %>
