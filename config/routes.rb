@@ -1,14 +1,17 @@
 Hartlapp::Application.routes.draw do
+  resources :teams
+
   get "users/new"
   resources :players
   resources :users
+  resources :sessions,  only: [:new, :create, :destroy]
+  resources :teams,     only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'static_pages#home'
-  resources :sessions, only: [:new, :create, :destroy]
   match '/signup',  to: 'users#new',            via: 'get'
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'

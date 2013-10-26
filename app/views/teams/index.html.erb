@@ -1,0 +1,11 @@
+<h1>Listing teams</h1>
+
+<ul class="teams">
+  <% @teams.each do |team| %>
+    <%= render team %>
+    
+  <% end %>
+</ul>
+<br>
+
+<%= link_to 'New Team', new_team_path %>

@@ -1,0 +1,42 @@
+<%= form_for(@team) do |f| %>
+  <% if @team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
+
+      <ul>
+      <% @team.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <% if @team.players.any? %>
+    <h2><%= pluralize(@team.players.count, "Player") %></h2>
+    <ol>
+      <% @team.players.each do |p| %>
+        <%= render(p) %>
+      <% end %>
+    </ol>
+  <% else %>
+    <h2>No Players!</h2>
+    <% @team.players << Player.find(1) %>
+  <% end %>
+
+  <!-- Here I want to select a player from a drop-down and add it to the tesm -->
+
+  <!--
+  <div class="field">
+  <%#= f.collection_select :player_id, Player.order(:name),:id,:name, include_blank: true %>
+  </div>
+  -->
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

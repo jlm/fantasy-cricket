@@ -7,17 +7,19 @@
         <%= @user.name %>
       </h1>
     </section>
+    <section>
+      <%= render 'shared/team_form' %>
+    </section>
   </aside>
-<!--
-  <div class="span8">
-    <% if @user.players.any? %>
-      <h3>Team: (<%= @user.players.count %> players)</h3>
-      <ol class="players">
-        <%= render @players %>
+ <div class="span8">
+    <% if @user.teams.any? %>
+      <h3>Teams: (<%= @user.teams.count %>)</h3>
+      <ol class="teams">
+        <%= render @teams %>
       </ol>
-      <%= will_paginate @players %>
+      <%= will_paginate @teams %>
+    <% else %>
+      <h3>Teams: user has no teams</h3>
     <% end %>
 
 </div>
--->
-<%= @user.name %>, <%= @user.email %>

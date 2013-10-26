@@ -31,7 +31,21 @@ module SessionsHelper
     end
   end
 
- # JLM wrote this and has no idea if it's right. Yea! It works!
+# JLM 131025 correct_user? is based on similar function in UsersController
+  def correct_user?
+    current_user?(User.find(params[:id])) || admin_user?
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless current_user?(@user) || admin_user?
+  end
+
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end
+
+# JLM wrote this and has no idea if it's right. Yea! It works!
   def admin_user?
     !current_user.nil? && current_user.admin?
   end

@@ -1,0 +1,13 @@
+<li>
+  <span class="name"><%= link_to team.name, team %></span>
+  <span class="timestamp">
+    Updated <%= time_ago_in_words(team.updated_at) %> ago.
+  </span>
+  <% if current_user.id == team.user.id %>
+    <span><%= link_to 'Edit', edit_team_path(team), class: "btn btn-small" %></span>
+    <span><%= link_to 'Destroy', team, method: :delete,
+  	  data: { confirm: 'Are you sure?' }, class: "btn btn-small" %></span>
+  <% else  %>
+    <br>Owner: <%= team.user.name %>
+  <% end %>    
+</li>
