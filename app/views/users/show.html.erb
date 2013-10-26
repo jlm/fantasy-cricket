@@ -8,18 +8,20 @@
       </h1>
     </section>
     <section>
-      <%= render 'shared/team_form' %>
+      <% if current_user.id == @user.id %>
+        <%= render 'shared/team_form' %> 
+      <% end %>
     </section>
   </aside>
  <div class="span8">
     <% if @user.teams.any? %>
-      <h3>Teams: (<%= @user.teams.count %>)</h3>
+      <h3>Teams: <%= @user.teams.count %></h3>
       <ol class="teams">
         <%= render @teams %>
       </ol>
       <%= will_paginate @teams %>
     <% else %>
-      <h3>Teams: user has no teams</h3>
+      <h3>No teams</h3>
     <% end %>
 
 </div>

@@ -173,33 +173,20 @@ input {
   @extend .error;
 }
 
-/* Users index */
 
-.users {
-  list-style: none;
-  margin: 0;
-  li {
-    overflow: auto;
-    padding: 10px 0;
-    border-top: 1px solid $grayLighter;
-    &:last-child {
-      border-bottom: 1px solid $grayLighter;
-    }
-  }
-}
 
 /* For the team list in the User's "show" page */
 
 /* teams */
 
-.teams {
+.teams, .users {
   list-style: none;
   margin: 10px 0 0 0;
 
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
-    .name { float: left; width: 20ex; }
+    .name { float: left; width: 25ex; }
     .timestamp { float: left; width: 30ex; }
   }
 }
