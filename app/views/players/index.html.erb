@@ -2,89 +2,15 @@
 
 <%= will_paginate %>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th>Batting</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th>Bowling</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th>Fielding</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Age category</th>
-      <th>Team</th>
-      <th>Innings</th>
-      <th>Runs scored</th>
-      <th>Fifties</th>
-      <th>Hundreds</th>
-      <th>Ducks</th>
-      <th>Not outs</th>
-      <th>Overs</th>
-      <th>Runs</th>
-      <th>Wickets</th>
-      <th>4 wickets</th>
-      <th>6 wickets</th>
-      <th>Catches</th>
-      <th>Runouts</th>
-      <th>Stumpings</th>
-      <th>Drops</th>
-      <th>Man of the Match</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @players.each do |player| %>
-      <tr>
-        <td><%= player.name %></td>
-        <td><%= player.age_category %></td>
-        <td><%= player.team %></td>
-        <td><%= player.bat_innings %></td>
-        <td><%= player.bat_runs_scored %></td>
-        <td><%= player.bat_fifties %></td>
-        <td><%= player.bat_hundreds %></td>
-        <td><%= player.bat_ducks %></td>
-        <td><%= player.bat_not_outs %></td>
-        <td><%= player.bowl_overs %></td>
-        <td><%= player.bowl_runs %></td>
-        <td><%= player.bowl_wickets %></td>
-        <td><%= player.bowl_4_wickets %></td>
-        <td><%= player.bowl_6_wickets %></td>
-        <td><%= player.field_catches %></td>
-        <td><%= player.field_runouts %></td>
-        <td><%= player.field_stumpings %></td>
-        <td><%= player.field_drops %></td>
-        <td><%= player.field_mom %></td>
-        <td><%= link_to 'Show', player %></td>
-        <td><%= link_to 'Edit', edit_player_path(player) %></td>
-        <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<ul class="players">
+  <% @players.each do |player| %>
+    <%= render player %>
+  <% end %>
+</ul>
+<br>
 
 <%= will_paginate %>
+
 
 <br>
 

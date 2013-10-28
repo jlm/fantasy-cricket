@@ -1,97 +1,69 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @player.name %>
-</p>
+<table class="table">
+  <tr>
+    <th>Player</th>
+    <td><%= @player.name %></td>
+    <td><%= @player.age_category %></td>
+    <td><%= @player.team %></td>
+  </tr>
+</table>
+<table class="table table-bordered">
+  <tr>
+    <th></th>
+    <th>Innings</th>
+    <th>Runs</th>
+    <th>Ducks</th>
+    <th>Not-outs</th>
+    <th>Fifties</th>
+    <th>Centuries</th>
+  </tr>
+  <tr class="warning">
+    <th>Batting</th>
+    <td><%= @player.bat_innings %></td>
+    <td><%= @player.bat_runs_scored %></td>
+    <td><%= @player.bat_ducks %></td>
+    <td><%= @player.bat_not_outs %></td>
+    <td><%= @player.bat_fifties %></td>
+    <td><%= @player.bat_hundreds %></td>
+  </tr>
+  <tr>
+    <th></th>
+    <th>Overs</th>
+    <th>Maidens</th>
+    <th>Runs against</th>
+    <th>Wickets</th>
+    <th>4-wickets</th>
+    <th>6-wickets</th>
+  </tr>
+  <tr class="warning">
+    <th>Bowling</th>
+    <td><%= @player.bowl_overs %></td>
+    <td><%= @player.bowl_maidens %></td>
+    <td><%= @player.bowl_runs %></td>
+    <td><%= @player.bowl_wickets %></td>
+    <td><%= @player.bowl_4_wickets %></td>
+    <td><%= @player.bowl_6_wickets %></td>
+  </tr>
+  <tr>
+    <th></th>
+    <th>Catches</th>
+    <th>Runouts</th>
+    <th>Stumpings</th>
+    <th>Drops</th>
+  </tr>
+  <tr class="warning">
+    <th>Fielding</th>
+    <td><%= @player.field_catches %></td>
+    <td><%= @player.field_runouts %></td>
+    <td><%= @player.field_stumpings %></td>
+    <td><%= @player.field_drops %></td>
+  </tr>
+</table>
+
 
 <p>
-  <strong>Age category:</strong>
-  <%= @player.age_category %>
-</p>
-
-<p>
-  <strong>Team:</strong>
-  <%= @player.team %>
-</p>
-
-<p>
-  <strong>Bat innings:</strong>
-  <%= @player.bat_innings %>
-</p>
-
-<p>
-  <strong>Bat runs scored:</strong>
-  <%= @player.bat_runs_scored %>
-</p>
-
-<p>
-  <strong>Bat fifties:</strong>
-  <%= @player.bat_fifties %>
-</p>
-
-<p>
-  <strong>Bat hundreds:</strong>
-  <%= @player.bat_hundreds %>
-</p>
-
-<p>
-  <strong>Bat ducks:</strong>
-  <%= @player.bat_ducks %>
-</p>
-
-<p>
-  <strong>Bat not outs:</strong>
-  <%= @player.bat_not_outs %>
-</p>
-
-<p>
-  <strong>Bowl overs:</strong>
-  <%= @player.bowl_overs %>
-</p>
-
-<p>
-  <strong>Bowl runs:</strong>
-  <%= @player.bowl_runs %>
-</p>
-
-<p>
-  <strong>Bowl wickets:</strong>
-  <%= @player.bowl_wickets %>
-</p>
-
-<p>
-  <strong>Bowl 4 wickets:</strong>
-  <%= @player.bowl_4_wickets %>
-</p>
-
-<p>
-  <strong>Bowl 6 wickets:</strong>
-  <%= @player.bowl_6_wickets %>
-</p>
-
-<p>
-  <strong>Field catches:</strong>
-  <%= @player.field_catches %>
-</p>
-
-<p>
-  <strong>Field runouts:</strong>
-  <%= @player.field_runouts %>
-</p>
-
-<p>
-  <strong>Field stumpings:</strong>
-  <%= @player.field_stumpings %>
-</p>
-
-<p>
-  <strong>Field drops:</strong>
-  <%= @player.field_drops %>
-</p>
-
-<p>
-  <strong>Field mom:</strong>
+  <strong>Man of the Match awards:</strong>
   <%= @player.field_mom %>
 </p>
 

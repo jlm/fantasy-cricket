@@ -1,7 +1,16 @@
 <li>
-  <span class="name"><%= player.name %></span>
+  <span class="name"><%= link_to player.name, player %></span>
   <span class="age_category"><%= player.age_category %></span>
+  <span class="score"><%= player.total %></span>
+  <span class="score"><%= player.bat_avg_invalid ? "-" : player.bat_avg %></span>
+  <span class="score"><%= player.bowl_avg_invalid ? "-" : player.bowl_avg %></span>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(player.created_at) %> ago.
+    Updated <%= time_ago_in_words(player.updated_at) %> ago.
   </span>
+  <% if admin_user? %>
+    <span><%= link_to 'Edit', edit_player_path(player), class: "btn btn-small" %></span>
+    <span><%= link_to 'Destroy', player, method: :delete,
+  	  data: { confirm: 'Are you sure?' }, class: "btn btn-small" %></span>
+  <% end %>
+  <br/>
 </li>
