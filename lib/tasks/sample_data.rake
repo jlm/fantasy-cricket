@@ -1,6 +1,9 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
+    ###
+    ### Users
+    ###
     User.create!(name: "The Admin Guy",
      email: "cricketadmin@cuthberts.org.uk",
      password: "foobar",
@@ -26,6 +29,9 @@ namespace :db do
        password_confirmation: password,
        admin: false)
     end
+    ###
+    ### Players
+    ###
     Player.create!(name: "Example Player",
      team: 1 + rand(4),
      age_category: ["Adult", "U11", "U13", "U15", "U17"][rand(5)],
@@ -40,6 +46,7 @@ namespace :db do
      bowl_wickets: rand(35),
      bowl_4_wickets: rand(6),
      bowl_6_wickets: rand(2),
+     bowl_maidens: rand(5),
      field_catches: rand(30),
      field_runouts: rand(12),
      field_stumpings: rand(12),
@@ -62,6 +69,7 @@ namespace :db do
      bowl_wickets: rand(35),
      bowl_4_wickets: rand(6),
      bowl_6_wickets: rand(2),
+     bowl_maidens: rand(5),
      field_catches: rand(30),
      field_runouts: rand(12),
      field_stumpings: rand(12),
