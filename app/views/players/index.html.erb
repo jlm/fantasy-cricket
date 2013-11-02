@@ -2,12 +2,19 @@
 
 <%= will_paginate %>
 
-<ul class="players">
+<table class="table">
+  <tr>
+    <th><%= sortable "name" %></th>
+    <th><%= sortable "age_category", "Age" %></th>
+    <th><%= sortable "total", "Score" %></th>
+    <th><%= sortable "bat_avg" %></th>
+    <th><%= sortable "bowl_avg" %></th>
+    <th><%= sortable "updated_at", "Modified" %></th>
+  </tr>
   <% @players.each do |player| %>
-    <%= render player %>
+    <%= render partial: "playertab", object: player %>
   <% end %>
-</ul>
-<br>
+</table>
 
 <%= will_paginate %>
 

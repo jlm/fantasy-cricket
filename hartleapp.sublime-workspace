@@ -51,7 +51,15 @@
 			"file": "app/views/players/index.html.erb",
 			"settings":
 			{
-				"buffer_size": 226,
+				"buffer_size": 536,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/players/_playertab.html.erb",
+			"settings":
+			{
+				"buffer_size": 1186,
 				"line_ending": "Unix"
 			}
 		},
@@ -59,7 +67,7 @@
 			"file": "app/views/players/show.html.erb",
 			"settings":
 			{
-				"buffer_size": 1665,
+				"buffer_size": 1699,
 				"line_ending": "Unix"
 			}
 		},
@@ -188,7 +196,7 @@
 			"file": "app/controllers/players_controller.rb",
 			"settings":
 			{
-				"buffer_size": 2333,
+				"buffer_size": 2723,
 				"line_ending": "Unix"
 			}
 		},
@@ -196,7 +204,7 @@
 			"file": "app/helpers/application_helper.rb",
 			"settings":
 			{
-				"buffer_size": 255,
+				"buffer_size": 636,
 				"line_ending": "Unix"
 			}
 		},
@@ -277,7 +285,7 @@
 			"file": "app/views/layouts/_header.html.erb",
 			"settings":
 			{
-				"buffer_size": 1260,
+				"buffer_size": 1266,
 				"line_ending": "Unix"
 			}
 		},
@@ -310,6 +318,22 @@
 			"settings":
 			{
 				"buffer_size": 713,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/players/edit.html.erb",
+			"settings":
+			{
+				"buffer_size": 116,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/static_pages/home.html.erb",
+			"settings":
+			{
+				"buffer_size": 373,
 				"line_ending": "Unix"
 			}
 		},
@@ -365,7 +389,7 @@
 			"file": "app/views/teams/_form.html.erb",
 			"settings":
 			{
-				"buffer_size": 994,
+				"buffer_size": 1010,
 				"line_ending": "Unix"
 			}
 		},
@@ -437,6 +461,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"player",
+			"span",
+			"ol",
 			"bat",
 			"Batting",
 			"team",
@@ -482,7 +509,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 30,
 			"sheets":
 			[
 				{
@@ -520,15 +547,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 226,
+						"buffer_size": 536,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								128,
-								128
+								201,
+								201
 							]
 						],
 						"settings":
@@ -545,19 +572,19 @@
 				},
 				{
 					"buffer": 2,
-					"file": "app/views/players/show.html.erb",
+					"file": "app/views/players/_playertab.html.erb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1665,
+						"buffer_size": 1186,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								684,
-								684
+								1150,
+								1150
 							]
 						],
 						"settings":
@@ -574,6 +601,35 @@
 				},
 				{
 					"buffer": 3,
+					"file": "app/views/players/show.html.erb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1699,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								215,
+								215
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
 					"file": "app/views/users/index.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -602,7 +658,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "Gemfile",
 					"semi_transient": false,
 					"settings":
@@ -629,7 +685,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 6,
 					"file": "lib/tasks/sample_data.rake",
 					"semi_transient": false,
 					"settings":
@@ -659,7 +715,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 7,
 					"file": "config/application.rb",
 					"semi_transient": false,
 					"settings":
@@ -688,7 +744,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 8,
 					"file": "app/assets/stylesheets/custom.css.scss",
 					"semi_transient": false,
 					"settings":
@@ -700,8 +756,8 @@
 						"selection":
 						[
 							[
-								2675,
-								2675
+								2584,
+								2584
 							]
 						],
 						"settings":
@@ -711,13 +767,13 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2735.0,
+						"translation.y": 2579.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 9,
 					"file": "app/views/teams/index.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -746,7 +802,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 10,
 					"file": "app/views/teams/show.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -773,7 +829,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 11,
 					"file": "app/views/users/new.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -800,7 +856,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 12,
 					"file": "app/views/users/edit.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -829,7 +885,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 13,
 					"file": "app/views/users/_form.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -858,7 +914,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 14,
 					"file": "app/views/players/_form.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -887,7 +943,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 15,
 					"file": "app/views/shared/_error_messages.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -916,7 +972,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 16,
 					"file": "app/views/layouts/_footer.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -945,7 +1001,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 17,
 					"file": "app/views/layouts/application.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -974,7 +1030,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 18,
 					"file": "app/controllers/users_controller.rb",
 					"semi_transient": false,
 					"settings":
@@ -1003,20 +1059,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 18,
+					"buffer": 19,
 					"file": "app/controllers/players_controller.rb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2333,
+						"buffer_size": 2723,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								310,
-								310
+								2536,
+								2536
 							]
 						],
 						"settings":
@@ -1032,20 +1088,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 19,
+					"buffer": 20,
 					"file": "app/helpers/application_helper.rb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 255,
+						"buffer_size": 636,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								145,
-								145
+								333,
+								333
 							]
 						],
 						"settings":
@@ -1059,7 +1115,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 20,
+					"buffer": 21,
 					"file": "app/controllers/static_pages_controller.rb",
 					"semi_transient": false,
 					"settings":
@@ -1086,7 +1142,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 21,
+					"buffer": 22,
 					"file": "config/routes.rb",
 					"semi_transient": false,
 					"settings":
@@ -1115,7 +1171,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 22,
+					"buffer": 23,
 					"file": "app/controllers/teams_controller.rb",
 					"semi_transient": false,
 					"settings":
@@ -1144,7 +1200,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 23,
+					"buffer": 24,
 					"file": "app/controllers/sessions_controller.rb",
 					"semi_transient": false,
 					"settings":
@@ -1173,7 +1229,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 24,
+					"buffer": 25,
 					"file": "app/controllers/application_controller.rb",
 					"semi_transient": false,
 					"settings":
@@ -1200,7 +1256,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 25,
+					"buffer": 26,
 					"file": "app/models/user.rb",
 					"semi_transient": false,
 					"settings":
@@ -1229,7 +1285,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 26,
+					"buffer": 27,
 					"file": "app/views/users/show.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -1258,7 +1314,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 27,
+					"buffer": 28,
 					"file": "app/helpers/sessions_helper.rb",
 					"semi_transient": false,
 					"settings":
@@ -1287,7 +1343,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 28,
+					"buffer": 29,
 					"file": "app/views/sessions/new.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -1317,20 +1373,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 29,
+					"buffer": 30,
 					"file": "app/views/layouts/_header.html.erb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1260,
+						"buffer_size": 1266,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								417,
-								417
+								463,
+								463
 							]
 						],
 						"settings":
@@ -1346,7 +1402,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 30,
+					"buffer": 31,
 					"file": "app/assets/javascripts/application.js",
 					"semi_transient": false,
 					"settings":
@@ -1373,7 +1429,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 31,
+					"buffer": 32,
 					"file": "app/views/static_pages/help.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -1400,7 +1456,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 32,
+					"buffer": 33,
 					"file": "app/views/static_pages/about.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -1429,11 +1485,11 @@
 			]
 		},
 		{
-			"selected": 0,
+			"selected": 9,
 			"sheets":
 			[
 				{
-					"buffer": 33,
+					"buffer": 34,
 					"file": "app/views/players/_player.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -1460,7 +1516,61 @@
 					"type": "text"
 				},
 				{
-					"buffer": 34,
+					"buffer": 35,
+					"file": "app/views/players/edit.html.erb",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 116,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 36,
+					"file": "app/views/static_pages/home.html.erb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 373,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								373,
+								373
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 37,
 					"file": "app/views/teams/_team.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -1489,7 +1599,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 35,
+					"buffer": 38,
 					"file": "app/views/users/_user.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -1518,7 +1628,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 36,
+					"buffer": 39,
 					"file": "app/views/teams/index.json.jbuilder",
 					"semi_transient": false,
 					"settings":
@@ -1545,7 +1655,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 37,
+					"buffer": 40,
 					"file": "app/models/player.rb",
 					"semi_transient": false,
 					"settings":
@@ -1572,7 +1682,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 38,
+					"buffer": 41,
 					"file": "app/views/shared/_team_form.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -1599,7 +1709,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 39,
+					"buffer": 42,
 					"file": "app/views/teams/edit.html.erb",
 					"semi_transient": false,
 					"settings":
@@ -1626,20 +1736,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 40,
+					"buffer": 43,
 					"file": "app/views/teams/_form.html.erb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 994,
+						"buffer_size": 1010,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								336,
-								336
+								632,
+								632
 							]
 						],
 						"settings":
@@ -1649,13 +1759,13 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 321.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 41,
+					"buffer": 44,
 					"file": "app/models/team.rb",
 					"semi_transient": false,
 					"settings":

@@ -2,10 +2,12 @@ class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
 
+  helper_method :sort_column, :sort_direction
+  
   # GET /players
   # GET /players.json
   def index
-    @players = Player.paginate(page: params[:page], per_page: 10)
+    @players = Player.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 10)
   end
 
   # GET /players/1
@@ -76,4 +78,14 @@ class PlayersController < ApplicationController
     def admin_user
       redirect_to players_url, notice: "Only administrators are allowed to update the list of players." unless admin_user?
     end
+
+    # From http://railscasts.com/episodes/228-sortable-table-columns?autoplay=true
+    def sort_column
+      Player.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+  
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+
 end

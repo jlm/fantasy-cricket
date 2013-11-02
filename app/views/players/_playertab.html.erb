@@ -1,0 +1,29 @@
+<tr>
+  <td>
+    <%= playertab.name %>
+  </td>
+  
+
+  <td class="age_category"><%= playertab.age_category %></td>
+  <td class="number"><%= playertab.total %></td>
+  <td class="score"><%= playertab.bat_avg_invalid ? "-" : playertab.bat_avg %></td>
+  <td class="score"><%= playertab.bowl_avg_invalid ? "-" : playertab.bowl_avg %></td>
+  <td class="timestamp">
+    Updated <%= time_ago_in_words(playertab.updated_at) %> ago.
+  </td>
+  <td>
+    <div class="dropdown">
+      <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+        Action
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation"><%= link_to "Show", playertab, role: "menuitem", tabindex: "-1" %></li>
+        <% if admin_user? %>
+          <li role="presentation"><%= link_to "Edit", edit_player_path(playertab), role: "menuitem", tabindex: "-1" %></li>
+          <li role="presentation"><%= link_to "Destroy", playertab, method: :delete, data: { confirm: 'Are you sure?' }, role: "menuitem", tabindex: "-1" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </td>
+</tr>
