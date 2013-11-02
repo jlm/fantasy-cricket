@@ -18,11 +18,11 @@
 
   <% if @team.players.any? %>
     <h2><%= pluralize(@team.players.count, "Player") %></h2>
-    <ol>
+    <ul class="players">
       <% @team.players.each do |p| %>
         <%= render(p) %>
       <% end %>
-    </ol>
+    </ul>
   <% else %>
     <h2>No Players!</h2>
     <% @team.players << Player.find(1) %>
