@@ -6,8 +6,9 @@
 
   <td class="age_category"><%= playertab.age_category %></td>
   <td class="number"><%= playertab.total %></td>
-  <td class="score"><%= playertab.bat_avg_invalid ? "-" : playertab.bat_avg %></td>
-  <td class="score"><%= playertab.bowl_avg_invalid ? "-" : playertab.bowl_avg %></td>
+  <td class="number"><%= playertab.bat_score %></td>
+  <td class="score"><%= playertab.bat_avg_invalid ? "-" : "%.2f" % playertab.bat_avg %></td>
+  <td class="score"><%= playertab.bowl_avg_invalid ? "-" : "%.2f" % playertab.bowl_avg %></td>
   <td class="timestamp">
     Updated <%= time_ago_in_words(playertab.updated_at) %> ago.
   </td>
