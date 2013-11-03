@@ -2,15 +2,25 @@
 
 <%= will_paginate %>
 
-<table class="table">
+<table class="players table table-hover">
+  <tr>
+    <th/>
+    <th/>
+    <th colspan="4">Scores</th>
+    <th colspan="2">Averages</th>
+    <th/>
+    <th/>
+  </tr>
   <tr>
     <th><%= sortable "name" %></th>
     <th><%= sortable "age_category", "Age" %></th>
-    <th><%= sortable "total", "Total Score" %></th>
-    <th><%= sortable "bat_score", "Batting Score" %></th>
+    <th><%= sortable "total", "Total" %></th>
+    <th><%= sortable "bat_score", "Batting" %></th>
+    <th><%= sortable "bowl_score", "Bowling" %></th>
+    <th><%= sortable "field_score", "Fielding" %></th>
     <th><%= sortable "bat_avg" %></th>
     <th><%= sortable "bowl_avg" %></th>
-    <th><%= sortable "updated_at", "Modified" %></th>
+    <th/>
   </tr>
   <% @players.each do |player| %>
     <%= render partial: "playertab", object: player %>

@@ -1,17 +1,16 @@
 <tr>
   <td>
-    <%= playertab.name %>
+    <%= link_to playertab.name, playertab %>
   </td>
   
 
   <td class="age_category"><%= playertab.age_category %></td>
-  <td class="number"><%= playertab.total %></td>
-  <td class="number"><%= playertab.bat_score %></td>
-  <td class="score"><%= playertab.bat_avg_invalid ? "-" : "%.2f" % playertab.bat_avg %></td>
-  <td class="score"><%= playertab.bowl_avg_invalid ? "-" : "%.2f" % playertab.bowl_avg %></td>
-  <td class="timestamp">
-    Updated <%= time_ago_in_words(playertab.updated_at) %> ago.
-  </td>
+  <td class="text-right"><%= playertab.total %></td>
+  <td class="text-right"><%= playertab.bat_score %></td>
+  <td class="text-right"><%= playertab.bowl_score %></td>
+  <td class="text-right"><%= playertab.field_score %></td>
+  <td class="text-right"><%= playertab.bat_avg_invalid ? "-" : "%.2f" % playertab.bat_avg %></td>
+  <td class="text-right"><%= playertab.bowl_avg_invalid ? "-" : "%.2f" % playertab.bowl_avg %></td>
   <td>
     <div class="dropdown">
       <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">

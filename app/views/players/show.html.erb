@@ -2,11 +2,10 @@
 
 <table class="table">
   <tr>
-    <th>Player</th>
-    <td><%= @player.name %></td>
-    <td><%= @player.age_category %></td>
-    <td><%= @player.team %></td>
-    <td><%= @player.total %></td>
+    <td><h3><%= @player.name %></h3></td>
+    <td><h3><%= @player.age_category %></h3></td>
+    <td><h3>Team: <%= @player.team %></h3></td>
+    <td><h3><%= @player.total %></h3></td>
   </tr>
 </table>
 <table class="table table-bordered">
@@ -67,6 +66,10 @@
   <strong>Man of the Match awards:</strong>
   <%= @player.field_mom %>
 </p>
+<p class="timestamp">
+    Updated <%= time_ago_in_words(@player.updated_at) %> ago.
+</p>
+
 
 <%= link_to 'Edit', edit_player_path(@player) %> |
 <%= link_to 'Back', players_path %>
