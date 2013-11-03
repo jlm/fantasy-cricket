@@ -1,12 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @team.name %>
-</p>
-<p>
-  <strong>Owner:</strong>
-  <%= @team.user.name %>
-</p>
+<table class="table">
+  <tr>
+    <td><h3><%= @team.name %></h3></td>
+    <td class="text-right"><h3>Owner: <%= @team.user.name %></h3></td>
+  </tr>
+</table>
+<table class="table table-hover">
+  <tr>
+    <th/>
+    <th/>
+    <th colspan="4">Scores</th>
+    <th colspan="2">Averages</th>
+    <th/>
+    <th/>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Total</th>
+    <th>Batting</th>
+    <th>Bowling</th>
+    <th>Fielding</th>
+    <th>Bat Avg</th>
+    <th>Bowl Avg</th>
+    <th/>
+  </tr>
+  <% @team.players.each do |player| %>
+    <%= render partial: "players/playertab", object: player %>
+  <% end %>
+  <tr>
+  	<th>Total</th>
+  	<th></th>
+  	<th class="text-right"><%= @team.players.sum(:total) %></th>
+</table>
+
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>

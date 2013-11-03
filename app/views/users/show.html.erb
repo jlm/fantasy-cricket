@@ -8,7 +8,7 @@
       </h1>
     </section>
     <section>
-      <% if current_user.id == @user.id %>
+      <% if current_user.id == @user.id and ! @user.teams.any? %>
         <%= render 'shared/team_form' %> 
       <% end %>
     </section>
@@ -21,7 +21,7 @@
       </ol>
       <%= will_paginate @teams %>
     <% else %>
-      <h3>No teams</h3>
+      <h3>No team created</h3>
     <% end %>
 
 </div>

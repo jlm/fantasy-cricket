@@ -1,4 +1,4 @@
-<%= form_for(@team) do |f| %>
+<%= form_for @team, html: { class: "form" } do |f| %>
   <% if @team.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
@@ -11,22 +11,52 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
+    <div class="control-group">
+        <%= f.label :name, :class => "control-label" %>
+        <%= f.text_field :name, :class => "input-lg" %>
+    </div>
+    <div class="control-group">
+          <%= f.submit :class => "btn btn-primary" %>
+    </div>
 
   <% if @team.players.any? %>
     <h2><%= pluralize(@team.players.count, "Player") %></h2>
-    <ul class="players">
-      <% @team.players.each do |p| %>
-        <%= render(p) %>
-      <% end %>
-    </ul>
   <% else %>
     <h2>No Players!</h2>
     <% @team.players << Player.find(1) %>
   <% end %>
+
+<% end %>
+
+<table class="table table-hover">
+  <tr>
+    <th/>
+    <th/>
+    <th colspan="4">Scores</th>
+    <th colspan="2">Averages</th>
+    <th/>
+    <th/>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Total</th>
+    <th>Batting</th>
+    <th>Bowling</th>
+    <th>Fielding</th>
+    <th>Bat Avg</th>
+    <th>Bowl Avg</th>
+    <th/>
+  </tr>
+  <% @team.players.each do |player| %>
+    <%= render partial: "players/playertab", object: player %>
+  <% end %>
+  <tr>
+    <th>Total</th>
+    <th></th>
+    <th class="text-right"><%= @team.players.sum(:total) %></th>
+</table>
+
 
   <!-- Here I want to select a player from a drop-down and add it to the tesm -->
 
@@ -35,8 +65,3 @@
   <%#= f.collection_select :player_id, Player.order(:name),:id,:name, include_blank: true %>
   </div>
   -->
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
