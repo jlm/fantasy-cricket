@@ -1,4 +1,4 @@
-<%= form_for @team, html: { class: "form" } do |f| %>
+<%= simple_form_for @team, html: { class: "form-inline" } do |f| %>
   <% if @team.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
@@ -11,13 +11,8 @@
     </div>
   <% end %>
 
-    <div class="control-group">
-        <%= f.label :name, :class => "control-label" %>
-        <%= f.text_field :name, :class => "input-lg" %>
-    </div>
-    <div class="control-group">
-          <%= f.submit :class => "btn btn-primary" %>
-    </div>
+  <%= f.input :name,    input_html: { class: "col-md-8" } %>
+  <%= f.button :submit, :class => "btn btn-primary" %>
 
   <% if @team.players.any? %>
     <h2><%= pluralize(@team.players.count, "Player") %></h2>

@@ -1,7 +1,5 @@
-<%= form_for(@team) do |f| %>
+<%= simple_form_for(@team) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_field :name, placeholder: "New team name..." %>
-  </div>
-  <%= f.submit "Create", class: "btn btn-large btn-primary" %>
+  <%= f.input :name, label: "Create your team", placeholder: "New team name..." %>
+  <%= f.button :submit, "Create", class: "btn btn-large btn-primary" %>
 <% end %>
