@@ -15,10 +15,35 @@
   </aside>
  <div class="span8">
     <% if @user.teams.any? %>
-      <h3>Teams: <%= @user.teams.count %></h3>
-      <ol class="teams">
-        <%= render @teams %>
-      </ol>
+      <h3><%= link_to @user.teams.first.name, @user.teams.first %></h3>
+      <table class="table table-hover">
+        <tr>
+          <th/>
+          <th/>
+          <th colspan="4">Scores</th>
+          <th colspan="2">Averages</th>
+          <th/>
+          <th/>
+        </tr>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Total</th>
+          <th>Batting</th>
+          <th>Bowling</th>
+          <th>Fielding</th>
+          <th>Bat Avg</th>
+          <th>Bowl Avg</th>
+          <th/>
+        </tr>
+        <% @user.teams.first.players.each do |player| %>
+          <%= render partial: "players/playertab", object: player %>
+        <% end %>
+        <tr>
+          <th>Total</th>
+          <th></th>
+          <th class="text-right"><%= @user.teams.first.players.sum(:total) %></th>
+      </table>
       <%= will_paginate @teams %>
     <% else %>
       <h3>No team created</h3>

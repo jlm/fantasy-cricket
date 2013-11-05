@@ -3,8 +3,10 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
 
+  helper_method :sort_column, :sort_direction
+
 	def index
-        @users = User.paginate(page: params[:page], per_page: 10)
+        @users = User.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 10)
   	end
 
   	def show
@@ -57,6 +59,14 @@ private
 			:password_confirmation)
 	end
 
-# Before filters
+    # From http://railscasts.com/episodes/228-sortable-table-columns?autoplay=true
+    def sort_column
+      User.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+  
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+
 
 end

@@ -32,4 +32,6 @@
 
 <br>
 
-<%= link_to 'New Player', new_player_path %>
+<% if admin_user? %>
+  <%= link_to 'New Player', new_player_path, :class => "btn btn-primary" %>
+<% end %>

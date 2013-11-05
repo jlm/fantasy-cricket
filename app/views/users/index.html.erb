@@ -2,13 +2,17 @@
 
 <%= will_paginate %>
 
-<ul class="users">
+<table class="users table table-hover">
+  <tr>
+    <th><%= sortable "name" %></th>
+    <th>Team name</th>
+    <th>Team score</th>
+    <th><%= sortable "updated_at", "Updated" %></th>
+  </tr>
   <% @users.each do |user| %>
-    <%= render user %>
-    
+    <%= render partial: "usertab", object: user %>
   <% end %>
-</ul>
-<br>
+</table>
 
 <%= will_paginate %>
 
