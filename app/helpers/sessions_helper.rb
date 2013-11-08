@@ -45,7 +45,11 @@ module SessionsHelper
     redirect_to(root_url) unless current_user.admin?
   end
 
-# JLM wrote this and has no idea if it's right. Yea! It works!
+  def correct_user_for_team?(team)
+    current_user?(team.user) || admin_user?
+  end
+
+ # JLM wrote this and has no idea if it's right. Yea! It works!
   def admin_user?
     !current_user.nil? && current_user.admin?
   end

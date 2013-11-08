@@ -6,7 +6,9 @@
     <td class="text-right"><h3>Owner: <%= @team.user.name %></h3></td>
   </tr>
 </table>
-<p><%= link_to 'Edit', edit_team_path(@team), :class => "btn btn-small" %></p>
+<% if correct_user_for_team?(@team) %>
+	<p><%= link_to 'Edit', edit_team_path(@team), :class => "btn btn-small" %></p>
+<% end %>
 <table class="table table-hover">
   <tr>
     <th/>

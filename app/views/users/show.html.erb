@@ -13,9 +13,15 @@
       <% end %>
     </section>
   </aside>
- <div class="span8">
+</div>
+<div class="row">
     <% if @user.teams.any? %>
-      <h3><%= link_to @user.teams.first.name, @user.teams.first %></h3>
+      <h3>
+        <%= link_to @user.teams.first.name, @user.teams.first %>
+        <% if correct_user_for_team?(@user.teams.first) %>
+          <%= link_to "Edit", edit_team_path(@user.teams.first), :class => "btn btn-primary" %>
+        <% end %>
+      </h3>
       <table class="table table-hover">
         <tr>
           <th/>
