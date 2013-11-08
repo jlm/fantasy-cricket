@@ -18,7 +18,6 @@
     <h2><%= pluralize(@team.players.count, "Player") %></h2>
   <% else %>
     <h2>No Players!</h2>
-    <% @team.players << Player.find(1) %>
   <% end %>
 
 <% end %>

@@ -19,6 +19,8 @@
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
         <li role="presentation"><%= link_to "Show", playertab, role: "menuitem", tabindex: "-1" %></li>
+        <li role="presentation"><%= link_to "Add to #{current_user.teams.first.name}",  add_player_to_team_path(current_user.teams.first, :player => playertab), team: current_user.teams.first, method: :post, role: "menuitem", tabindex: "-1" %></li>
+        <li role="presentation"><%= link_to "Remove from #{current_user.teams.first.name}",  remove_player_from_team_path(current_user.teams.first, :player => playertab), team: current_user.teams.first, method: :delete, role: "menuitem", tabindex: "-1" %></li>
         <% if admin_user? %>
           <li role="presentation"><%= link_to "Edit", edit_player_path(playertab), role: "menuitem", tabindex: "-1" %></li>
           <li role="presentation"><%= link_to "Destroy", playertab, method: :delete, data: { confirm: 'Are you sure?' }, role: "menuitem", tabindex: "-1" %></li>

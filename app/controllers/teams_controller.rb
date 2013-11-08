@@ -67,6 +67,32 @@ class TeamsController < ApplicationController
     end
   end
 
+  def add_player
+    @team = Team.find(params[:id])
+    @player = Player.find(params[:player])
+    if @team.players.exists?(:id => @player.id)
+      redirect_to players_url, notice: "Player #{@player.name} is already a member of #{@team.name}"
+    else
+      # This is where to check that the user has enough points, and deduct the player's price.
+      @team.players << @player
+      flash[:success] = "Player #{@player.name} has been added to #{@team.name}"
+      redirect_to players_url
+    end
+  end
+
+  def remove_player
+    @team = Team.find(params[:id])
+    @player = Player.find(params[:player])
+    if !@team.players.exists?(:id => @player.id)
+      redirect_to players_url, notice: "Player #{@player.name} is not a member of #{@team.name}"
+    else
+      # This is where to credit the player's price to the user's account.
+      # NB this delete operation does nothing if the player is not in the team.
+      @team.players.delete(@player)
+      flash[:success] = "Player #{@player.name} has been removed from #{@team.name}"
+      redirect_to players_url
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_team

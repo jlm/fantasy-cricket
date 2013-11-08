@@ -5,7 +5,12 @@ Hartlapp::Application.routes.draw do
   resources :players
   resources :users
   resources :sessions,  only: [:new, :create, :destroy]
-  resources :teams,     only: [:create, :destroy]
+  resources :teams,     only: [:create, :destroy] do
+    member do
+      post 'players', :to => "teams#add_player", :as => :add_player_to
+      delete 'players', :to => "teams#remove_player", :as => :remove_player_from
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
