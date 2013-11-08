@@ -6,7 +6,7 @@
   <tr>
     <th><%= sortable "name" %></th>
     <th>Team name</th>
-    <th>Team score</th>
+    <th><%= sortable "teams.first.totalscore", "Total score" %></th>
     <th><%= sortable "updated_at", "Updated" %></th>
   </tr>
   <% @users.each do |user| %>

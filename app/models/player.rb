@@ -2,6 +2,7 @@ class Player < ActiveRecord::Base
   has_and_belongs_to_many :teams
 
   before_save :update_player_scores
+  after_save :update_parent_team_scores
   validates :name, presence: true, uniqueness: true
   validates :age_category, inclusion: { in: %w(U11 U13 U15 U17 Adult),
     message: "%{value} must be one of U11, U13, U15, U17 or Adult." }
@@ -20,5 +21,13 @@ class Player < ActiveRecord::Base
 	  self.bat_avg = (bat_runs_scored + 0.0) / (bat_innings - bat_not_outs) unless self.bat_avg_invalid
   	  self.bowl_avg_invalid = (bowl_wickets == 0)
       self.bowl_avg = (bowl_runs + 0.0) / bowl_wickets unless self.bowl_avg_invalid
+  	end
+
+  	def update_parent_team_scores
+  	  self.teams.each do |team|
+  	  	team.totalscore = team.players.sum(:total)
+  	  	team.save
+		$stderr.puts "+++Team #{team.name} totalscore updated because player #{self.name} updated"
+  	  end
   	end
 end
