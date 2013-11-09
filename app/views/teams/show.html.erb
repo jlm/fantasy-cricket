@@ -1,15 +1,23 @@
 <% provide(:title, @team.name) %>
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @team.user %>
+        <%= @team.user.name %>
+      </h1>
+    </section>
+  </aside>
+</div>
 
-<table class="table">
-  <tr>
-    <td><h3><%= @team.name %></h3></td>
-    <td class="text-right"><h3>Owner: <%= @team.user.name %></h3></td>
-  </tr>
-</table>
-<% if correct_user_for_team?(@team) %>
-	<p><%= link_to 'Edit', edit_team_path(@team), :class => "btn btn-small" %></p>
-<% end %>
+      <h3>
+        <%= @team.name %>
+        <% if correct_user_for_team?(@team) %>
+          <%= link_to "Edit", edit_team_path(@team), :class => "btn btn-primary" %>
+        <% end %>
+      </h3>
+
 <table class="table table-hover">
   <tr>
     <th/>
