@@ -7,9 +7,6 @@ class Player < ActiveRecord::Base
   validates :age_category, inclusion: { in: %w(U11 U13 U15 U17 Adult),
     message: "%{value} must be one of U11, U13, U15, U17 or Adult." }
 
-  #scope :with_bat, -> { :select => "*, (fifties * 25) as bat_score" }
-  #default_scope :select => "*, (bat_fifties * 25) as bat_score"
-
   private
   	def update_player_scores
   	  self.bat_score = bat_runs_scored + bat_fifties*25 + bat_hundreds*50 + bat_not_outs*5 - bat_ducks*8
@@ -25,9 +22,9 @@ class Player < ActiveRecord::Base
 
   	def update_parent_team_scores
   	  self.teams.each do |team|
+		$stderr.puts "+++Team #{team.name} totalscore updated because player #{self.name} updated"
   	  	team.totalscore = team.players.sum(:total)
   	  	team.save
-		$stderr.puts "+++Team #{team.name} totalscore updated because player #{self.name} updated"
   	  end
   	end
 end

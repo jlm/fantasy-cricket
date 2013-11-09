@@ -8,8 +8,7 @@
     %>
   </td>
   <td class="text-right">
-    <%= usertab.teams.any? ? usertab.teams.first.players.sum(:total) : 0
-    %>
+    <%= usertab.totalscore %>
   </td>
   <td class="timestamp">Updated <%= time_ago_in_words(usertab.updated_at) %> ago.</td>
 </tr>

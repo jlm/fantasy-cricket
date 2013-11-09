@@ -45,5 +45,11 @@
   	<th>Total</th>
   	<th></th>
   	<th class="text-right"><%= @team.players.sum(:total) %></th>
+  </tr>
+  <tr>
+  	<th>My Total</th>
+  	<th></th>
+  	<th class="text-right"><%= @team.totalscore %></th>
+  </tr>
 </table>
 
