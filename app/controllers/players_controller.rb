@@ -28,6 +28,8 @@ class PlayersController < ApplicationController
   # POST /players.json
   def create
     @player = Player.new(player_params)
+    # I think the next line contains an SQL injection risk without player_params.
+    @player.total = INITIAL_PLAYER_PRICES[player_params[:team]]
 
     respond_to do |format|
       if @player.save
@@ -72,7 +74,11 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:name, :age_category, :bat_innings, :bat_runs_scored, :bat_fifties, :bat_hundreds, :bat_ducks, :bat_not_outs, :bowl_overs, :bowl_runs, :bowl_wickets, :bowl_4_wickets, :bowl_6_wickets, :bowl_maidens, :field_catches, :field_runouts, :field_stumpings, :field_drops, :field_mom, :team)
+      params.require(:player).permit(:name, :age_category, :bat_innings,
+        :bat_runs_scored, :bat_fifties, :bat_hundreds, :bat_ducks, :bat_not_outs,
+        :bowl_overs, :bowl_runs, :bowl_wickets, :bowl_4_wickets, :bowl_6_wickets,
+        :bowl_maidens, :field_catches, :field_runouts, :field_stumpings,
+        :field_drops, :field_mom, :team)
     end
 
     def admin_user

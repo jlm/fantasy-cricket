@@ -60,7 +60,17 @@
     <td><%= @player.field_stumpings %></td>
     <td><%= @player.field_drops %></td>
   </tr>
-</table>
+  <tr>
+    <th></th>
+    <th>Man of match</th>
+    <th>Team</th>
+  </tr>
+  <tr class="warning">
+    <th>Bonuses</th>
+    <td><%= "%d (%d awards)" % [20 * @player.field_mom, @player.field_mom] %></td>
+    <td><%= INITIAL_PLAYER_PRICES[@player.team] %></td>
+  </tr>
+  </table>
 
 
 <p>
