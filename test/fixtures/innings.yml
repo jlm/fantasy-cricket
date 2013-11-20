@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  matchname: MyString
+  date: MyString
+  inningsname: MyString
+  innings_id: 1
+
+two:
+  matchname: MyString
+  date: MyString
+  inningsname: MyString
+  innings_id: 1

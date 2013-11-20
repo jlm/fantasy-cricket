@@ -1,0 +1,11 @@
+<% provide(:title, "Edit #{@innings.inningsname}") %>
+<h1>Editing innings</h1>
+<p>
+	<strong>Note:</strong> editing an innings is dangerous because the effect on
+	players' scores is not undone and redone!
+</p>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', match_innings_path(@match, @innings) %> |
+<%= link_to 'Back', match_innings_index_path(@match) %>

@@ -1,0 +1,44 @@
+<table class="table">
+  <thead>
+  <tr>
+      <th/>
+      <th colspan="8">Batting</th>
+      <th colspan="7">Bowling</th>
+      <th colspan="3">Fielding</th>
+      <th/>
+      <th/>
+      <th/>
+   </tr>
+    <tr>
+      <th>Name</th>
+      <th>Minutes played</th>
+      <th>How out</th>
+      <th>Not out?</th>
+      <th>Runs scored</th>
+      <th>Balls faced</th>
+      <th>Fours</th>
+      <th>Sixes</th>
+      <th>Scoring rate</th>
+      <th>Overs</th>
+      <th>Maidens</th>
+      <th>Runs</th>
+      <th>Wickets</th>
+      <th>Wides</th>
+      <th>No balls</th>
+      <th>Economy rate</th>
+      <th>Catches</th>
+      <th>Stumpings</th>
+      <th>Runouts</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @player_scores.each do |player_score| %>
+      <%= render player_score %>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @player_scores %>

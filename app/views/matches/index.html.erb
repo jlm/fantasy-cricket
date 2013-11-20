@@ -1,0 +1,32 @@
+<% provide(:title, "matches") %>
+<h1>Listing matches</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Matchname</th>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @matches.each do |match| %>
+      <tr>
+        <td><%= link_to match.matchname, match %></td>
+        <td><%= match.date %></td>
+        <% if admin_user? %>
+          <td><%= link_to 'Edit', edit_match_path(match), class: "btn btn-small" %></td>
+          <td><%= link_to 'Destroy', match, class: "btn btn-small", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if admin_user? %>
+  <%= link_to 'New Match', new_match_path, class: "btn btn-small" %>
+<% end %>

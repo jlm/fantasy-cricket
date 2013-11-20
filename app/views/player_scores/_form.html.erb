@@ -1,0 +1,31 @@
+<%= simple_form_for(@player_score, :url => match_player_score_path(@match, @player_score)) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, :collection => Player.all.map { |p| [p.name, p.name] }, label_method: :first, value_method: :last, prompt: "Name" %>
+    <%= f.hidden_field :match_id, value: @match.id %>
+    <%= f.input :innings_id %>
+    <%= f.input :bat_minutes %>
+    <%= f.input :bat_how %>
+    <%= f.input :bat_not_outs %>
+    <%= f.input :bat_runs_scored %>
+    <%= f.input :bat_balls %>
+    <%= f.input :bat_fours %>
+    <%= f.input :bat_sixes %>
+    <%= f.input :bat_sr %>
+    <%= f.input :bowl_overs %>
+    <%= f.input :bowl_maidens %>
+    <%= f.input :bowl_runs %>
+    <%= f.input :bowl_wickets %>
+    <%= f.input :bowl_wides %>
+    <%= f.input :bowl_noballs %>
+    <%= f.input :bowl_er %>
+    <%= f.input :field_catches %>
+    <%= f.input :field_stumpings %>
+    <%= f.input :field_runouts %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

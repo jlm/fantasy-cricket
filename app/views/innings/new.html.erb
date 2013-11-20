@@ -1,0 +1,6 @@
+<% provide(:title, "Create #{@innings.inningsname}") %>
+<h1>New innings</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', match_innings_index_path(@match) %>

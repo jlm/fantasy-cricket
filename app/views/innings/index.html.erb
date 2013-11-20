@@ -1,0 +1,27 @@
+<% provide(:title, "Innings") %>
+<h1><%= @match.matchname %> <small><%= @match.date %></small></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Innings</th>
+      <th>Batting records</th>
+      <th>Bowling records</th>
+      <th>Fielding records</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @innings.each do |innings| %>
+      <%= render innings %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if admin_user? %>
+  <%= link_to 'New Innings', new_match_innings_path(@match) %>
+<% end %>

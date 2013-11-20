@@ -1,0 +1,10 @@
+<% provide(:title, "Player Scores") %>
+<h1>Player Scores</h1>
+
+<%= render 'index' %>
+
+<br>
+
+<% if admin_user? %>
+	<%= link_to 'New Player score', new_match_player_score_path %>
+<% end %>

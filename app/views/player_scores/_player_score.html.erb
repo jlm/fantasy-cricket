@@ -1,0 +1,26 @@
+      <tr>
+        <td><%= player_score.name %></td>
+        <td><%= player_score.bat_minutes %></td>
+        <td><%= player_score.bat_how %></td>
+        <td><%= player_score.bat_not_outs %></td>
+        <td><%= player_score.bat_runs_scored %></td>
+        <td><%= player_score.bat_balls %></td>
+        <td><%= player_score.bat_fours %></td>
+        <td><%= player_score.bat_sixes %></td>
+        <td><%= player_score.bat_sr %></td>
+        <td><%= player_score.bowl_overs %></td>
+        <td><%= player_score.bowl_maidens %></td>
+        <td><%= player_score.bowl_runs %></td>
+        <td><%= player_score.bowl_wickets %></td>
+        <td><%= player_score.bowl_wides %></td>
+        <td><%= player_score.bowl_noballs %></td>
+        <td><%= player_score.bowl_er %></td>
+        <td><%= player_score.field_catches %></td>
+        <td><%= player_score.field_stumpings %></td>
+        <td><%= player_score.field_runouts %></td>
+        <td><%#= link_to 'Show', match_player_score_path(@match, player_score) %></td>
+        <td><%#= link_to 'Edit', edit_match_player_score_path(@match, player_score) %></td>
+        <td><%= link_to 'Destroy', match_player_score_path(@match, player_score), 
+            class: "btn btn-small",
+            method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>

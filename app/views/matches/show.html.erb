@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  <%= @match.matchname %>
+  <small> <%= @match.date %></small>
+</h1>
+
+<p>
+  <strong>Man of match:</strong>
+  <% p = Player.find(@match.mom) %>
+  <%= link_to p.name, p %>
+</p>
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Innings name</th>
+      <th>Batting records</th>
+      <th>Bowling records</th>
+      <th>Fielding records</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @match.innings.each do |innings| %>
+    	<%= render innings %>
+    <% end %>
+  </tbody>
+</table>
+
+<% if admin_user? %>
+  <%= link_to 'Edit', edit_match_path(@match), class: "btn btn-small" %>
+<% end %>
+<%= link_to 'Back', matches_path, class: "btn btn-small" %>
+<% if admin_user? %>
+  <%= link_to 'New Innings', new_match_innings_path(@match), class: "btn btn-small" %>
+<% end %>

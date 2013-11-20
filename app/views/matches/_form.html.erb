@@ -1,0 +1,13 @@
+<%= simple_form_for(@match) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :matchname %>
+    <%= f.input :date %>
+    <%= f.input :mom, :collection => Player.all.map { |p| [p.name, p.id] }, label_method: :first, value_method: :last, prompt: "Man of Match" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

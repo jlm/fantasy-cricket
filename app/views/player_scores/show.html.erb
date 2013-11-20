@@ -1,0 +1,111 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @player_score.name %>
+</p>
+
+<p>
+  <strong>Match:</strong>
+  <%= @player_score.match_id %>
+</p>
+
+<p>
+  <strong>Innings:</strong>
+  <%= @player_score.innings_id %>
+</p>
+
+<p>
+  <strong>Bat minutes:</strong>
+  <%= @player_score.bat_minutes %>
+</p>
+
+<p>
+  <strong>Bat how:</strong>
+  <%= @player_score.bat_how %>
+</p>
+
+<p>
+  <strong>Bat not outs:</strong>
+  <%= @player_score.bat_not_outs %>
+</p>
+
+<p>
+  <strong>Bat runs scored:</strong>
+  <%= @player_score.bat_runs_scored %>
+</p>
+
+<p>
+  <strong>Bat balls:</strong>
+  <%= @player_score.bat_balls %>
+</p>
+
+<p>
+  <strong>Bat fours:</strong>
+  <%= @player_score.bat_fours %>
+</p>
+
+<p>
+  <strong>Bat sixes:</strong>
+  <%= @player_score.bat_sixes %>
+</p>
+
+<p>
+  <strong>Bat sr:</strong>
+  <%= @player_score.bat_sr %>
+</p>
+
+<p>
+  <strong>Bowl overs:</strong>
+  <%= @player_score.bowl_overs %>
+</p>
+
+<p>
+  <strong>Bowl maidens:</strong>
+  <%= @player_score.bowl_maidens %>
+</p>
+
+<p>
+  <strong>Bowl runs:</strong>
+  <%= @player_score.bowl_runs %>
+</p>
+
+<p>
+  <strong>Bowl wickets:</strong>
+  <%= @player_score.bowl_wickets %>
+</p>
+
+<p>
+  <strong>Bowl wides:</strong>
+  <%= @player_score.bowl_wides %>
+</p>
+
+<p>
+  <strong>Bowl noballs:</strong>
+  <%= @player_score.bowl_noballs %>
+</p>
+
+<p>
+  <strong>Bowl er:</strong>
+  <%= @player_score.bowl_er %>
+</p>
+
+<p>
+  <strong>Field catches:</strong>
+  <%= @player_score.field_catches %>
+</p>
+
+<p>
+  <strong>Field stumpings:</strong>
+  <%= @player_score.field_stumpings %>
+</p>
+
+<p>
+  <strong>Field runouts:</strong>
+  <%= @player_score.field_runouts %>
+</p>
+
+<% if admin_user? %>
+  <%= link_to 'Edit', edit_match_player_score_path(@match, @player_score) %> |
+<% end %>
+<%= link_to 'Back', match_player_scores_path(@match) %>

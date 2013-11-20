@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  match_id: 1
+  innings_id: 1
+  bat_minutes: 1
+  bat_how: MyString
+  bat_not_outs: 1
+  bat_runs_scored: 1
+  bat_balls: 1
+  bat_fours: 1
+  bat_sixes: 1
+  bat_sr: 9.99
+  bowl_overs: 1
+  bowl_maidens: 1
+  bowl_runs: 1
+  bowl_wickets: 1
+  bowl_wides: 1
+  bowl_noballs: 1
+  bowl_er: 9.99
+  field_catches: 1
+  field_stumpings: 1
+  field_runouts: 1
+
+two:
+  name: MyString
+  match_id: 1
+  innings_id: 1
+  bat_minutes: 1
+  bat_how: MyString
+  bat_not_outs: 1
+  bat_runs_scored: 1
+  bat_balls: 1
+  bat_fours: 1
+  bat_sixes: 1
+  bat_sr: 9.99
+  bowl_overs: 1
+  bowl_maidens: 1
+  bowl_runs: 1
+  bowl_wickets: 1
+  bowl_wides: 1
+  bowl_noballs: 1
+  bowl_er: 9.99
+  field_catches: 1
+  field_stumpings: 1
+  field_runouts: 1
