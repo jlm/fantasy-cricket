@@ -5,6 +5,11 @@
   		This is the home page for the
   		Helperby Fantasy Cricket application.
 	</h2>
-	<%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+    <% if !signed_in? %>
+	  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+	  <%= link_to "Sign in", signin_path, class: "btn btn-large" %>
+	<% else %>
+	  <p>Use the links above to navigate through the site.</p>
+	<% end %>
 </div>
 <%= link_to image_tag("rails.png", alt: "Developed with Ruby on Rails"), 'http://rubyonrails.org/' %>

@@ -11,7 +11,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131109050648) do
+ActiveRecord::Schema.define(version: 20131120160259) do
+
+  create_table "innings", force: true do |t|
+    t.string   "matchname"
+    t.string   "date"
+    t.string   "inningsname"
+    t.decimal  "hashkey"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "numbats"
+    t.integer  "numbowls"
+    t.integer  "numfields"
+    t.integer  "match_id"
+  end
+
+  add_index "innings", ["hashkey"], name: "index_innings_on_hashkey", unique: true, using: :btree
+
+  create_table "matches", force: true do |t|
+    t.string   "matchname"
+    t.string   "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "hashkey"
+    t.integer  "mom"
+  end
+
+  add_index "matches", ["hashkey"], name: "index_matches_on_hashkey", unique: true, using: :btree
+
+  create_table "player_scores", force: true do |t|
+    t.string   "name"
+    t.integer  "match_id"
+    t.integer  "innings_id"
+    t.integer  "bat_minutes"
+    t.string   "bat_how"
+    t.integer  "bat_runs_scored"
+    t.integer  "bat_balls"
+    t.integer  "bat_fours"
+    t.integer  "bat_sixes"
+    t.decimal  "bat_sr"
+    t.integer  "bowl_overs"
+    t.integer  "bowl_maidens"
+    t.integer  "bowl_runs"
+    t.integer  "bowl_wickets"
+    t.integer  "bowl_wides"
+    t.integer  "bowl_noballs"
+    t.decimal  "bowl_er"
+    t.integer  "field_catches"
+    t.integer  "field_stumpings"
+    t.integer  "field_runouts"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "bat_not_outs"
+  end
 
   create_table "players", force: true do |t|
     t.string   "name"

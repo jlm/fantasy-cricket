@@ -45,6 +45,9 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.1'
 
+# For hashkey
+#gem 'digest/sha1'
+
 # Use Faker to populate some data tables
 gem 'faker', '1.1.2'
 
@@ -60,3 +63,7 @@ gem 'bootstrap-will_paginate', '0.0.9'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+# Add loads of debug facilities including pry-rails:
+group :development, :test do
+  gem 'jazz_hands'
+end
