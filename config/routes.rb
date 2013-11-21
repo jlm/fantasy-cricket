@@ -2,11 +2,11 @@ Hartlapp::Application.routes.draw do
 
   resources :matches do
     resources :innings do
-      member do
-        get 'player_scores', :to => 'player_scores#innindex', :as => :list_innings_ps
-      end
+#      member do
+#        get 'player_scores', :to => 'player_scores#innindex', :as => :list_innings_ps
+#      end
+      resources :player_scores
     end
-    resources :player_scores
   end  
   resources :teams
 

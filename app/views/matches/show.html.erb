@@ -7,8 +7,10 @@
 
 <p>
   <strong>Man of match:</strong>
-  <% p = Player.find(@match.mom) %>
-  <%= link_to p.name, p %>
+  <% if !@match.mom.nil? %>
+    <% p = Player.find(@match.mom) %>
+    <%= link_to p.name, p %>
+  <% end %>
 </p>
 
 

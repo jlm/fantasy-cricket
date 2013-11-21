@@ -106,6 +106,6 @@
 </p>
 
 <% if admin_user? %>
-  <%= link_to 'Edit', edit_match_player_score_path(@match, @player_score) %> |
+  <%= link_to 'Edit', edit_match_innings_player_score_path(@match, @innings, @player_score) %> |
 <% end %>
-<%= link_to 'Back', match_player_scores_path(@match) %>
+<%= link_to 'Back', match_innings_player_scores_path(@match, @innings) %>

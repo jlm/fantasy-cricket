@@ -1,4 +1,4 @@
 class PlayerScore < ActiveRecord::Base
-	belongs_to :match
+	belongs_to :innings
   	validates :name, presence: true
 end

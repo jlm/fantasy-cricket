@@ -7,6 +7,7 @@ require 'pry'
 
 ###
 ### This program reads the JSON and does PUTS into the database using JSON too.`
+### It is not run from inside the fantasty cricket application.
 ###
 
 ###
@@ -105,17 +106,17 @@ indoc.each do |match|
     innings["bat"].each do |playerupdate|
       playerupdate[:match_id] = match_id
       playerupdate[:innings_id] = innings_id
-      post_item(playerupdate, post_url_base, "matches/#{match_id}/player_scores")
+      post_item(playerupdate, post_url_base, "matches/#{match_id}/innings/#{innings_id}/player_scores")
     end
     innings["bowl"].each do |playerupdate|
       playerupdate[:match_id] = match_id
       playerupdate[:innings_id] = innings_id
-      post_item(playerupdate, post_url_base, "matches/#{match_id}/player_scores")
+      post_item(playerupdate, post_url_base, "matches/#{match_id}/innings/#{innings_id}/player_scores")
     end
     innings["field"].each do |playerupdate|
       playerupdate[:match_id] = match_id
       playerupdate[:innings_id] = innings_id
-      post_item(playerupdate, post_url_base, "matches/#{match_id}/player_scores")
+      post_item(playerupdate, post_url_base, "matches/#{match_id}/innings/#{innings_id}/player_scores")
     end
   end
 end
