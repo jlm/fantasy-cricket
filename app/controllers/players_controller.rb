@@ -90,6 +90,8 @@ class PlayersController < ApplicationController
       @player.bat_not_outs = @player.bat_not_outs.to_i + @player_score.bat_not_outs.to_i
       @player.bat_fours = @player.bat_fours.to_i + @player_score.bat_fours.to_i
       @player.bat_sixes = @player.bat_sixes.to_i + @player_score.bat_sixes.to_i
+      @player.bat_innings = @player.bat_innings.to_i + 1 if 
+        @player_score.bat_runs_scored.to_i + @player_score.bat_balls.to_i + @player_score.bat_not_outs.to_i > 0 or !@player_score.bat_how.nil?
 
       wickets = @player_score.bowl_wickets.to_i
       six_wickets = wickets / 6
@@ -135,6 +137,8 @@ class PlayersController < ApplicationController
       @player.bat_not_outs = @player.bat_not_outs.to_i - @player_score.bat_not_outs.to_i
       @player.bat_fours = @player.bat_fours.to_i - @player_score.bat_fours.to_i
       @player.bat_sixes = @player.bat_sixes.to_i - @player_score.bat_sixes.to_i
+      @player.bat_innings = @player.bat_innings.to_i - 1 if 
+        @player_score.bat_runs_scored.to_i + @player_score.bat_balls.to_i + @player_score.bat_not_outs.to_i > 0 or !@player_score.bat_how.nil?
 
       wickets = @player_score.bowl_wickets.to_i
       six_wickets = wickets / 6
