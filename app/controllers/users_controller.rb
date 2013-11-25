@@ -6,10 +6,10 @@ class UsersController < ApplicationController
   helper_method :sort_column, :sort_direction
 
 	def index
-        @users = User.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 10)
-  	end
+    @users = User.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 10)
+  end
 
-  	def show
+  def show
 		@user = User.find(params[:id])
     redirect_to team_path(@user.teams.first) if @user.teams.any?
 # 	    @teams = @user.teams.paginate(page: params[:page], per_page: 10)

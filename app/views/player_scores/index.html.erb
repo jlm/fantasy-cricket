@@ -6,5 +6,6 @@
 <br>
 
 <% if admin_user? %>
-	<%= link_to 'New Player score', new_match_innings_player_score_path %>
+	<%= link_to 'New Player score', new_match_innings_player_score_path, class: "btn btn-small" %>
 <% end %>
+<%= link_to "Back", match_innings_path(@match, @innings), class: "btn btn-small" %>

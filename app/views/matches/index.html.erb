@@ -1,6 +1,7 @@
-<% provide(:title, "matches") %>
-<h1>Listing matches</h1>
+<% provide(:title, "Matches") %>
+<h1>Matches</h1>
 
+<%= will_paginate %>
 <table class="table">
   <thead>
     <tr>
@@ -24,6 +25,7 @@
     <% end %>
   </tbody>
 </table>
+<%= will_paginate %>
 
 <br>
 

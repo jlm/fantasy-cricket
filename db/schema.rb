@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120160259) do
+ActiveRecord::Schema.define(version: 20131125004631) do
 
   create_table "innings", force: true do |t|
     t.string   "matchname"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 20131120160259) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "bat_not_outs"
+    t.integer  "player_id"
+    t.integer  "field_drops"
   end
 
   create_table "players", force: true do |t|
@@ -97,6 +99,8 @@ ActiveRecord::Schema.define(version: 20131120160259) do
     t.boolean  "bowl_avg_invalid"
     t.integer  "total"
     t.integer  "bowl_maidens"
+    t.integer  "bat_fours"
+    t.integer  "bat_sixes"
   end
 
   create_table "players_teams", id: false, force: true do |t|

@@ -6,7 +6,7 @@ class MatchesController < ApplicationController
   # GET /matches
   # GET /matches.json
   def index
-    @matches = Match.all
+    @matches = Match.all.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /matches/1

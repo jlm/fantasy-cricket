@@ -49,7 +49,7 @@ end
 
     respond_to do |format|
       if @player_score.save
-        format.html { redirect_to match_innings_player_score_path(@match, @innings, @player_score), notice: 'Player score was successfully created.' }
+        format.html { redirect_to match_innings_path(@match, @innings), notice: 'Player score was successfully created.' }
         #format.json { render action: 'show', status: :created, location: @player_score }
         format.json { render action: 'show', status: :created }
       else

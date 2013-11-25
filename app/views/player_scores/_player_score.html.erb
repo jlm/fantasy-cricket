@@ -1,5 +1,26 @@
+      <% p = Player.find_by(:name => player_score.name) %>
+      <% if p.nil? %>
+      <tr class="warning" >
+      <% elsif !player_score.player_id.nil? %>
+      <tr class="success" >
+      <% else %>
       <tr>
-        <td><%= player_score.name %></td>
+      <% end %>
+        <% if p.nil? %>
+            <td>
+                <%= player_score.name %>
+                <% if admin_user? %>
+                    <%= link_to "Create",
+                        new_player_path + "?name=" +
+                            URI.escape(player_score.name,
+                                Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) +
+                            "&age_category=Adult",
+                        class: "btn btn-xs" %>
+                <% end %>
+            </td>
+        <% else %>
+            <td> <%= link_to p.name, p %>
+        <% end %>
         <td><%= player_score.bat_minutes %></td>
         <td><%= player_score.bat_how %></td>
         <td><%= player_score.bat_not_outs %></td>
@@ -18,9 +39,24 @@
         <td><%= player_score.field_catches %></td>
         <td><%= player_score.field_stumpings %></td>
         <td><%= player_score.field_runouts %></td>
-        <td><%#= link_to 'Show', match_innings_player_score_path(@match, @innings, player_score) %></td>
-        <td><%#= link_to 'Edit', edit_match_innings_player_score_path(@match, @innings, player_score) %></td>
-        <td><%= link_to 'Destroy', match_innings_player_score_path(@match, @innings, player_score), 
-            class: "btn btn-small",
-            method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= player_score.field_drops %></td>
+        <% if admin_user? %>
+            <td>
+            <%# binding.pry %>
+              <div class="dropdown">
+                <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                    Action
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                  <% unless p.nil? %>
+                    <li role="presentation"><%= link_to "Apply",  apply_player_score_to_player_path(p, player_score), match: @match, method: :post, role: "menuitem", tabindex: "-1" %></li>
+                    <li role="presentation"><%= link_to "Unapply",  unapply_player_score_from_player_path(p, player_score), method: :delete, role: "menuitem", tabindex: "-1" %></li>
+                  <% end %>
+                    <li role="presentation"><%= link_to "Edit", edit_match_innings_player_score_path(@match, @innings, player_score), role: "menuitem", tabindex: "-1" %></li>
+                    <li role="presentation"><%= link_to "Destroy", match_innings_player_score_path(@match, @innings, player_score), method: :delete, data: { confirm: 'Are you sure?' }, role: "menuitem", tabindex: "-1" %></li>
+                </ul>
+              </div>
+            </td>
+        <% end %>
       </tr>
