@@ -8,12 +8,15 @@ class Team < ActiveRecord::Base
 	private
 		def update_teamscore(p)
 			$stderr.puts "+++Player #{p.name} added/removed to/from team #{self.name}"
-			self.totalscore = self.players.sum(:total)
-			self.save
+			# Team scores are unaffected by adding or removing players.
+			# Only the changes in a team's players' scores change the team score.
+			#self.totalscore = self.players.sum(:total)
+			#self.save
 		end
 
 	  	def update_parent_user_total
 			$stderr.puts "+++User #{self.user.name} totalscore updated because team #{self.name} updated"
+			# This is fine, but most of the code assumes that a user can only have one team.
   		  	self.user.totalscore = self.user.teams.sum(:totalscore)
   	  		self.user.save!
   		end

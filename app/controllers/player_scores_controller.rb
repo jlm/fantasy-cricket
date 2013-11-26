@@ -20,6 +20,15 @@ class PlayerScoresController < ApplicationController
   #  render :index
   #end
 
+  # GET /teams/1/player_scores
+  def teamindex
+    @team = Team.find(params[:id])
+    @player_scores = PlayerScore.where(:player_id =>
+      @team.players.map { |p| p.id}).paginate(
+        page: params[:page], per_page: 5)
+    render :teamindex
+  end
+
   # GET /match/1/innins/4/player_scores/1
   # GET /match/1/innins/4/player_scores/1.json
   def show

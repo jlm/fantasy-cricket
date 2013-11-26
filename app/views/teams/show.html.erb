@@ -42,14 +42,15 @@
     <%= render partial: "players/playertab", object: player %>
   <% end %>
   <tr>
-  	<th>Total</th>
+  	<th>Player Total</th>
   	<th></th>
   	<th class="text-right"><%= @team.players.sum(:total) %></th>
   </tr>
   <tr>
-  	<th>My Total</th>
+  	<th>Team Total</th>
   	<th></th>
   	<th class="text-right"><%= @team.totalscore %></th>
   </tr>
 </table>
 
+<%= link_to 'Player Scores', list_ps_team_path, class: "btn btn-small" %>
