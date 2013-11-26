@@ -8,17 +8,20 @@ namespace :db do
      email: "cricketadmin@cuthberts.org.uk",
      password: "foobar",
      password_confirmation: "foobar",
-     admin: true)
+     admin: true,
+     totalscore: 0)
     User.create!(name: "Lemon Grass",
      email: "lemongrass@lemongrass.org.uk",
      password: "foobar",
      password_confirmation: "foobar",
-     admin: false)
+     admin: false,
+     totalscore: 0)
     User.create!(name: "Tom Messenger",
      email: "tom@cuthberts.org.uk",
      password: "ThomasM1",
      password_confirmation: "ThomasM1",
-     admin: true)
+     admin: true,
+     totalscore: 0)
     99.times do |n|
       name  = Faker::Name.name
       email = "example-#{n+1}@helperbycricket.org.uk"
@@ -27,7 +30,8 @@ namespace :db do
        email: email,
        password: password,
        password_confirmation: password,
-       admin: false)
+       admin: false,
+     totalscore: 0)
     end
     ###
     ### Players

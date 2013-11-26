@@ -65,11 +65,10 @@ private
 
     # From http://railscasts.com/episodes/228-sortable-table-columns?autoplay=true
     def sort_column
-      User.column_names.include?(params[:sort]) ? params[:sort] : "name"
+      User.column_names.include?(params[:sort]) ? params[:sort] : "totalscore"
     end
   
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 
 
