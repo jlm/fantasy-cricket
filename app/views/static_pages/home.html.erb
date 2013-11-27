@@ -6,8 +6,8 @@
   		Helperby Fantasy Cricket application.
 	</h2>
     <% if !signed_in? %>
-	  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
-	  <%= link_to "Sign in", signin_path, class: "btn btn-large" %>
+	  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary", role: "button" %>
+	  <%= link_to "Sign in", signin_path, class: "btn btn-large btn-default", role: "button" %>
 	<% else %>
 	  <p>Use the links above to navigate through the site.</p>
 	<% end %>

@@ -12,7 +12,7 @@
   <% end %>
 
   <%= f.input :name,    input_html: { class: "col-md-8" } %>
-  <%= f.button :submit, :class => "btn" %>
+  <%= f.button :submit, :class => "btn btn-primary" %>
 
   <% if @team.players.any? %>
     <h2><%= pluralize(@team.players.count, "Player") %></h2>
@@ -51,11 +51,3 @@
     <th class="text-right"><%= @team.players.sum(:total) %></th>
 </table>
 
-
-  <!-- Here I want to select a player from a drop-down and add it to the tesm -->
-
-  <!--
-  <div class="field">
-  <%#= f.collection_select :player_id, Player.order(:name),:id,:name, include_blank: true %>
-  </div>
-  -->

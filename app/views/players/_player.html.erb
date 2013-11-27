@@ -8,9 +8,9 @@
     Updated <%= time_ago_in_words(player.updated_at) %> ago.
   </span>
   <% if admin_user? %>
-    <span><%= link_to 'Edit', edit_player_path(player), class: "btn btn-small" %></span>
+    <span><%= link_to 'Edit', edit_player_path(player), class: "btn btn-default" %></span>
     <span><%= link_to 'Destroy', player, method: :delete,
-  	  data: { confirm: 'Are you sure?' }, class: "btn btn-small" %></span>
+  	  data: { confirm: 'Delete player?' }, class: "btn btn-warning" %></span>
   <% end %>
   <br/>
 </li>

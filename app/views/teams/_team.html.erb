@@ -5,9 +5,9 @@
     Updated <%= time_ago_in_words(team.updated_at) %> ago.
   </span>
   <% if current_user.id == team.user.id %>
-    <span><%= link_to 'Edit', edit_team_path(team), class: "btn btn-small" %></span>
+    <span><%= link_to 'Edit', edit_team_path(team), class: "btn btn-default" %></span>
     <span><%= link_to 'Destroy', team, method: :delete,
-  	  data: { confirm: 'Are you sure?' }, class: "btn btn-small" %></span>
+  	  data: { confirm: 'Destroy this team?' }, class: "btn btn-danger" %></span>
   <% else  %>
     <br>Owner: <%= team.user.name %>
   <% end %>    

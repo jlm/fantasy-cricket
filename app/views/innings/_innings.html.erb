@@ -4,7 +4,7 @@
         <td><%= innings.numbowls %></td>
         <td><%= innings.numfields %></td>
         <% if admin_user? %>
-            <td><%= link_to 'Edit', edit_match_innings_path(@match, innings), class: "btn btn-small" %></td>
-            <td><%= link_to 'Destroy', match_innings_path(@match, innings), class: "btn btn-small", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Edit', edit_match_innings_path(@match, innings), class: "btn btn-default" %></td>
+            <td><%= link_to 'Destroy', match_innings_path(@match, innings), class: "btn btn-danger", method: :delete, data: { confirm: 'Delete Innings and all its Player Score records?' } %></td>
         <% end %>
       </tr>

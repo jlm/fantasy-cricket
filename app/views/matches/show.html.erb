@@ -35,9 +35,9 @@
 </table>
 
 <% if admin_user? %>
-  <%= link_to 'Edit', edit_match_path(@match), class: "btn btn-small" %>
+  <%= link_to 'Edit', edit_match_path(@match), class: "btn btn-default" %>
 <% end %>
-<%= link_to 'Back', matches_path, class: "btn btn-small" %>
+<%= link_to 'Back', matches_path, class: "btn btn-default" %>
 <% if admin_user? %>
-  <%= link_to 'New Innings', new_match_innings_path(@match), class: "btn btn-small" %>
+  <%= link_to 'New Innings', new_match_innings_path(@match), class: "btn btn-default" %>
 <% end %>

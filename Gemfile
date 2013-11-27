@@ -15,8 +15,9 @@ gem 'pg'
 
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
-gem 'bootstrap-sass', '2.3.2.2'
+#gem 'sass-rails', '~> 4.0.0'
+#gem 'bootstrap-sass', '2.3.2.2'
+gem 'bootstrap-sass-rails', '>= 3.0.2.1'
 gem 'simple_form'
 
 # Use Uglifier as compressor for JavaScript assets
@@ -53,7 +54,7 @@ gem 'faker', '1.1.2'
 
 # Pagination
 gem 'will_paginate', '3.0.4'
-gem 'bootstrap-will_paginate', '0.0.9'
+gem 'bootstrap-will_paginate', '0.0.10'
 
 # Use unicorn as the app server
 # gem 'unicorn'

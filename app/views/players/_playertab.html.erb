@@ -13,7 +13,7 @@
   <td class="text-right"><%= playertab.bowl_avg_invalid ? "-" : "%.2f" % playertab.bowl_avg %></td>
   <td>
     <div class="dropdown">
-      <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+      <button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
         Action
         <span class="caret"></span>
       </button>
@@ -22,7 +22,7 @@
         <li role="presentation"><%= link_to "Remove from #{current_user.teams.first.name}",  remove_player_from_team_path(current_user.teams.first, :player => playertab), team: current_user.teams.first, method: :delete, role: "menuitem", tabindex: "-1" %></li>
         <% if admin_user? %>
           <li role="presentation"><%= link_to "Edit", edit_player_path(playertab), role: "menuitem", tabindex: "-1" %></li>
-          <li role="presentation"><%= link_to "Destroy", playertab, method: :delete, data: { confirm: 'Are you sure?' }, role: "menuitem", tabindex: "-1" %></li>
+          <li role="presentation"><%= link_to "Destroy", playertab, method: :delete, data: { confirm: 'Delete player?' }, role: "menuitem", tabindex: "-1", class: "btn-danger" %></li>
         <% end %>
       </ul>
     </div>

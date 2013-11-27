@@ -4,9 +4,9 @@
     Updated <%= time_ago_in_words(user.updated_at) %> ago.
   </span>
   <% if current_user.id == user.id %>
-    <span><%= link_to 'Edit', edit_user_path(user), class: "btn btn-small" %></span>
+    <span><%= link_to 'Edit', edit_user_path(user), class: "btn btn-default" %></span>
     <span><%= link_to 'Destroy', user, method: :delete,
-  	  data: { confirm: 'Are you sure?' }, class: "btn btn-small" %></span>
+  	  data: { confirm: 'Destroy this user and their team?' }, class: "btn btn-danger" %></span>
   <% end %>    
   <br>
 </li>

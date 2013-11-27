@@ -1,6 +1,6 @@
 <% provide(:title, @player.name) %>
 <p id="notice"><%= notice %></p>
-
+<row>
 <table class="table">
   <tr>
     <td><h3><%= @player.name %></h3></td>
@@ -71,7 +71,7 @@
     <td><%= INITIAL_PLAYER_PRICES[@player.team] %></td>
   </tr>
   </table>
-
+</row>
 
 <p>
   <strong>Man of the Match awards:</strong>
@@ -82,6 +82,6 @@
 </p>
 
 <% if admin_user? %>
-  <%= link_to 'Edit', edit_player_path(@player), :class => "btn btn-small" %>
+  <%= link_to 'Edit', edit_player_path(@player), :class => "btn btn-default" %>
 <% end %>
-<%= link_to 'Back', players_path, :class => "btn btn-small" %>
+<%= link_to 'Back', players_path, :class => "btn btn-default" %>

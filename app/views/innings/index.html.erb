@@ -22,6 +22,7 @@
 
 <br>
 
+<%= link_to "Back", @match, class: "btn btn-default" %>
 <% if admin_user? %>
-  <%= link_to 'New Innings', new_match_innings_path(@match) %>
+  <%= link_to 'New Innings', new_match_innings_path(@match), class: "btn btn-default" %>
 <% end %>

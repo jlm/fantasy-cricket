@@ -15,7 +15,7 @@
                             URI.escape(player_score.name,
                                 Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) +
                             "&age_category=Adult",
-                        class: "btn btn-xs" %>
+                        class: "btn btn-default" %>
                 <% end %>
             </td>
         <% else %>
@@ -44,9 +44,9 @@
             <td>
             <%# binding.pry %>
               <div class="dropdown">
-                <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
                     Action
-                    <span class="caret"></span>
+                    <b class="caret"></b>
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                   <% unless p.nil? %>
@@ -54,7 +54,7 @@
                     <li role="presentation"><%= link_to "Unapply",  unapply_player_score_from_player_path(p, player_score), method: :delete, role: "menuitem", tabindex: "-1" %></li>
                   <% end %>
                     <li role="presentation"><%= link_to "Edit", edit_match_innings_player_score_path(@match, @innings, player_score), role: "menuitem", tabindex: "-1" %></li>
-                    <li role="presentation"><%= link_to "Destroy", match_innings_player_score_path(@match, @innings, player_score), method: :delete, data: { confirm: 'Are you sure?' }, role: "menuitem", tabindex: "-1" %></li>
+                    <li role="presentation"><%= link_to "Destroy", match_innings_player_score_path(@match, @innings, player_score), method: :delete, data: { confirm: 'Delete Player Score record?' }, role: "menuitem", tabindex: "-1", class: "btn-danger" %></li>
                 </ul>
               </div>
             </td>
