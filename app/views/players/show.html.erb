@@ -19,7 +19,7 @@
     <th>Fifties</th>
     <th>Centuries</th>
   </tr>
-  <tr class="warning">
+  <tr class="success">
     <th>Batting</th>
     <td><%= @player.bat_innings %></td>
     <td><%= @player.bat_runs_scored %></td>
@@ -37,7 +37,7 @@
     <th>4-wickets</th>
     <th>6-wickets</th>
   </tr>
-  <tr class="warning">
+  <tr class="success">
     <th>Bowling</th>
     <td><%= @player.bowl_overs %></td>
     <td><%= @player.bowl_maidens %></td>
@@ -53,7 +53,7 @@
     <th>Stumpings</th>
     <th>Drops</th>
   </tr>
-  <tr class="warning">
+  <tr class="success">
     <th>Fielding</th>
     <td><%= @player.field_catches %></td>
     <td><%= @player.field_runouts %></td>
@@ -65,7 +65,7 @@
     <th>Man of match</th>
     <th>Team</th>
   </tr>
-  <tr class="warning">
+  <tr class="success">
     <th>Bonuses</th>
     <td><%= "%d (%d awards)" % [20 * @player.field_mom, @player.field_mom] %></td>
     <td><%= INITIAL_PLAYER_PRICES[@player.team] %></td>

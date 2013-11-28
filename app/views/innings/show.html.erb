@@ -7,6 +7,13 @@
 		<%= @innings.date %>
 	</small>
 </h1>
+
+<% if admin_user? %>
+<p>Add player score records for this innings using the "New Player Score" button below.  Once they have been added, each must be applied using the drop-down menu to the right of each entry.  This calculates the effect on players' and teams' scores and adjusts those scores immediately.  <strong>Note:</strong> with any luck, when you unapply a player score, the change will apply to the teams it was originally applied to, rather than the teams the player is currently a member of.</p>
+<% else %>
+<p>Only player score records with a green background have been applied to the player the teams to which that player belongs.  Any records with a pink background are for players who do not exist in the database!  Click on a player's name to see more detailed statistics for that player.</p>
+<% end %>
+
 <h2><%= @innings.inningsname %></h2>
 
 <!-- render "player_scores/index" uses the _index.html.etb partial -->
