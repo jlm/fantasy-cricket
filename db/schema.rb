@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131125233631) do
+ActiveRecord::Schema.define(version: 20131129004818) do
 
   create_table "innings", force: true do |t|
     t.string   "matchname"
@@ -66,6 +66,14 @@ ActiveRecord::Schema.define(version: 20131125233631) do
     t.integer  "player_id"
     t.integer  "field_drops"
   end
+
+  create_table "player_scores_teams", id: false, force: true do |t|
+    t.integer "player_score_id"
+    t.integer "team_id"
+  end
+
+  add_index "player_scores_teams", ["player_score_id"], name: "index_player_scores_teams_on_player_score_id", using: :btree
+  add_index "player_scores_teams", ["team_id"], name: "index_player_scores_teams_on_team_id", using: :btree
 
   create_table "players", force: true do |t|
     t.string   "name"

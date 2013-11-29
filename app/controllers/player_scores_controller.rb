@@ -23,9 +23,7 @@ class PlayerScoresController < ApplicationController
   # GET /teams/1/player_scores
   def teamindex
     @team = Team.find(params[:id])
-    @player_scores = PlayerScore.where(:player_id =>
-      @team.players.map { |p| p.id}).paginate(
-        page: params[:page], per_page: 5)
+    @player_scores = @team.player_scores.paginate(page: params[:page], per_page: 5)
     render :teamindex
   end
 

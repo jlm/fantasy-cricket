@@ -86,12 +86,10 @@ class PlayersController < ApplicationController
         @player.player_scores << @player_score
         @player += @player_score      # apply the player_score record to the player
         success_message = "New player score attached to Player #{@player.name}"
-=begin
         @player.teams.each do |team|
           team.player_scores << @player_score
           raise team.errors.full_messages.first unless team.save
         end
-=end
       end
     when :delete
       if !applied
@@ -100,12 +98,10 @@ class PlayersController < ApplicationController
         @player.player_scores.delete(@player_score)
         @player -= @player_score      # unapply the player_score record to the player
         success_message = "Player score record removed from Player #{@player.name}"
-=begin
         @player.teams.each do |team|
           team.player_scores.delete(@player_score)
           raise team.errors.full_messages.first unless team.save
         end
-=end
       end
     else
       raise 'Unexpected request method for apply_player_score'
