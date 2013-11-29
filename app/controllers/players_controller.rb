@@ -48,6 +48,7 @@ class PlayersController < ApplicationController
   # PATCH/PUT /players/1
   # PATCH/PUT /players/1.json
   def update
+    #binding.pry
     respond_to do |format|
       if @player.update(player_params)
         format.html { redirect_to @player, notice: 'Player was successfully updated.' }
@@ -75,47 +76,49 @@ class PlayersController < ApplicationController
     @innings = @player_score.innings
     @match = @innings.match
     #binding.pry
-    if @player.player_scores.exists?(:id => @player_score.id)
-      redirect_to match_innings_player_scores_url(@match, @innings), notice: "Player #{@player.name} already has this player score applied"
+    applied = @player.player_scores.exists?(:id => @player_score.id)
+
+    case request.request_method_symbol
+    when :post
+      if applied
+        redirect_to match_innings_url(@match, @innings), notice: "Player #{@player.name} already has this player score applied"
+      else
+        @player.player_scores << @player_score
+        @player += @player_score      # apply the player_score record to the player
+        success_message = "New player score attached to Player #{@player.name}"
+=begin
+        @player.teams.each do |team|
+          team.player_scores << @player_score
+          raise team.errors.full_messages.first unless team.save
+        end
+=end
+      end
+    when :delete
+      if !applied
+        redirect_to match_innings_url(@match, @innings), notice: "Player #{@player.name} does not have this player score applied"
+      else
+        @player.player_scores.delete(@player_score)
+        @player -= @player_score      # unapply the player_score record to the player
+        success_message = "Player score record removed from Player #{@player.name}"
+=begin
+        @player.teams.each do |team|
+          team.player_scores.delete(@player_score)
+          raise team.errors.full_messages.first unless team.save
+        end
+=end
+      end
     else
-      @player.player_scores << @player_score
-
-      runs = @player_score.bat_runs_scored.to_i
-      centuries = runs / 100
-      fifties = (runs - centuries * 100) / 50
-      @player.bat_hundreds = @player.bat_hundreds.to_i + centuries
-      @player.bat_fifties = @player.bat_fifties.to_i + fifties
-      @player.bat_ducks = @player.bat_ducks.to_i + 1 if !@player_score.bat_runs_scored.nil? and @player_score.bat_runs_scored.to_i == 0
-      @player.bat_runs_scored = @player.bat_runs_scored.to_i + @player_score.bat_runs_scored.to_i
-      @player.bat_not_outs = @player.bat_not_outs.to_i + @player_score.bat_not_outs.to_i
-      @player.bat_fours = @player.bat_fours.to_i + @player_score.bat_fours.to_i
-      @player.bat_sixes = @player.bat_sixes.to_i + @player_score.bat_sixes.to_i
-      @player.bat_innings = @player.bat_innings.to_i + 1 if 
-        @player_score.bat_runs_scored.to_i + @player_score.bat_balls.to_i + @player_score.bat_not_outs.to_i > 0 or !@player_score.bat_how.nil?
-
-      wickets = @player_score.bowl_wickets.to_i
-      six_wickets = wickets / 6
-      four_wickets = (wickets - six_wickets * 6) / 4
-      @player.bowl_overs = @player.bowl_overs.to_i + @player_score.bowl_overs.to_i
-      @player.bowl_maidens = @player.bowl_maidens.to_i + @player_score.bowl_maidens.to_i
-      @player.bowl_runs = @player.bowl_runs.to_i + @player_score.bowl_runs.to_i
-      @player.bowl_wickets = @player.bowl_wickets.to_i + wickets
-      @player.bowl_4_wickets = @player.bowl_4_wickets.to_i + four_wickets
-      @player.bowl_6_wickets = @player.bowl_6_wickets.to_i + six_wickets
-
-      @player.field_catches = @player.field_catches.to_i + @player_score.field_catches.to_i
-      @player.field_runouts = @player.field_runouts.to_i + @player_score.field_runouts.to_i
-      @player.field_stumpings = @player.field_stumpings.to_i + @player_score.field_stumpings.to_i
-      @player.field_drops = @player.field_drops.to_i + @player_score.field_drops.to_i
-
-      @player.field_mom = @player.field_mom.to_i + 1 if @player_score.innings.match.mom = @player.id
-      @player.save
-
-      flash[:success] = "New player score attached to Player #{@player.name}"
-      redirect_to match_innings_player_scores_url(@match, @innings)
+      raise 'Unexpected request method for apply_player_score'
     end
+    if @player.save
+      flash[:success] = success_message
+    else
+      raise @player.errors.full_messages.first
+    end
+    redirect_to match_innings_url(@match, @innings)
   end
 
+=begin
   def unapply_player_score
     @player = Player.find(params[:id])
     @player_score = PlayerScore.find(params[:player_score_id])
@@ -126,42 +129,16 @@ class PlayersController < ApplicationController
       redirect_to match_innings_player_scores_url(@match, @innings), notice: "Player #{@player.name} does not have this player score applied"
     else
       @player.player_scores.delete(@player_score)
-
-      runs = @player_score.bat_runs_scored.to_i
-      centuries = runs / 100
-      fifties = (runs - centuries * 100) / 50
-      @player.bat_hundreds = @player.bat_hundreds.to_i - centuries
-      @player.bat_fifties = @player.bat_fifties.to_i - fifties
-      @player.bat_ducks = @player.bat_ducks.to_i - 1 if !@player_score.bat_runs_scored.nil? and @player_score.bat_runs_scored.to_i == 0
-      @player.bat_runs_scored = @player.bat_runs_scored.to_i - @player_score.bat_runs_scored.to_i
-      @player.bat_not_outs = @player.bat_not_outs.to_i - @player_score.bat_not_outs.to_i
-      @player.bat_fours = @player.bat_fours.to_i - @player_score.bat_fours.to_i
-      @player.bat_sixes = @player.bat_sixes.to_i - @player_score.bat_sixes.to_i
-      @player.bat_innings = @player.bat_innings.to_i - 1 if 
-        @player_score.bat_runs_scored.to_i + @player_score.bat_balls.to_i + @player_score.bat_not_outs.to_i > 0 or !@player_score.bat_how.nil?
-
-      wickets = @player_score.bowl_wickets.to_i
-      six_wickets = wickets / 6
-      four_wickets = (wickets - six_wickets * 6) / 4
-      @player.bowl_overs = @player.bowl_overs.to_i - @player_score.bowl_overs.to_i
-      @player.bowl_maidens = @player.bowl_maidens.to_i - @player_score.bowl_maidens.to_i
-      @player.bowl_runs = @player.bowl_runs.to_i - @player_score.bowl_runs.to_i
-      @player.bowl_wickets = @player.bowl_wickets.to_i - wickets
-      @player.bowl_4_wickets = @player.bowl_4_wickets.to_i - four_wickets
-      @player.bowl_6_wickets = @player.bowl_6_wickets.to_i - six_wickets
-
-      @player.field_catches = @player.field_catches.to_i - @player_score.field_catches.to_i
-      @player.field_runouts = @player.field_runouts.to_i - @player_score.field_runouts.to_i
-      @player.field_stumpings = @player.field_stumpings.to_i - @player_score.field_stumpings.to_i
-      @player.field_drops = @player.field_drops.to_i - @player_score.field_drops.to_i
-
-      @player.field_mom = @player.field_mom.to_i - 1 if @player_score.innings.match.mom = @player.id
-      @player.save
-
-      flash[:success] = "Player score record removed from Player #{@player.name}"
-      redirect_to match_innings_player_scores_url(@match, @innings)
+      @player -= @player_score      # unapply the player_score record to the player
+      if @player.save
+        flash[:success] = "Player score record removed from Player #{@player.name}"
+      else
+        raise @player.errors.full_messages.first
+      end
+      redirect_to match_innings_url(@match, @innings)
     end
   end
+=end
 
   private
     # Use callbacks to share common setup or constraints between actions.

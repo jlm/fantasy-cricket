@@ -12,10 +12,9 @@ Hartlapp::Application.routes.draw do
 
   get "users/new"
   resources :players do
-
     member do
       post 'player_scores/:player_score_id', :to => "players#apply_player_score", :as => :apply_player_score_to
-      delete 'player_scores/:player_score_id', :to => "players#unapply_player_score", :as => :unapply_player_score_from
+      delete 'player_scores/:player_score_id', :to => "players#apply_player_score", :as => :unapply_player_score_from
     end
   end
   resources :users

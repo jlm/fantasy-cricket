@@ -1,5 +1,6 @@
 class Team < ActiveRecord::Base
 	has_and_belongs_to_many :players, after_add: :update_teamscore, after_remove: :update_teamscore
+	has_many :player_scores
 	belongs_to :user
 
 	after_save :update_parent_user_total
