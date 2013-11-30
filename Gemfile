@@ -69,3 +69,7 @@ gem 'bootstrap-will_paginate', '0.0.10'
 group :development, :test do
   gem 'jazz_hands'
 end
+
+group :production do
+	gem 'rails_12factor'
+end
