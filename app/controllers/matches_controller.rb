@@ -2,11 +2,12 @@ class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token, :only => [:create]
   #before_save :add_children, :only => [:create]
-
+  helper_method :sort_column, :sort_direction
+  
   # GET /matches
   # GET /matches.json
   def index
-    @matches = Match.all.paginate(page: params[:page], per_page: 10)
+    @matches = Match.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 10)
   end
 
   # GET /matches/1
@@ -27,8 +28,8 @@ class MatchesController < ApplicationController
   # POST /matches.json
   def create
     @match = Match.new(match_params)
-    # Here's where I need to add the innings, I guess.
     @match.hashkey = make_id(@match.to_json.to_str) if params[:hashkey].nil?
+    @match.date = Date.strptime(@match.date, "%a %d %b %Y") if @match.date.is_a? String
  
     respond_to do |format|
       if @match.save
@@ -53,6 +54,7 @@ class MatchesController < ApplicationController
   # PATCH/PUT /matches/1
   # PATCH/PUT /matches/1.json
   def update
+    @match.date = Date.strptime(@match.date, "%a %d %b %Y") if @match.date.is_a? String
     respond_to do |format|
       if @match.update(match_params)
         format.html { redirect_to @match, notice: 'Match was successfully updated.' }
@@ -84,4 +86,14 @@ class MatchesController < ApplicationController
     def match_params
       params.require(:match).permit(:matchname, :date, :innings, :mom, :hashkey)
     end
+
+    # From http://railscasts.com/episodes/228-sortable-table-columns?autoplay=true
+    def sort_column
+      Match.column_names.include?(params[:sort]) ? params[:sort] : "date"
+    end
+  
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+    end
+
 end

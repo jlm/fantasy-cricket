@@ -2,7 +2,7 @@
 
 <h1>
   <%= @match.matchname %>
-  <small> <%= @match.date %></small>
+  <small> <%= @match.date.to_formatted_s(:rfc822) unless @match.date.nil? %></small>
 </h1>
 
 <p>

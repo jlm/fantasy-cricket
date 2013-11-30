@@ -43,6 +43,7 @@ class InningsController < ApplicationController
     @innings.hashkey = make_id(@innings.to_json.to_str) if params[:hashkey].nil?
     @innings.matchname = @match.matchname if params[:matchname].nil?
     @innings.date = @match.date if params[:date].nil?
+    @innings.date = Date.strptime(@innings.date, "%a %d %b %Y") if @innings.date.is_a? String
     #binding.pry
     # The incremental player update method will be invoked by before_save or similar.
     #binding.pry
@@ -62,6 +63,8 @@ class InningsController < ApplicationController
   # PATCH/PUT /innings/1
   # PATCH/PUT /innings/1.json
   def update
+    @innings.date = @match.date if params[:date].nil?
+    @innings.date = Date.strptime(@innings.date, "%a %d %b %Y") if @innings.date.is_a? String
     respond_to do |format|
       if @innings.update(innings_params)
         format.html { redirect_to match_innings_index_url, notice: 'Innings was successfully updated.' }

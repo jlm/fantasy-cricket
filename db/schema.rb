@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131129004818) do
+ActiveRecord::Schema.define(version: 20131129224704) do
 
   create_table "innings", force: true do |t|
     t.string   "matchname"
-    t.string   "date"
     t.string   "inningsname"
     t.decimal  "hashkey"
     t.datetime "created_at"
@@ -24,17 +23,18 @@ ActiveRecord::Schema.define(version: 20131129004818) do
     t.integer  "numbowls"
     t.integer  "numfields"
     t.integer  "match_id"
+    t.date     "date"
   end
 
   add_index "innings", ["hashkey"], name: "index_innings_on_hashkey", unique: true, using: :btree
 
   create_table "matches", force: true do |t|
     t.string   "matchname"
-    t.string   "date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "hashkey"
     t.integer  "mom"
+    t.date     "date"
   end
 
   add_index "matches", ["hashkey"], name: "index_matches_on_hashkey", unique: true, using: :btree

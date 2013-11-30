@@ -6,8 +6,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Match name</th>
-      <th>Date</th>
+      <th><%= sortable "matchname", "Match name" %></th>
+      <th><%= sortable "date" %></th>
       <th></th>
       <th></th>
     </tr>
@@ -17,7 +17,7 @@
     <% @matches.each do |match| %>
       <tr>
         <td><%= link_to match.matchname, match %></td>
-        <td><%= match.date %></td>
+        <td><%= match.date.to_formatted_s(:rfc822) unless match.date.nil? %></td>
         <% if admin_user? %>
           <td><%= link_to 'Edit', edit_match_path(match), class: "btn btn-default" %></td>
           <td><%= link_to 'Destroy', match, class: "btn btn-danger", method: :delete, data: { confirm: 'Delete Match, all its Innings and their Player Scores?' } %></td>
