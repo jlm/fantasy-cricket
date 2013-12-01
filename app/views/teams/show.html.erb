@@ -13,6 +13,7 @@
 
       <h3>
         <%= @team.name %>
+        <small>Captain: <%= Player.find(@team.captain_id).name unless @team.captain_id.nil? %></small>
         <% if correct_user_for_team?(@team) %>
           <%= link_to "Edit", edit_team_path(@team), :class => "btn btn-primary" %>
         <% end %>

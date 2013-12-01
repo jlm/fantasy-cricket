@@ -2,7 +2,6 @@
   <% if @team.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
-
       <ul>
       <% @team.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,8 +10,9 @@
     </div>
   <% end %>
 
-  <%= f.input :name,    input_html: { class: "col-md-8" } %>
-  <%= f.button :submit, :class => "btn btn-primary" %>
+  <%= f.input :name,    input_html: { class: "col-md-6" } %><br/><br/>
+  <%= f.input :captain_id, :collection => @team.players.map { |p| [p.name, p.id] }, label_method: :first, value_method: :last, prompt: "Captain", input_html: { class: "col-md-2" } %>
+<%= f.button :submit, :class => "btn btn-primary" %>
 
   <% if @team.players.any? %>
     <h2><%= pluralize(@team.players.count, "Player") %></h2>

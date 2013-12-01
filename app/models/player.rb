@@ -44,9 +44,9 @@ class Player < ActiveRecord::Base
   	end
 
   	def update_parent_team_scores
-        self.teams.each do |team|
+      self.teams.each do |team|
     		$stderr.puts "+++Team #{team.name} totalscore updated because player #{self.name} updated"
-  	  	team.totalscore = team.totalscore + self.ts_increment
+  	  	team.totalscore = team.totalscore + self.ts_increment * (team.captain_id == self.id ? 2 : 1)
   	  	team.save
   	  end
   	end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131201002822) do
+ActiveRecord::Schema.define(version: 20131201165656) do
 
   create_table "innings", force: true do |t|
     t.string   "matchname"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20131201002822) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "totalscore"
+    t.integer  "captain_id"
   end
 
   create_table "users", force: true do |t|
