@@ -90,6 +90,8 @@ class TeamsController < ApplicationController
       # This is where to credit the player's price to the user's account.
       # NB this delete operation does nothing if the player is not in the team.
       @team.players.delete(@player)
+      @team.user.drop_available = false;
+      raise @team.user.errors.full_messages.first unless @team.user.save
       flash[:success] = "Player #{@player.name} has been removed from #{@team.name}"
       redirect_to players_url
     end

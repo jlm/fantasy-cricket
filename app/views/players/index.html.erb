@@ -7,8 +7,7 @@
     <th/>
     <th colspan="4">Scores</th>
     <th colspan="2">Averages</th>
-    <th/>
-    <th/>
+    <th>Action for</th>
   </tr>
   <tr>
     <th><%= sortable "name" %></th>
@@ -19,7 +18,7 @@
     <th><%= sortable "field_score", "Fielding" %></th>
     <th><%= sortable "bat_avg" %></th>
     <th><%= sortable "bowl_avg" %></th>
-    <th/>
+    <th><%= current_user.teams.first.name if current_user.teams.any? %></th>
   </tr>
   <% @players.each do |player| %>
     <%= render partial: "playertab", object: player %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131129224704) do
+ActiveRecord::Schema.define(version: 20131201002822) do
 
   create_table "innings", force: true do |t|
     t.string   "matchname"
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(version: 20131129224704) do
     t.string   "remember_token"
     t.integer  "teamcash"
     t.integer  "totalscore"
+    t.boolean  "drop_available"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
