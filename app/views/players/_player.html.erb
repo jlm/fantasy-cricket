@@ -10,7 +10,7 @@
   <% if admin_user? %>
     <span><%= link_to 'Edit', edit_player_path(player), class: "btn btn-default" %></span>
     <span><%= link_to 'Destroy', player, method: :delete,
-  	  data: { confirm: 'Delete player?' }, class: "btn btn-warning" %></span>
+  	  data: { confirm: 'Delete player?' }, class: "btn btn-danger" %></span>
   <% end %>
   <br/>
 </li>

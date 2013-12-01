@@ -1,12 +1,13 @@
 <%= simple_form_for(@player_score, :url => match_innings_player_score_path(@match, @innings, @player_score)) do |f| %>
-  <%= f.error_notification %>
+  <%#= f.error_notification %>
 
-  <div class="form-inputs">
+  <div class="form-inputs form-horizontal col-lg-5 col-lg-offset-3">
+    <%= render 'shared/error_messages', object: f.object %>
     <%= f.input :name, :collection => Player.all.map { |p| [p.name, p.name] }, label_method: :first, value_method: :last, prompt: "Name" %>
     <%= f.hidden_field :match_id, value: @match.id %>
     <%= f.hidden_field :innings_id, value: @innings.id %>
     <%= f.input :bat_minutes %>
-    <%= f.input :bat_how %>
+    <%= f.input :bat_how, label: "How out" %>
     <%= f.input :bat_not_outs %>
     <%= f.input :bat_runs_scored %>
     <%= f.input :bat_balls %>
@@ -25,8 +26,10 @@
     <%= f.input :field_runouts %>
     <%= f.input :field_drops %>
   </div>
+  <br/>
+ <br/>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="form-actions col-lg-2 col-lg-offset-5 btn btn-default">
+    <%= f.button :submit, input_html: { class: "btn btn-default" } %>
   </div>
 <% end %>
