@@ -15,6 +15,7 @@ Hartlapp::Application.routes.draw do
     member do
       post 'player_scores/:player_score_id', :to => "players#apply_player_score", :as => :apply_player_score_to
       delete 'player_scores/:player_score_id', :to => "players#apply_player_score", :as => :unapply_player_score_from
+      get 'player_scores', :to => "player_scores#playerindex", :as => :list_ps
     end
   end
   resources :users

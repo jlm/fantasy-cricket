@@ -27,6 +27,13 @@ class PlayerScoresController < ApplicationController
     render :teamindex
   end
 
+  # GET /players/1/player_scores
+  def playerindex
+    @player = Player.find(params[:id])
+    @player_scores = @player.player_scores.paginate(page: params[:page], per_page: 5)
+    render :playerindex
+  end
+
   # GET /match/1/innins/4/player_scores/1
   # GET /match/1/innins/4/player_scores/1.json
   def show

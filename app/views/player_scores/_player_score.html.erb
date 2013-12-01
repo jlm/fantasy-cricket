@@ -21,6 +21,7 @@
         <% else %>
             <td> <%= link_to p.name, p %>
         <% end %>
+        <td><%= link_to player_score.innings.date, match_innings_path(player_score.innings.match, player_score.innings) %>
         <td><%= player_score.bat_minutes %></td>
         <td><%= player_score.bat_how %></td>
         <td><%= player_score.bat_not_outs %></td>

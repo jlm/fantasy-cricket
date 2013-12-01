@@ -63,6 +63,7 @@ class InningsController < ApplicationController
   # PATCH/PUT /innings/1
   # PATCH/PUT /innings/1.json
   def update
+    @match = Match.find(params[:match_id])
     @innings.date = @match.date if params[:date].nil?
     @innings.date = Date.strptime(@innings.date, "%a %d %b %Y") if @innings.date.is_a? String
     respond_to do |format|
