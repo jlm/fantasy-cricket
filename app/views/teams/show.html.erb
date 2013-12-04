@@ -15,12 +15,26 @@
         <%= @team.name %>
         <small>Captain: <%= Player.find(@team.captain_id).name unless @team.captain_id.nil? %></small>
         <% if correct_user_for_team?(@team) %>
-          <%= link_to "Edit", edit_team_path(@team), :class => "btn btn-primary" %>
+          <%= link_to "Edit", edit_team_path(@team), :class => "btn btn-default" %>
+          <%= link_to "Validate", validate_team_path(@team), :class => "btn btn-primary", method: :post  unless @team.validated %>
         <% end %>
       </h3>
+      <p>Status: team <%= @team.validated ? "" : "not" %> validated.</p>
+
+    <% if @team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being validated:</h2>
+      <ul>
+        <% @team.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
 
 <table class="table table-hover">
   <tr>
+    <th/>
     <th/>
     <th/>
     <th colspan="4">Scores</th>
@@ -31,6 +45,7 @@
   <tr>
     <th>Name</th>
     <th>Age</th>
+    <th>Type</th>
     <th>Total</th>
     <th>Batting</th>
     <th>Bowling</th>
@@ -44,12 +59,14 @@
   <% end %>
   <tr>
   	<th>Player Total</th>
-  	<th></th>
+    <th/>
+    <th/>
   	<th class="text-right"><%= @team.players.sum(:total) %></th>
   </tr>
   <tr>
   	<th>Team Total</th>
-  	<th></th>
+    <th/>
+    <th/>
   	<th class="text-right"><%= @team.totalscore %></th>
   </tr>
 </table>

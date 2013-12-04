@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131201165656) do
+ActiveRecord::Schema.define(version: 20131203230249) do
 
   create_table "innings", force: true do |t|
     t.string   "matchname"
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 20131201165656) do
     t.integer  "bat_fours"
     t.integer  "bat_sixes"
     t.integer  "ts_increment"
+    t.string   "player_category"
   end
 
   create_table "players_teams", id: false, force: true do |t|
@@ -127,6 +128,7 @@ ActiveRecord::Schema.define(version: 20131201165656) do
     t.integer  "user_id"
     t.integer  "totalscore"
     t.integer  "captain_id"
+    t.boolean  "validated"
   end
 
   create_table "users", force: true do |t|

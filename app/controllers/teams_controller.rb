@@ -12,6 +12,12 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
+    @team = Team.find(params[:id])
+    unless @team.validated
+      # meets_rules? is called for its side effect of setting error messages
+      valid = @team.meets_rules?
+      @team.errors.add(:teams, "must be validated before scores are applied")
+    end
   end
 
   # GET /teams/new
@@ -76,6 +82,8 @@ class TeamsController < ApplicationController
     else
       # This is where to check that the user has enough points, and deduct the player's price.
       @team.players << @player
+      @team.validated = false
+      @team.save
       flash[:success] = "Player #{@player.name} has been added to #{@team.name}"
       redirect_to players_url
     end
@@ -91,11 +99,26 @@ class TeamsController < ApplicationController
       # NB this delete operation does nothing if the player is not in the team.
       @team.players.delete(@player)
       @team.user.drop_available = false;
+      @team.validated = false
+      @team.save
       raise @team.user.errors.full_messages.first unless @team.user.save
       flash[:success] = "Player #{@player.name} has been removed from #{@team.name}"
       redirect_to players_url
     end
   end
+
+  def validate
+    @team = Team.find(params[:id])
+    if @team.meets_rules?
+      @team.validated = true
+      flash[:success] = "Team validated! Your team will now earn points"
+    else
+      flash[:warning] = "Team does not meet validation requirements"
+    end
+    raise "Can't save team in validate" unless @team.save
+    redirect_to @team
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_team

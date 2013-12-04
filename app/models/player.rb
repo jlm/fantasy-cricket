@@ -8,8 +8,10 @@ class Player < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :team, presence: true, inclusion: { :in => 1..TEAMS_IN_LEAGUE,
   	message: "%{value} must be in range 1 to #{TEAMS_IN_LEAGUE}." }
-  validates :age_category, inclusion: { in: %w(U11 U13 U15 U17 Adult),
+  validates :age_category, inclusion: { in: AGE_CATEGORIES,
     message: "%{value} must be one of U11, U13, U15, U17 or Adult." }
+  validates :player_category, presence: true, inclusion: { in: PLAYER_CATEGORIES,
+    message: "%{value} must be batsman, bowler or all-rounder." }
 
   # This code overloads the Plus and Minus operators so that I can add a PlayerScore to a Player.
   # Normally, this kind of operation involves dup, but dup creates a new ActiveRecord,
@@ -45,9 +47,13 @@ class Player < ActiveRecord::Base
 
   	def update_parent_team_scores
       self.teams.each do |team|
-    		$stderr.puts "+++Team #{team.name} totalscore updated because player #{self.name} updated"
-  	  	team.totalscore = team.totalscore + self.ts_increment * (team.captain_id == self.id ? 2 : 1)
-  	  	team.save
+        if team.validated
+      		$stderr.puts "+++Team #{team.name} totalscore updated because player #{self.name} updated"
+    	  	team.totalscore = team.totalscore + self.ts_increment * (team.captain_id == self.id ? 2 : 1)
+    	  	team.save
+        else
+          $stderr.puts "+++Team #{team.name} totalscore NOT updated because team not validated"
+        end
   	  end
   	end
 

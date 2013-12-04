@@ -6,6 +6,38 @@ class Team < ActiveRecord::Base
 	after_save :update_parent_user_total
 	validates :name, presence: true, length: {maximum: 50}, uniqueness: true
 
+  def meets_rules?
+  	valid = true
+  	#binding.pry
+    if self.players.where(player_category: "keeper").count != 1
+      self.errors.add(:players, "must include exactly 1 keeper")
+      valid = false
+    end
+    if self.players.where(player_category: "bowler").count < 3
+      self.errors.add(:players, "must include at least 3 bowlers")
+      valid = false
+    end
+    if self.players.where(player_category: "batsman").count < 3
+      self.errors.add(:players, "must include at least 3 batsmen")
+      valid = false
+    end
+    if self.players.where(player_category: "all-rounder").count < 2
+      self.errors.add(:players, "must include at least 2 all-rounders")
+      valid = false
+    end
+    if self.players.count != PLAYERS_PER_TEAM
+      self.errors.add(:players, "must include exactly #{PLAYERS_PER_TEAM} players")
+      valid = false
+    end
+    if self.players.where("age_category != 'Adult'").count < 2
+      self.errors.add(:players, "must include at least 2 junior players")
+      valid = false
+    end
+
+    return valid
+  end
+
+
 	private
 		def update_teamscore(p)
 			$stderr.puts "+++Player #{p.name} added/removed to/from team #{self.name}"

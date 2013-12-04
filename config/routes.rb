@@ -25,6 +25,7 @@ Hartlapp::Application.routes.draw do
       post 'players', :to => "teams#add_player", :as => :add_player_to
       delete 'players', :to => "teams#remove_player", :as => :remove_player_from
       get 'player_scores', :to => "player_scores#teamindex", :as => :list_ps
+      post 'validate', :to => "teams#validate", :as => :validate
     end
   end
 

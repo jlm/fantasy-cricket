@@ -144,7 +144,7 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:name, :age_category, :bat_innings,
+      params.require(:player).permit(:name, :age_category, :player_category, :bat_innings,
         :bat_runs_scored, :bat_fifties, :bat_hundreds, :bat_ducks, :bat_not_outs,
         :bowl_overs, :bowl_runs, :bowl_wickets, :bowl_4_wickets, :bowl_6_wickets,
         :bowl_maidens, :field_catches, :field_runouts, :field_stumpings,
