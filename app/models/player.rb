@@ -32,13 +32,13 @@ class Player < ActiveRecord::Base
 
   private
   	def update_player_scores
-      old_total = self.total
+      old_total = self.total.to_i
   	  self.bat_score = bat_runs_scored.to_i + bat_fifties.to_i*25 + bat_hundreds.to_i*50 + bat_not_outs.to_i*5 - bat_ducks.to_i*10
   	  self.bowl_score = bowl_wickets.to_i*15 + bowl_4_wickets.to_i*25 + bowl_6_wickets.to_i*50 + bowl_maidens.to_i*4
   	  self.field_score = (field_catches.to_i + field_runouts.to_i + field_stumpings.to_i)*15 - field_drops.to_i*10
   	  self.bonus = field_mom.to_i*20
   	  self.total = INITIAL_PLAYER_PRICES[self.team.to_i] + self.bat_score + self.bowl_score + self.field_score + self.bonus
-      self.ts_increment = self.total - old_total
+      self.ts_increment = self.total.to_i - old_total
   	  self.bat_avg_invalid = (bat_innings.to_i - bat_not_outs.to_i == 0)
   	  self.bat_avg = (bat_runs_scored.to_i + 0.0) / (bat_innings.to_i - bat_not_outs.to_i) unless self.bat_avg_invalid
   	  self.bowl_avg_invalid = (bowl_wickets.to_i == 0)
