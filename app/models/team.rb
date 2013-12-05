@@ -33,7 +33,16 @@ class Team < ActiveRecord::Base
       self.errors.add(:players, "must include at least 2 junior players")
       valid = false
     end
-
+    if self.captain_id.nil?
+      self.errors.add(:teams, "must have a captain")
+      valid = false
+    end
+    begin
+    	cap = self.players.find(self.captain_id)
+    rescue ActiveRecord::RecordNotFound
+	    self.errors.add(:players, "must include the team captain")
+    	valid = false
+    end
     return valid
   end
 
