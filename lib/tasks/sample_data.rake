@@ -69,7 +69,7 @@ namespace :db do
       name  = Faker::Name.name
       email = "explayer-#{n+1}@helperbycricket.org.uk"
       Player.create!(name: name,
-     team: 1 + rand(4),
+     team: 1 + rand(3),
      age_category: ["Adult", "U11", "U13", "U15", "U17"][rand(5)],
      player_category: PLAYER_CATEGORIES[rand(PLAYER_CATEGORIES.length)],
      bat_innings: rand(30),
