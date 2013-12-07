@@ -18,9 +18,9 @@
         <%= link_to "Add",  add_player_to_team_path(current_user.teams.first, :player => playertab), team: current_user.teams.first, method: :post, role: "button", class: "btn btn-default" %>
       <% end %>
       <%# binding.pry %>
-      <% if current_user.drop_available and current_user.teams.any? and current_user.teams.first.players.include? playertab %>
+      <% if (@team.nil? or correct_user_for_team?(@team)) and current_user.drop_available and current_user.teams.any? and current_user.teams.first.players.include? playertab %>
         <% if current_user.teams.first.validated? %>
-          <%= link_to "Drop",  remove_player_from_team_path(current_user.teams.first, :player => playertab), team: current_user.teams.first, method: :delete, data: { confirm: 'Drop player?  This action is only allowed once per period.' }, role: "button", class: "btn btn-danger" %>
+          <%= link_to "Drop",  remove_player_from_team_path(current_user.teams.first, :player => playertab), team: current_user.teams.first, method: :delete, data: { confirm: 'Drop this player from your team?  This action is only allowed once per period.' }, role: "button", class: "btn btn-danger" %>
         <% else %>
           <%= link_to "Drop",  remove_player_from_team_path(current_user.teams.first, :player => playertab), team: current_user.teams.first, method: :delete, role: "button", class: "btn btn-warning" %>
         <% end %>

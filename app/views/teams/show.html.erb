@@ -11,26 +11,34 @@
   </aside>
 </div>
 
-      <h3>
-        <%= @team.name %>
-        <small>Captain: <%= Player.find(@team.captain_id).name unless @team.captain_id.nil? %></small>
-        <% if correct_user_for_team?(@team) %>
-          <%= link_to "Edit", edit_team_path(@team), :class => "btn btn-default" %>
-          <%= link_to "Validate", validate_team_path(@team), :class => "btn btn-primary", method: :post  unless @team.validated %>
-        <% end %>
-      </h3>
-      <p>Status: team <%= @team.validated ? "" : "not" %> validated.</p>
-
-    <% if @team.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being validated:</h2>
-      <ul>
-        <% @team.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-    <% end %>
+<h3>
+  <%= @team.name %>
+  <small>Captain: <%= Player.find(@team.captain_id).name unless @team.captain_id.nil? %></small>
+  <div class="btn-group">
+  <% if correct_user_for_team?(@team) %>
+    <%= link_to "Edit Team", edit_team_path(@team), :class => "btn btn-default" %>
+    <%= link_to "Validate", validate_team_path(@team), :class => "btn btn-primary", method: :post  unless @team.validated %>
+  <% end %>
+  <%= link_to 'Player Scores', list_ps_team_path, class: "btn btn-default" %>
+  </div>
+</h3>
+<p>Status: team <%= @team.validated ? "" : "not" %> validated.
+  <% if @team.validated %>
+    <span class="glyphicon glyphicon-ok"></span>
+  <% else %>
+    <span class="glyphicon glyphicon-thumbs-down"></span>
+  <% end %>
+</p>
+<% if @team.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being validated:</h2>
+    <ul>
+      <% @team.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <table class="table table-hover">
   <tr>
@@ -71,4 +79,3 @@
   </tr>
 </table>
 
-<%= link_to 'Player Scores', list_ps_team_path, class: "btn btn-default" %>
