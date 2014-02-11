@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131203230249) do
+ActiveRecord::Schema.define(version: 20140125004612) do
 
   create_table "innings", force: true do |t|
     t.string   "matchname"
@@ -120,6 +120,17 @@ ActiveRecord::Schema.define(version: 20131203230249) do
 
   add_index "players_teams", ["player_id"], name: "index_players_teams_on_player_id", using: :btree
   add_index "players_teams", ["team_id"], name: "index_players_teams_on_team_id", using: :btree
+
+  create_table "settings", force: true do |t|
+    t.string   "var",                   null: false
+    t.text     "value"
+    t.integer  "thing_id"
+    t.string   "thing_type", limit: 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
   create_table "teams", force: true do |t|
     t.string   "name"

@@ -6,6 +6,14 @@ class StaticPagesController < ApplicationController
   	end
   end
 
+  def admin
+    case request.request_method_symbol
+    when :post
+      
+    when :delete
+    end
+  end
+
   def help
   end
 

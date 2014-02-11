@@ -1,4 +1,5 @@
-<%= simple_form_for @team, html: { class: "form-inline" } do |f| %>
+<%= simple_form_for @team, html: { class: "form-inline col-lg-12" } do |f| %>
+  <div class="form-inputs form-horizontal col-lg-12">
   <% if @team.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
@@ -10,9 +11,12 @@
     </div>
   <% end %>
 
-  <%= f.input :name,    input_html: { class: "col-md-6" } %><br/><br/>
-  <%= f.input :captain_id, :collection => @team.players.map { |p| [p.name, p.id] }, label_method: :first, value_method: :last, prompt: "Captain", input_html: { class: "col-md-2" } %>
-<%= f.button :submit, :class => "btn btn-primary" %>
+  <%= f.input :name,    input_html: { class: "" } %><br/><br/>
+  <%= f.input :captain_id, :collection => @team.players.map { |p| [p.name, p.id] }, label_method: :first, value_method: :last, prompt: "Captain", input_html: {  } %>
+  </div>
+  <div class="form-actions">
+  <%= f.button :submit, :class => "btn btn-primary" %>
+  </div>
 
   <% if @team.players.any? %>
     <h2><%= pluralize(@team.players.count, "Player") %></h2>
