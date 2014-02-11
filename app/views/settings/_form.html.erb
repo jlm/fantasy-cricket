@@ -1,0 +1,12 @@
+<%= form_tag("/settings/#{@setting.id}", method: "post") do |f| %>
+<div class="span3">
+  <div class="form-inputs">
+  	  <%= label_tag(:value, "#{@setting.var}") %>
+	  <%= text_field_tag(:value, "#{@setting.value}") %>
+  </div>
+
+  <div class="form-actions">
+  	<%= submit_tag("Save") %>
+  </div>
+</div>
+<% end %>
