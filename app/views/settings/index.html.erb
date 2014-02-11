@@ -1,0 +1,22 @@
+<% provide(:title, "Administration") %>
+<h1>Administration</h1>
+
+<table class="table administration">
+<% @settings.each do |item| %>
+  <tr>
+    <td><%= item.var %></td>
+    <td><%= item.value %></td>
+    <td><%= item.thing_id %></td>
+    <td><%= item.thing_type %></td>
+  	<% if !!item.value == item.value %>
+	    <td><%= link_to 'Toggle', "/settings/#{item.id}/toggle", method: "post", class: "btn btn-default btn-primary" %></td>
+	<% else %>
+	    <td><%= link_to 'Edit', "/settings/#{item.id}/edit", class: "btn btn-default btn-primary" %></td>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+<ul>
+
+<br>
+

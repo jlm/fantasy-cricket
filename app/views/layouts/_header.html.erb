@@ -26,6 +26,9 @@
               <ul class="dropdown-menu" role="menu"  aria-labelledby="dropdownMenuH">
                 <li><%= link_to "Profile", current_user %></li>
                 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+                <% if admin_user? %>
+                  <li><%= link_to "Administration", "/settings" %></li>
+                <% end %>
                 <li class="divider"></li>
                 <li>
                   <%= link_to "Sign out", signout_path, method: "delete" %>

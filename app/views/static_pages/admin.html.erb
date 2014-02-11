@@ -1,0 +1,13 @@
+<% provide(:title, 'Admin') %>
+<div class="center hero-unit">
+	<h1>Helperby Fantasy Cricket</h1>
+	<h2>Administration interface</h2>
+    <% if admin_user? %>
+	  <%= link_to "Disable team changes", admin_path, class: "btn btn-default", role: "button", method: :delete %>
+	  <%= link_to "Enable team changes", admin_path, class: "btn btn-default", role: "button", method: :post %>
+	<% else %>
+	  <p>Use the links above to navigate through the site.</p>
+	<% end %>
+</div>
+<%= link_to image_tag("rails.png", alt: "Developed with Ruby on Rails"), 'http://rubyonrails.org/' %>
+<%= image_tag("under-construction-s.jpg", :alt => "Under Construction") %>

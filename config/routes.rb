@@ -29,6 +29,11 @@ Hartlapp::Application.routes.draw do
     end
   end
 
+    match '/settings', to: 'settings#index',      via: 'get'
+    match '/settings/:id/edit', to: 'settings#edit',      via: 'get'
+    match '/settings/:id', to: 'settings#update', via: 'post'
+    match '/settings/:id/toggle', to: 'settings#toggle', via: 'post'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -29,6 +29,9 @@
     <span class="glyphicon glyphicon-thumbs-down"></span>
   <% end %>
 </p>
+<p>
+  Drop: <%= @team.user.drop_available? ? "" : "not" %> available.
+</p>
 <% if @team.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being validated:</h2>
