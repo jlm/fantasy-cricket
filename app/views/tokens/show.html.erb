@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Real name:</strong>
+  <%= @token.realname %>
+</p>
+
+<p>
+  <strong>Email address:</strong>
+  <%= @token.email %>
+</p>
+
+<p>
+  <strong>Tokenstr:</strong>
+  <%= @token.tokenstr %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @token.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_token_path(@token) %> |
+<%= link_to 'Back', tokens_path %>

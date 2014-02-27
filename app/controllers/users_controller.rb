@@ -25,8 +25,19 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
     @user.totalscore = 0
     @user.teamcash = INITIAL_TEAMCASH
+    token = Token.find_by(tokenstr: @user.tokenstr)
+    #binding.pry
+    unless token and token.user_id.nil?
+      flash[:warning] = "Sign-up token invalid. Please contact administrator"
+      render 'new'
+      return
+    end      
+
 		if @user.save
 			sign_in @user
+      token.user_id = @user.id
+      token.save
+      binding.pry
 			flash[:success] = "Welcome to Helperby Fantasy Cricket!"
 			redirect_to @user
 		else
@@ -60,7 +71,7 @@ private
 
 	def user_params
 		params.require(:user).permit(:name, :email, :password,
-			:password_confirmation)
+			:password_confirmation, :tokenstr)
 	end
 
     # From http://railscasts.com/episodes/228-sortable-table-columns?autoplay=true
@@ -71,6 +82,5 @@ private
     def sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
-
 
 end

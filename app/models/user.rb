@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :teams, dependent: :destroy, after_add: :update_totalscore, after_remove: :update_totalscore
   
   before_save { self.email = email.downcase }
+  #before_save { validate_signup_token }
   before_create :create_remember_token
   validates :name,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

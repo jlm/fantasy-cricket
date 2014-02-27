@@ -1,5 +1,7 @@
 Hartlapp::Application.routes.draw do
 
+  resources :tokens
+
   resources :matches do
     resources :innings do
 #      member do
