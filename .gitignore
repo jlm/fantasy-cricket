@@ -18,3 +18,4 @@
 # Ignore various other junk
 database.yml
 doc/
+hartleapp.sublime-workspace
