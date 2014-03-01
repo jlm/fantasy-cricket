@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140226231726) do
+ActiveRecord::Schema.define(version: 20140301213523) do
 
   create_table "innings", force: true do |t|
     t.string   "matchname"
@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 20140226231726) do
     t.datetime "updated_at"
     t.string   "email"
     t.string   "realname"
+    t.integer  "ticketno"
   end
 
   create_table "users", force: true do |t|

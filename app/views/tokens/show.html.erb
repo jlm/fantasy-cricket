@@ -11,7 +11,12 @@
 </p>
 
 <p>
-  <strong>Tokenstr:</strong>
+  <strong>Ticket number:</strong>
+  <%= @token.ticketno %>
+</p>
+
+<p>
+  <strong>Token:</strong>
   <%= @token.tokenstr %>
 </p>
 
@@ -20,5 +25,5 @@
   <%= @token.user_id %>
 </p>
 
-<%= link_to 'Edit', edit_token_path(@token) %> |
-<%= link_to 'Back', tokens_path %>
+<%= link_to 'Edit', edit_token_path(@token), class: "btn btn-default" %> |
+<%= link_to 'Back', settings_path, class: "btn btn-primary" %>

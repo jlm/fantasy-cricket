@@ -1,6 +1,7 @@
 Hartlapp::Application.routes.draw do
 
   resources :tokens
+  match '/tokens/:id/mail', to: "tokens#mail", via: 'post'
 
   resources :matches do
     resources :innings do

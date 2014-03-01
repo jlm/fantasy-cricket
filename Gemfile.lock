@@ -102,6 +102,12 @@ GEM
     pg (0.17.1)
     polyglot (0.3.4)
     posix-spawn (0.3.8)
+    postmark (1.1.0)
+      json
+      rake
+    postmark-rails (0.6.0)
+      actionmailer (>= 3.0.0)
+      postmark (~> 1.1.0)
     pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -205,6 +211,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   pg
+  postmark-rails
   rails (= 4.0.0)
   rails-settings-cached
   rails_12factor

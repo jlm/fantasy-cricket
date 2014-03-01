@@ -66,6 +66,9 @@ gem 'rails-settings-cached'
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
+# Use postmark to send emails
+gem 'postmark-rails'
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 # Add loads of debug facilities including pry-rails:

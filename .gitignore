@@ -19,3 +19,4 @@
 database.yml
 doc/
 hartleapp.sublime-workspace
+.env

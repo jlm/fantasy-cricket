@@ -1,6 +1,6 @@
 class TokensController < ApplicationController
   before_action :set_token, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy, :show, :index]
+  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy, :show, :index, :mail]
 
   # GET /tokens
   # GET /tokens.json
@@ -63,6 +63,14 @@ class TokensController < ApplicationController
     end
   end
 
+  # POST /tokens/1/mail
+  def mail
+    set_token
+    #binding.pry
+    UserMailer.invite_email(@token).deliver
+    redirect_to @token, notice: 'Email was successfully sent.'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_token
@@ -71,6 +79,6 @@ class TokensController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def token_params
-      params.require(:token).permit(:tokenstr, :user_id, :email, :realname)
+      params.require(:token).permit(:tokenstr, :user_id, :email, :realname, :ticketno)
     end
 end

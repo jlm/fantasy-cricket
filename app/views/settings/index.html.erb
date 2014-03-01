@@ -25,6 +25,7 @@
     <tr>
       <th>Real name</th>
       <th>Email address</th>
+      <th>Ticket number</th>
       <th>Token</th>
       <th>User</th>
       <th></th>
@@ -38,16 +39,18 @@
       <tr>
         <td><%= token.realname %></td>
         <td><%= token.email %></td>
+        <td><%= token.ticketno %></td>
         <td><%= token.tokenstr %></td>
         <% if token.user_id.nil? %>
-        	None
+        	<td>-</td>
         <% else %>
         	<% tokenuser = User.find(token.user_id) %>
         	<td><%= link_to tokenuser.name, user_path(tokenuser) %></td>
         <% end %>
-        <td><%= link_to 'Show', token %></td>
-        <td><%= link_to 'Edit', edit_token_path(token) %></td>
-        <td><%= link_to 'Destroy', token, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', token, class: "btn detn-default" %></td>
+        <% #binding.pry %>
+        <td><%= link_to 'Mail', "/tokens/#{token.id}/mail", method: :post, class: "btn btn-primary" %></td>
+        <td><%= link_to 'Destroy', token, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -55,4 +58,4 @@
 
 <br>
 
-<%= link_to 'New Token', new_token_path %>
+<%= link_to 'New Token', new_token_path, class: "btn btn-primary" %>
