@@ -2,7 +2,8 @@ class SettingsController < ApplicationController
   def index
     # to get all items for render list
     @settings = Setting.unscoped
-  end
+    @tokens = Token.all
+   end
 
   def edit
     @setting = Setting.unscoped.find(params[:id])

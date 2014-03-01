@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 			sign_in @user
       token.user_id = @user.id
       token.save
-      binding.pry
+      #binding.pry
 			flash[:success] = "Welcome to Helperby Fantasy Cricket!"
 			redirect_to @user
 		else

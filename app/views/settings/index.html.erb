@@ -20,3 +20,39 @@
 
 <br>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th>Real name</th>
+      <th>Email address</th>
+      <th>Token</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tokens.each do |token| %>
+      <tr>
+        <td><%= token.realname %></td>
+        <td><%= token.email %></td>
+        <td><%= token.tokenstr %></td>
+        <% if token.user_id.nil? %>
+        	None
+        <% else %>
+        	<% tokenuser = User.find(token.user_id) %>
+        	<td><%= link_to tokenuser.name, user_path(tokenuser) %></td>
+        <% end %>
+        <td><%= link_to 'Show', token %></td>
+        <td><%= link_to 'Edit', edit_token_path(token) %></td>
+        <td><%= link_to 'Destroy', token, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Token', new_token_path %>
