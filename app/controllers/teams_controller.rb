@@ -80,12 +80,17 @@ class TeamsController < ApplicationController
     if @team.players.exists?(:id => @player.id)
       redirect_to players_url, notice: "Player #{@player.name} is already a member of #{@team.name}"
     else
-      # This is where to check that the user has enough points, and deduct the player's price.
-      @team.players << @player
-      @team.validated = false
-      @team.save
-      flash[:success] = "Player #{@player.name} has been added to #{@team.name}"
-      redirect_to players_url
+      if @team.user.teamcash < @player.price
+        flash[:warning] = "That player is too expensive!  Remaining team cash is only #{@team.user.teamcash}"
+        redirect_to players_url
+      else
+        @team.user.teamcash -= @player.price
+        @team.players << @player
+        @team.validated = false
+        @team.save
+        flash[:success] = "Player #{@player.name} has been added to #{@team.name}"
+        redirect_to players_url
+      end
     end
   end
 
@@ -96,6 +101,7 @@ class TeamsController < ApplicationController
       redirect_to players_url, notice: "Player #{@player.name} is not a member of #{@team.name}"
     else
       # This is where to credit the player's price to the user's account.
+      @team.user.teamcash += @player.price
       # NB this delete operation does nothing if the player is not in the team.
       @team.players.delete(@player)
       @team.user.drop_available = false if @team.validated;
