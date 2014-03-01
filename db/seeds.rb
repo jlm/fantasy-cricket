@@ -29,5 +29,5 @@ User.create!(name: "Tom Messenger",
  totalscore: 0,
  teamcash: 6000,
  drop_available: true)
-Settings.create!(var: "enable_changes", value: true)
+Setting.create!(var: "enable_changes", value: true)
    
