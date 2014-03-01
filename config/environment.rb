@@ -14,5 +14,5 @@ INITIAL_TEAMCASH = PLAYERS_PER_TEAM * (INITIAL_PLAYER_PRICES[1..-1].sum / INITIA
 # Initialize the Rails application.
 Hartlapp::Application.initialize!
 # Initialise the settings
-Setting.enable_changes = true
+#Setting.enable_changes = true
 #binding.pry
