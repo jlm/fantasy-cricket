@@ -46,7 +46,7 @@ namespace :db do
     ###
     Player.create!(name: "Example Player",
      team: 1 + rand(3),
-     age_category: ["Adult", "U11", "U13", "U15", "U17"][rand(5)],
+     age_category: ["Adult", "Junior"][rand(2)],
      player_category: PLAYER_CATEGORIES[rand(PLAYER_CATEGORIES.length)],
      bat_innings: rand(30),
      bat_runs_scored: rand(400),
@@ -70,7 +70,7 @@ namespace :db do
       email = "explayer-#{n+1}@helperbycricket.org.uk"
       Player.create!(name: name,
      team: 1 + rand(3),
-     age_category: ["Adult", "U11", "U13", "U15", "U17"][rand(5)],
+     age_category: ["Adult", "Junior"][rand(2)],
      player_category: PLAYER_CATEGORIES[rand(PLAYER_CATEGORIES.length)],
      bat_innings: rand(30),
      bat_runs_scored: rand(400),

@@ -21,8 +21,8 @@ class Team < ActiveRecord::Base
       self.errors.add(:players, "must include at least 3 batsmen")
       valid = false
     end
-    if self.players.where(player_category: "all-rounder").count < 2
-      self.errors.add(:players, "must include at least 2 all-rounders")
+    if self.players.where(player_category: "all-rounder").count < 3
+      self.errors.add(:players, "must include at least 3 all-rounders")
       valid = false
     end
     if self.players.count != PLAYERS_PER_TEAM

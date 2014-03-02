@@ -5,7 +5,7 @@ require File.expand_path('../application', __FILE__)
 
 TEAMS_IN_LEAGUE = 3
 PLAYERS_PER_TEAM = 11
-AGE_CATEGORIES = %w(U11 U13 U15 U17 Adult)
+AGE_CATEGORIES = %w(Junior Adult)
 PLAYER_CATEGORIES = %w(batsman bowler all-rounder keeper)
 INITIAL_PLAYER_PRICES = [0, 1000, 800, 600]
 # Budget is average player price for each team player.

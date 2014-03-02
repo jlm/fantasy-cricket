@@ -9,7 +9,7 @@ class Player < ActiveRecord::Base
   validates :team, presence: true, inclusion: { :in => 1..TEAMS_IN_LEAGUE,
   	message: "%{value} must be in range 1 to #{TEAMS_IN_LEAGUE}." }
   validates :age_category, inclusion: { in: AGE_CATEGORIES,
-    message: "%{value} must be one of U11, U13, U15, U17 or Adult." }
+    message: "%{value} must be one of Junior or Adult." }
   validates :player_category, presence: true, inclusion: { in: PLAYER_CATEGORIES,
     message: "%{value} must be batsman, bowler or all-rounder." }
 
