@@ -30,4 +30,5 @@ User.create!(name: "Tom Messenger",
  teamcash: 6000,
  drop_available: true)
 Setting.create!(var: "enable_changes", value: true)
+Setting.create!(var: "enable_uploads", value: false)
    

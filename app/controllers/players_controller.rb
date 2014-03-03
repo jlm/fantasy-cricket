@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
+  skip_before_filter :verify_authenticity_token, :only => [:create]
 
   helper_method :sort_column, :sort_direction
   
@@ -152,7 +153,7 @@ class PlayersController < ApplicationController
     end
 
     def admin_user
-      redirect_to players_url, notice: "Only administrators are allowed to update the list of players." unless admin_user?
+      redirect_to players_url, notice: "Only administrators are allowed to update the list of players." unless admin_user? or Setting[:enable_uploads]
     end
 
     # From http://railscasts.com/episodes/228-sortable-table-columns?autoplay=true
