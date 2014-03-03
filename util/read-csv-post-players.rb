@@ -32,14 +32,14 @@ require "getoptlong"
 # require "rdoc/usage"
 opts = GetoptLong.new(
   [ '--outfile', '-o', GetoptLong::REQUIRED_ARGUMENT ],
-  [ '--ppp', '-z', GetoptLong::NO_ARGUMENT ],
+  [ '--force', '-f', GetoptLong::NO_ARGUMENT ],
   [ '--post', '-p', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--debug',    '-d', GetoptLong::NO_ARGUMENT ]
 )
 
 infilename = nil
 outfilename = nil
-per_player_posts = nil
+$force = nil
 post_url_base = nil
 $debug = 0
 opts.each do |opt, arg|
@@ -50,8 +50,8 @@ opts.each do |opt, arg|
       outfilename = arg.to_s
     when '--post'
       post_url_base = arg.to_s
-    when '--ppp'
-      per_player_posts = true
+    when '--force'
+      $force = true
   end
 end
 
@@ -71,7 +71,7 @@ def post_item(item, postbase, posttrailer)
     unless [ "200", "201" ].include? resp.code
       print "BAD RESPONSE: #{resp.inspect}\n#{posttrailer}: #{resp.body.to_str}\n"
       #binding.pry
-      exit
+      exit unless $force
     end
     print "#{resp.inspect}\n" if $debug > 0
   else
