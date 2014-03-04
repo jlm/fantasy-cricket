@@ -108,7 +108,7 @@ end
 
 doc << match
 
-binding.pry
+#binding.pry
 
 doc.each do |match|
   # Create a match id to prevent the same match from being added twice
@@ -128,7 +128,7 @@ doc.each do |match|
     print "******** POST innings: #{innings.inspect}\n"
     rsp = post_item(innings, post_url_base, "matches/#{match_id}/innings")
     innings_id = rsp["id"]
-    binding.pry
+    #binding.pry
     if innings["bat"]
       innings["bat"].each do |playerupdate|
         playerupdate[:match_id] = match_id
