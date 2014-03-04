@@ -7,7 +7,8 @@ require 'pry'
 require 'active_support/core_ext/hash/conversions'
 
 ###
-### This program reads some player score records and doesn't yet do PUTS into the database using JSON.`
+### This program reads some player score records derived from an Excel Spreadsheet saved as XML,
+### and does PUTS into the database using JSON.
 ### It is not run from inside the fantasty cricket application.
 ###
 
@@ -35,6 +36,7 @@ opts = GetoptLong.new(
   [ '--matchname', '-m', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--date', '-z', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--inningsname', '-n', GetoptLong::REQUIRED_ARGUMENT ],
+  [ '--mom',  '-y', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--post', '-p', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--debug',    '-d', GetoptLong::NO_ARGUMENT ]
 )
@@ -44,6 +46,7 @@ outfilename = nil
 matchname = nil
 date = nil
 inningsname = nil
+mom = nil
 post_url_base = nil
 $debug = 0
 opts.each do |opt, arg|
@@ -58,6 +61,8 @@ opts.each do |opt, arg|
       matchname = arg.to_s
     when '--inningsname'
       inningsname = arg.to_s
+    when '--mom'
+      mom = arg.to_s
     when '--date'
       date = Date.strptime(arg.to_s, "%d/%m/%Y")
   end
@@ -93,9 +98,19 @@ end
 #
 
 inhash = Hash.from_xml(open(infilename).read)
+playerscores = inhash["match"]["playerscore"]
+doc = []
+match = { :matchname => matchname, :date => date, :mom => mom }
+match["innings"] = [{ :inningsname => inningsname, :matchname => matchname, :date => date, "bat" => []}]
+playerscores.each do |ps|
+  match["innings"].first["bat"] << ps
+end
+
+doc << match
+
 binding.pry
 
-indoc.each do |match|
+doc.each do |match|
   # Create a match id to prevent the same match from being added twice
   match[:hashkey] = make_id(match.to_json.to_s)
   # Create an innings id to prevent the same innings from being added twice
@@ -113,20 +128,27 @@ indoc.each do |match|
     print "******** POST innings: #{innings.inspect}\n"
     rsp = post_item(innings, post_url_base, "matches/#{match_id}/innings")
     innings_id = rsp["id"]
-    innings["bat"].each do |playerupdate|
-      playerupdate[:match_id] = match_id
-      playerupdate[:innings_id] = innings_id
-      post_item(playerupdate, post_url_base, "matches/#{match_id}/innings/#{innings_id}/player_scores")
+    binding.pry
+    if innings["bat"]
+      innings["bat"].each do |playerupdate|
+        playerupdate[:match_id] = match_id
+        playerupdate[:innings_id] = innings_id
+        post_item(playerupdate, post_url_base, "matches/#{match_id}/innings/#{innings_id}/player_scores")
+      end
     end
-    innings["bowl"].each do |playerupdate|
-      playerupdate[:match_id] = match_id
-      playerupdate[:innings_id] = innings_id
-      post_item(playerupdate, post_url_base, "matches/#{match_id}/innings/#{innings_id}/player_scores")
+    if innings["bowl"]
+      innings["bowl"].each do |playerupdate|
+        playerupdate[:match_id] = match_id
+        playerupdate[:innings_id] = innings_id
+        post_item(playerupdate, post_url_base, "matches/#{match_id}/innings/#{innings_id}/player_scores")
+      end
     end
-    innings["field"].each do |playerupdate|
-      playerupdate[:match_id] = match_id
-      playerupdate[:innings_id] = innings_id
-      post_item(playerupdate, post_url_base, "matches/#{match_id}/innings/#{innings_id}/player_scores")
+    if innings["field"]
+      innings["field"].each do |playerupdate|
+        playerupdate[:match_id] = match_id
+        playerupdate[:innings_id] = innings_id
+        post_item(playerupdate, post_url_base, "matches/#{match_id}/innings/#{innings_id}/player_scores")
+      end
     end
   end
 end

@@ -30,6 +30,8 @@ class MatchesController < ApplicationController
     @match = Match.new(match_params)
     @match.hashkey = make_id(@match.to_json.to_str) if params[:hashkey].nil?
     @match.date = Date.strptime(@match.date, "%a %d %b %Y") if @match.date.is_a? String
+    @match.mom = Player.where(:name => params[:mom]).first.id if params[:mom].is_a? String
+    #binding.pry
  
     respond_to do |format|
       if @match.save
