@@ -15,7 +15,6 @@
 
 <h3>
   <%= @team.name %>
-  <small>Captain: <%= Player.find(@team.captain_id).name unless @team.captain_id.nil? %></small>
   <div class="btn-group">
   <% if correct_user_for_team?(@team) %>
     <%= link_to "Edit Team", edit_team_path(@team), :class => "btn btn-default" %>
@@ -23,6 +22,10 @@
   <% end %>
   <%= link_to 'Player Scores', list_ps_team_path, class: "btn btn-default" %>
   </div>
+</h3>
+<h3>
+  <small>Captain: <%= Player.find(@team.captain_id).name unless @team.captain_id.nil? %></small><br/>
+  <small>Keeper: <%= Player.find(@team.keeper_id).name unless @team.keeper_id.nil? %></small>
 </h3>
 <p>Status: team <%= @team.validated ? "" : "not" %> validated.
   <% if @team.validated %>
@@ -47,9 +50,7 @@
 
 <table class="table table-hover">
   <tr>
-    <th/>
-    <th/>
-    <th/>
+    <th colspan="4"/>
     <th colspan="4">Scores</th>
     <th colspan="2">Averages</th>
     <th/>
@@ -59,12 +60,13 @@
     <th>Name</th>
     <th>Age</th>
     <th>Type</th>
-    <th>Total</th>
-    <th>Batting</th>
-    <th>Bowling</th>
-    <th>Fielding</th>
-    <th>Bat Avg</th>
-    <th>Bowl Avg</th>
+    <th class="text-right">Price</th>
+    <th class="text-right">Total</th>
+    <th class="text-right">Batting</th>
+    <th class="text-right">Bowling</th>
+    <th class="text-right">Fielding</th>
+    <th class="text-right">Bat Avg</th>
+    <th class="text-right">Bowl Avg</th>
     <th/>
   </tr>
   <% @team.players.each do |player| %>
@@ -72,14 +74,12 @@
   <% end %>
   <tr>
   	<th>Player Total</th>
-    <th/>
-    <th/>
+    <th colspan="3" />
   	<th class="text-right"><%= @team.players.sum(:total) %></th>
   </tr>
   <tr>
   	<th>Team Total</th>
-    <th/>
-    <th/>
+    <th colspan="3" />
   	<th class="text-right"><%= @team.totalscore %></th>
   </tr>
 </table>

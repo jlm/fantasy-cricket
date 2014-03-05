@@ -83,6 +83,7 @@ class PlayersController < ApplicationController
     when :post
       if applied
         redirect_to match_innings_url(@match, @innings), notice: "Player #{@player.name} already has this player score applied"
+        return
       else
         @player.player_scores << @player_score
         @player += @player_score      # apply the player_score record to the player
@@ -95,6 +96,7 @@ class PlayersController < ApplicationController
     when :delete
       if !applied
         redirect_to match_innings_url(@match, @innings), notice: "Player #{@player.name} does not have this player score applied"
+        return
       else
         @player.player_scores.delete(@player_score)
         @player -= @player_score      # unapply the player_score record to the player

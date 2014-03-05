@@ -9,10 +9,6 @@ class Team < ActiveRecord::Base
   def meets_rules?
   	valid = true
   	#binding.pry
-    if self.players.where(player_category: "keeper").count != 1
-      self.errors.add(:players, "must include exactly 1 keeper")
-      valid = false
-    end
     if self.players.where(player_category: "bowler").count < 3
       self.errors.add(:players, "must include at least 3 bowlers")
       valid = false
@@ -37,11 +33,21 @@ class Team < ActiveRecord::Base
       self.errors.add(:teams, "must have a captain")
       valid = false
     end
+    if self.keeper_id.nil?
+      self.errors.add(:teams, "must have a keeper")
+      valid = false
+    end
     begin
-    	cap = self.players.find(self.captain_id)
+      cap = self.players.find(self.captain_id)
     rescue ActiveRecord::RecordNotFound
-	    self.errors.add(:players, "must include the team captain")
-    	valid = false
+      self.errors.add(:players, "must include the team captain")
+      valid = false
+    end
+    begin
+      keep = self.players.find(self.keeper_id)
+    rescue ActiveRecord::RecordNotFound
+      self.errors.add(:players, "must include the keeper")
+      valid = false
     end
     return valid
   end

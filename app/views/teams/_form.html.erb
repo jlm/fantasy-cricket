@@ -1,5 +1,4 @@
 <%= simple_form_for @team, html: { class: "form-inline col-lg-12" } do |f| %>
-  <div class="form-inputs form-horizontal col-lg-12">
   <% if @team.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
@@ -11,8 +10,10 @@
     </div>
   <% end %>
 
+  <div class="form-inputs form-horizontal">
   <%= f.input :name,    input_html: { class: "" } %><br/><br/>
   <%= f.input :captain_id, :collection => @team.players.map { |p| [p.name, p.id] }, label_method: :first, value_method: :last, prompt: "Captain", input_html: {  } %>
+  <%= f.input :keeper_id, :collection => @team.players.map { |p| [p.name, p.id] }, label_method: :first, value_method: :last, prompt: "Keeper", input_html: {  } %>
   </div>
   <div class="form-actions">
   <%= f.button :submit, :class => "btn btn-primary" %>
@@ -28,8 +29,7 @@
 
 <table class="table table-hover">
   <tr>
-    <th/>
-    <th/>
+    <th colspan="4"/>
     <th colspan="4">Scores</th>
     <th colspan="2">Averages</th>
     <th/>
@@ -38,12 +38,14 @@
   <tr>
     <th>Name</th>
     <th>Age</th>
-    <th>Total</th>
-    <th>Batting</th>
-    <th>Bowling</th>
-    <th>Fielding</th>
-    <th>Bat Avg</th>
-    <th>Bowl Avg</th>
+    <th>Player type</th>
+    <th class="text-right">Price</th>
+    <th class="text-right">Total</th>
+    <th class="text-right">Batting</th>
+    <th class="text-right">Bowling</th>
+    <th class="text-right">Fielding</th>
+    <th class="text-right">Bat Avg</th>
+    <th class="text-right">Bowl Avg</th>
     <th/>
   </tr>
   <% @team.players.each do |player| %>
@@ -51,7 +53,7 @@
   <% end %>
   <tr>
     <th>Total</th>
-    <th></th>
+    <th colspan="3"/>
     <th class="text-right"><%= @team.players.sum(:total) %></th>
 </table>
 
