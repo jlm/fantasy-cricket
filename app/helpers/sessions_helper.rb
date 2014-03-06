@@ -42,7 +42,7 @@ module SessionsHelper
   end
 
   def admin_user
-    redirect_to(root_url) unless current_user.admin?
+    redirect_to(root_url) unless admin_user?
   end
 
   def correct_user_for_team?(team)

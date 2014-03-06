@@ -30,7 +30,7 @@ class TokensController < ApplicationController
 
     respond_to do |format|
       if @token.save
-        format.html { redirect_to @token, notice: 'Token was successfully created.' }
+        format.html { redirect_to settings_path, notice: 'Token was successfully created.' }
         format.json { render action: 'show', status: :created, location: @token }
       else
         format.html { render action: 'new' }
