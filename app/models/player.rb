@@ -36,7 +36,7 @@ class Player < ActiveRecord::Base
       old_total = self.total.to_i
   	  self.bat_score = bat_runs_scored.to_i + bat_fifties.to_i*25 + bat_hundreds.to_i*50 + bat_not_outs.to_i*5 - bat_ducks.to_i*10
       old_bowl_score = self.bowl_score
-  	  self.bowl_score = bowl_wickets.to_i*15 + bowl_4_wickets.to_i*25 + bowl_6_wickets.to_i*50 + bowl_maidens.to_i*4
+  	  self.bowl_score = bowl_wickets.to_i*15 + bowl_4_wickets.to_i*25 + bowl_6_wickets.to_i*50 + bowl_maidens.to_i*2
       self.ts_keeper_decrement = old_bowl_score - self.bowl_score
   	  self.field_score = (field_catches.to_i + field_runouts.to_i + field_stumpings.to_i)*15 - field_drops.to_i*10
   	  self.bonus = field_mom.to_i*20
