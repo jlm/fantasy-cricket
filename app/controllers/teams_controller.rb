@@ -33,6 +33,7 @@ class TeamsController < ApplicationController
   # POST /teams.json
   def create
     @team = current_user.teams.build(team_params)
+    @team.name = @team.user.name + "'s team" if @team.name.nil?
     @team.totalscore = 0
 
     respond_to do |format|

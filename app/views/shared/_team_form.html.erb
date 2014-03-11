@@ -1,5 +1,4 @@
 <%= simple_form_for(@team) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
   <%= f.input :name, label: "Create your team", placeholder: "New team name..." %>
   <%= f.button :submit, "Create", class: "btn btn-large btn-primary" %>
 <% end %>
