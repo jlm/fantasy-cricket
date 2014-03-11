@@ -3,9 +3,7 @@
 <p>Click on a player's name to see more detailed statistics for that player.</p>
 <table class="players table table-hover">
   <tr>
-    <th/>
-    <th/>
-    <th/>
+    <th colspan="4"/>
     <th colspan="4">Scores</th>
     <th colspan="2">Averages</th>
     <th>Action for</th>
@@ -14,13 +12,13 @@
     <th><%= sortable "name" %></th>
     <th><%= sortable "age_category", "Age" %></th>
     <th><%= sortable "player_category", "Type" %></th>
-    <th><%= sortable "price", "Price" %></th>
-    <th><%= sortable "total", "Total" %></th>
-    <th><%= sortable "bat_score", "Batting" %></th>
-    <th><%= sortable "bowl_score", "Bowling" %></th>
-    <th><%= sortable "field_score", "Fielding" %></th>
-    <th><%= sortable "bat_avg" %></th>
-    <th><%= sortable "bowl_avg" %></th>
+    <th class="text-right"><%= sortable "price", "Price" %></th>
+    <th class="text-right"><%= sortable "total", "Total" %></th>
+    <th class="text-right"><%= sortable "bat_score", "Batting" %></th>
+    <th class="text-right"><%= sortable "bowl_score", "Bowling" %></th>
+    <th class="text-right"><%= sortable "field_score", "Fielding" %></th>
+    <th class="text-right"><%= sortable "bat_avg" %></th>
+    <th class="text-right"><%= sortable "bowl_avg" %></th>
     <th><%= current_user.teams.first.name if current_user.teams.any? %></th>
   </tr>
   <% @players.each do |player| %>
