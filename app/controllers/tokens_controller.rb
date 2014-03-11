@@ -1,11 +1,12 @@
 class TokensController < ApplicationController
   before_action :set_token, only: [:show, :edit, :update, :destroy]
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy, :show, :index, :mail]
+  helper_method :sort_column, :sort_direction
 
   # GET /tokens
   # GET /tokens.json
   def index
-    @tokens = Token.all
+    @tokens = Token.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 5)
   end
 
   # GET /tokens/1
@@ -80,5 +81,14 @@ class TokensController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def token_params
       params.require(:token).permit(:tokenstr, :user_id, :email, :realname, :ticketno)
+    end
+
+    # From http://railscasts.com/episodes/228-sortable-table-columns?autoplay=true
+    def sort_column
+      Token.column_names.include?(params[:sort]) ? params[:sort] : "ticketno"
+    end
+  
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
 end

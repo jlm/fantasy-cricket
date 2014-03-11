@@ -23,9 +23,9 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Real name</th>
-      <th>Email address</th>
-      <th>Ticket number</th>
+      <th><%= sortable "realname", "Real name" %></th>
+      <th><%= sortable "email", "Email address" %></th>
+      <th><%= sortable "ticketno", "Ticket number" %></th>
       <th>Token</th>
       <th>User</th>
       <th></th>
@@ -55,6 +55,7 @@
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @tokens %>
 
 <br>
 
