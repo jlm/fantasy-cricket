@@ -6,8 +6,8 @@
       <h1>
         <%= gravatar_for @team.user %>
         <%= @team.user.name %>
-        <br/>
-        <small>Team cash: <%= "£%0.1fm" % (@team.user.teamcash / 10.0) %></small>
+        <br/><small><%= @team.user.email %></small>
+        <br/><small>Team cash: <%= "£%0.1fm" % (@team.user.teamcash / 10.0) %></small>
       </h1>
     </section>
   </aside>

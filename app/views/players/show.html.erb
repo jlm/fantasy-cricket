@@ -6,9 +6,9 @@
     <td><h3><%= @player.name %></h3></td>
     <td><h3><%= @player.age_category %></h3></td>
     <td><h3><%= @player.player_category %></h3></td>
-    <td><h3>Price: <%= @player.price %></h3></td>
+    <td><h3>Price: <%= "£%.1fm" % (@player.price / 10.0) %></h3></td>
     <td><h3>Team: <%= @player.team %></h3></td>
-    <td><h3><%= @player.total %></h3></td>
+    <td><h3>Score: <%= @player.total %></h3></td>
   </tr>
 </table>
 <table class="table table-bordered">
@@ -65,12 +65,10 @@
   <tr>
     <th></th>
     <th>Man of match</th>
-    <th>Team</th>
   </tr>
   <tr class="success">
     <th>Bonuses</th>
     <td><%= "%d (%d awards)" % [20 * @player.field_mom, @player.field_mom] %></td>
-    <td><%= INITIAL_PLAYER_PRICES[@player.team] %></td>
   </tr>
   </table>
 </row>
