@@ -1,4 +1,4 @@
-<tr>
+<tr id="player_<%= playertab.id %>">
   <td>
     <%= link_to playertab.name, playertab %>
   </td>
@@ -16,6 +16,7 @@
   <td>
     <% if !admin_user? %>
       <% if current_user.teams.any? and current_user.teams.first.players.count < PLAYERS_PER_TEAM and !current_user.teams.first.players.include? playertab %>
+        <!-- Here's where the Add acction would change to add remote: true -->
         <%= link_to "Add",  add_player_to_team_path(current_user.teams.first, :player => playertab), team: current_user.teams.first, method: :post, role: "button", class: "btn btn-default" %>
       <% end %>
       <%# binding.pry %>

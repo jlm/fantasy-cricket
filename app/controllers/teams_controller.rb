@@ -90,6 +90,9 @@ class TeamsController < ApplicationController
         @team.validated = false
         @team.save
         flash[:success] = "Player #{@player.name} has been added to #{@team.name}"
+        # Here's where to add a JavaScript responder which does nothing (see http://edgeguides.rubyonrails.org/working_with_javascript_in_rails.html)
+        # And we'd need to create an app/views/teams/app_player.js.erb based on code from the first answer here: http://stackoverflow.com/questions/16045956/replacing-a-table-row-via-jquery
+        # Only I'm not user if that should be app/views/teams or app/views/players.
         redirect_to players_url
       end
     end
