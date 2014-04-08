@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140305213410) do
+ActiveRecord::Schema.define(version: 20140329130019) do
 
   create_table "innings", force: true do |t|
     t.string   "matchname"
@@ -113,6 +113,34 @@ ActiveRecord::Schema.define(version: 20140305213410) do
     t.string   "player_category"
     t.integer  "price"
     t.integer  "ts_keeper_decrement"
+    t.integer  "ls_bat_innings"
+    t.integer  "ls_bat_runs_scored"
+    t.integer  "ls_bat_fours"
+    t.integer  "ls_bat_sixes"
+    t.integer  "ls_bat_fifties"
+    t.integer  "ls_bat_hundreds"
+    t.integer  "ls_bat_ducks"
+    t.integer  "ls_bat_not_outs"
+    t.integer  "ls_bowl_overs"
+    t.integer  "ls_bowl_runs"
+    t.integer  "ls_bowl_wickets"
+    t.integer  "ls_bowl_4_wickets"
+    t.integer  "ls_bowl_6_wickets"
+    t.integer  "ls_bowl_maidens"
+    t.integer  "ls_field_catches"
+    t.integer  "ls_field_runouts"
+    t.integer  "ls_field_stumpings"
+    t.integer  "ls_field_drops"
+    t.integer  "ls_field_mom"
+    t.integer  "ls_bat_score"
+    t.integer  "ls_bowl_score"
+    t.integer  "ls_field_score"
+    t.integer  "ls_bonus"
+    t.integer  "ls_total"
+    t.float    "ls_bat_avg"
+    t.float    "ls_bowl_avg"
+    t.boolean  "ls_bat_avg_invalid"
+    t.boolean  "ls_bowl_avg_invalid"
   end
 
   create_table "players_teams", id: false, force: true do |t|

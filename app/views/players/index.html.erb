@@ -22,7 +22,7 @@
     <th><%= current_user.teams.first.name if current_user.teams.any? %></th>
   </tr>
   <% @players.each do |player| %>
-    <%= render partial: "playertab", object: player %>
+    <%= render partial: "playertab", object: player, locals: { season: :thisseason } %>
   <% end %>
 </table>
 

@@ -11,10 +11,14 @@ module ApplicationHelper
   end
 
   # From http://railscasts.com/episodes/228-sortable-table-columns?autoplay=true
-  def sortable(column, title = nil)
+  def sortable(column, title = nil, anchor = nil)
     title ||= column.titleize
     css_class = column == sort_column ? "current #{sort_direction}" : nil
     direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
-    link_to title, {:sort => column, :direction => direction}, {:class => css_class}
+    if anchor
+      link_to title, {:sort => column, :direction => direction, :anchor => anchor}, {:class => css_class}
+    else
+      link_to title, {:sort => column, :direction => direction}, {:class => css_class}
+    end
   end
 end
