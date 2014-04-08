@@ -9,6 +9,11 @@ class PlayersController < ApplicationController
   # GET /players.json
   def index
     @players = Player.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 10)
+    if params[:season].nil?
+      @season = :thisseason
+    else
+      @season = params[:season].to_sym
+    end
   end
 
   # GET /players/1

@@ -1,6 +1,14 @@
-<% provide(:title, "Players") %>
-<h1>Players</h1>
-<p>Click on a player's name to see more detailed statistics for that player.</p>
+<% provide(:title, "Players" ) %>
+<h1>Players <%= @season == :thisseason ? "(this season's scores)" : "(last season's scores)" %></h1>
+<p>Click on a player's name to see more detailed statistics for that player.
+
+<% if @season == :thisseason %>
+  <%= link_to 'Last season', { controller: "players", season: :lastseason }, class: "btn btn-default" %>
+<% else %>
+  <%= link_to 'This season', { controller: "players", season: :thisseason }, class: "btn btn-default" %>
+<% end %>
+</p>
+
 <table class="players table table-hover">
   <tr>
     <th colspan="4"/>
@@ -9,20 +17,34 @@
     <th>Action for</th>
   </tr>
   <tr>
-    <th><%= sortable "name" %></th>
-    <th><%= sortable "age_category", "Age" %></th>
-    <th><%= sortable "player_category", "Type" %></th>
-    <th class="text-right"><%= sortable "price", "Price" %></th>
-    <th class="text-right"><%= sortable "total", "Total" %></th>
-    <th class="text-right"><%= sortable "bat_score", "Batting" %></th>
-    <th class="text-right"><%= sortable "bowl_score", "Bowling" %></th>
-    <th class="text-right"><%= sortable "field_score", "Fielding" %></th>
-    <th class="text-right"><%= sortable "bat_avg" %></th>
-    <th class="text-right"><%= sortable "bowl_avg" %></th>
+  <% if @season == :thisseason %>
+    <th><%= sortable "name", "Name", @season %></th>
+    <th><%= sortable "age_category", "Age", @season %></th>
+    <th><%= sortable "player_category", "Type", @season %></th>
+    <th class="text-right"><%= sortable "price", "Price", @season %></th>
+    <th class="text-right"><%= sortable "total", "Total", @season %></th>
+    <th class="text-right"><%= sortable "bat_score", "Batting", @season %></th>
+    <th class="text-right"><%= sortable "bowl_score", "Bowling", @season %></th>
+    <th class="text-right"><%= sortable "field_score", "Fielding", @season %></th>
+    <th class="text-right"><%= sortable "bat_avg", "Bat avg", @season %></th>
+    <th class="text-right"><%= sortable "bowl_avg", "Bowl avg", @season %></th>
     <th><%= current_user.teams.first.name if current_user.teams.any? %></th>
+  <% else %>
+    <th><%= sortable "name", "Name", @season %></th>
+    <th><%= sortable "age_category", "Age", @season %></th>
+    <th><%= sortable "player_category", "Type", @season %></th>
+    <th class="text-right"><%= sortable "price", "Price", @season %></th>
+    <th class="text-right"><%= sortable "ls_total", "Total", @season %></th>
+    <th class="text-right"><%= sortable "ls_bat_score", "Batting", @season %></th>
+    <th class="text-right"><%= sortable "ls_bowl_score", "Bowling", @season %></th>
+    <th class="text-right"><%= sortable "ls_field_score", "Fielding", @season %></th>
+    <th class="text-right"><%= sortable "ls_bat_avg", "Bat avg", @season %></th>
+    <th class="text-right"><%= sortable "ls_bowl_avg", "Bowl avg", @season %></th>
+    <th><%= current_user.teams.first.name if current_user.teams.any? %></th>
+  <% end %>
   </tr>
   <% @players.each do |player| %>
-    <%= render partial: "playertab", object: player, locals: { season: :thisseason } %>
+    <%= render partial: "playertab", object: player, locals: { season: @season } %>
   <% end %>
 </table>
 
