@@ -20,7 +20,7 @@
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
           <li role="presentation"><%= link_to "Add",  add_player_to_team_path(current_user.teams.first, :player => playermenu), team: current_user.teams.first, method: :post, role: "menuitem", tabindex: "-1" %></li>
           <li role="presentation"><%= link_to "Drop",  remove_player_from_team_path(current_user.teams.first, :player => playermenu), team: current_user.teams.first, method: :delete, role: "menuitem", tabindex: "-1" %></li>
-          <li role="presentation"><%= link_to "Edit", edit_player_path(playermenu), role: "menuitem", tabindex: "-1" %></li>
+          <li role="presentation"><%= link_to "Edit", edit_player_path(playermenu), remote: true, role: "menuitem", tabindex: "-1" %></li>
           <li role="presentation"><%= link_to "Destroy", playermenu, method: :delete, data: { confirm: 'Delete player?' }, role: "menuitem", tabindex: "-1", class: "btn-danger" %></li>
         </ul>
       </div>

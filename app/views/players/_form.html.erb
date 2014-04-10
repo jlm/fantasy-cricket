@@ -1,42 +1,36 @@
-<div class="row">
-  <div class="span6 offset3">
-    <%= simple_form_for(@player) do |f| %>
-    <% if @player.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
+<!-- div class="row" -->
+  <!-- div class="span6 offset3" -->
+    <%= simple_form_for @player, remote: true, html: { class: "form-horizontal", style: "display:inline;" } do |f| %>
+      <div class="modal-body">
+        <div class="error_explanation"></div>
 
-      <ul>
-        <% @player.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+        <%= f.input :name %>
+        <%= f.input :age_category, required: true, collection: AGE_CATEGORIES %>
+        <%= f.input :player_category, required: true, collection: PLAYER_CATEGORIES %>
+        <%= f.input :price, required: true %>
+        <%= f.input :bat_innings %>
+        <%= f.input :bat_runs_scored %>
+        <%= f.input :bat_fifties %>
+        <%= f.input :bat_hundreds %>
+        <%= f.input :bat_ducks %>
+        <%= f.input :bat_not_outs %>
+        <%= f.input :bowl_overs %>
+        <%= f.input :bowl_runs %>
+        <%= f.input :bowl_wickets %>
+        <%= f.input :bowl_4_wickets %>
+        <%= f.input :bowl_6_wickets %>
+        <%= f.input :bowl_maidens %>
+        <%= f.input :field_catches %>
+        <%= f.input :field_runouts %>
+        <%= f.input :field_stumpings %>
+        <%= f.input :field_drops %>
+        <%= f.input :field_mom %>
+        <%= f.input :team %>
+      </div>
+      <div class="modal-footer">
+        <%= f.button :submit %>
+        <%= link_to "Cancel", "#", class: "btn", data: { dismiss: "modal" } %>
+      </div>
     <% end %>
-
-      <%= f.input :name %>
-      <%= f.input :age_category, required: true, collection: AGE_CATEGORIES %>
-      <%= f.input :player_category, required: true, collection: PLAYER_CATEGORIES %>
-      <%= f.input :price, required: true %>
-      <%= f.input :bat_innings %>
-      <%= f.input :bat_runs_scored %>
-      <%= f.input :bat_fifties %>
-      <%= f.input :bat_hundreds %>
-      <%= f.input :bat_ducks %>
-      <%= f.input :bat_not_outs %>
-      <%= f.input :bowl_overs %>
-      <%= f.input :bowl_runs %>
-      <%= f.input :bowl_wickets %>
-      <%= f.input :bowl_4_wickets %>
-      <%= f.input :bowl_6_wickets %>
-      <%= f.input :bowl_maidens %>
-      <%= f.input :field_catches %>
-      <%= f.input :field_runouts %>
-      <%= f.input :field_stumpings %>
-      <%= f.input :field_drops %>
-      <%= f.input :field_mom %>
-      <%= f.input :team %>
-
-      <%= f.button :submit %>
-    <% end %>
-  </div>
-</div>
+  <!-- /div -->
+<!-- /div -->

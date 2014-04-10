@@ -1,0 +1,11 @@
+$("div.error_explanation").html("")
+<% if @player.errors.any? %>
+	$("div.error_explanation").append($("<h2 />").html("<%= pluralize(@player.errors.count, 'error') %> prohibited this player from being saved:"))
+	$("div.error_explanation").append($("<ul class='errors' />"))
+	<% @player.errors.full_messages.each do |msg| %>
+		$("ul.errors").append($("<li />").html("<%= msg.html_safe %>"))
+	<% end %>
+<% else %>
+	$(".player-index").html("<%= escape_javascript(render 'index') %>")
+	$("#player-modal").modal("hide")
+<% end %>

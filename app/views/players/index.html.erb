@@ -8,8 +8,10 @@
   <%= link_to 'This season', { controller: "players", season: :thisseason }, class: "btn btn-default" %>
 <% end %>
 </p>
+<div class="new-player"></div>
 
 <table class="players table table-hover">
+<thead>
   <tr>
     <th colspan="4"/>
     <th colspan="4">Scores</th>
@@ -43,9 +45,10 @@
     <th><%= current_user.teams.first.name if current_user.teams.any? %></th>
   <% end %>
   </tr>
-  <% @players.each do |player| %>
-    <%= render partial: "playertab", object: player, locals: { season: @season } %>
-  <% end %>
+</thead>
+<tbody class="player-index">
+  <%= render "index" %>
+</tbody>
 </table>
 
 <%= will_paginate %>
@@ -54,5 +57,11 @@
 <br>
 
 <% if admin_user? %>
-  <%= link_to 'New Player', new_player_path, :class => "btn btn-primary" %>
+  <%= link_to 'New Player', new_player_path, remote: true, class: "btn btn-primary" %>
 <% end %>
+
+<div id="player-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div id="inner-player-modal" class="modal-content"></div>
+  </div>
+</div>

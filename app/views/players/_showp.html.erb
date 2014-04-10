@@ -1,0 +1,160 @@
+<p id="notice"><%= notice %></p>
+<row>
+<table class="table">
+  <tr>
+    <td><h3><%= @player.age_category %></h3></td>
+    <td><h3><%= @player.player_category %></h3></td>
+    <td><h3>Price: <%= "£%.1fm" % (@player.price / 10.0) %></h3></td>
+    <td><h3>Team: <%= @player.team %></h3></td>
+    <td><h3>Score: <%= @player.total %></h3></td>
+  </tr>
+</table>
+
+<!-- Navigation tabs -->
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#thisseason" data-toggle="tab">This Season</a></li>
+  <li><a href="#lastseason" data-toggle="tab">Last Season</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane fade in active" id="thisseason">
+    <table class="table table-bordered">
+      <tr>
+        <th></th>
+        <th>Innings</th>
+        <th>Runs</th>
+        <th>Ducks</th>
+        <th>Not-outs</th>
+        <th>Fifties</th>
+        <th>Centuries</th>
+      </tr>
+      <tr class="success">
+        <th>Bat</th>
+        <td><%= @player.bat_innings %></td>
+        <td><%= @player.bat_runs_scored %></td>
+        <td><%= @player.bat_ducks %></td>
+        <td><%= @player.bat_not_outs %></td>
+        <td><%= @player.bat_fifties %></td>
+        <td><%= @player.bat_hundreds %></td>
+      </tr>
+      <tr>
+        <th></th>
+        <th>Overs</th>
+        <th>Maidens</th>
+        <th>Runs against</th>
+        <th>Wickets</th>
+        <th>4-wickets</th>
+        <th>6-wickets</th>
+      </tr>
+      <tr class="success">
+        <th>Bowl</th>
+        <td><%= @player.bowl_overs %></td>
+        <td><%= @player.bowl_maidens %></td>
+        <td><%= @player.bowl_runs %></td>
+        <td><%= @player.bowl_wickets %></td>
+        <td><%= @player.bowl_4_wickets %></td>
+        <td><%= @player.bowl_6_wickets %></td>
+      </tr>
+      <tr>
+        <th></th>
+        <th>Catches</th>
+        <th>Runouts</th>
+        <th>Stumpings</th>
+        <th>Drops</th>
+      </tr>
+      <tr class="success">
+        <th>Field</th>
+        <td><%= @player.field_catches %></td>
+        <td><%= @player.field_runouts %></td>
+        <td><%= @player.field_stumpings %></td>
+        <td><%= @player.field_drops %></td>
+      </tr>
+      <tr>
+        <th></th>
+        <th>Man of match</th>
+      </tr>
+      <tr class="success">
+        <th>Bonus</th>
+        <td><%= "%d (%d awards)" % [20 * @player.field_mom.to_i, @player.field_mom.to_i] %></td>
+      </tr>
+    </table>
+    <p>
+      <strong>Man of the Match awards:</strong>
+      <%= @player.field_mom %>
+    </p>
+  </div>
+  <div class="tab-pane fade" id="lastseason">
+    <table class="table table-bordered">
+      <tr>
+        <th></th>
+        <th>Innings</th>
+        <th>Runs</th>
+        <th>Ducks</th>
+        <th>Not-outs</th>
+        <th>Fifties</th>
+        <th>Centuries</th>
+      </tr>
+      <tr class="success">
+        <th>Bat</th>
+        <td><%= @player.ls_bat_innings %></td>
+        <td><%= @player.ls_bat_runs_scored %></td>
+        <td><%= @player.ls_bat_ducks %></td>
+        <td><%= @player.ls_bat_not_outs %></td>
+        <td><%= @player.ls_bat_fifties %></td>
+        <td><%= @player.ls_bat_hundreds %></td>
+      </tr>
+      <tr>
+        <th></th>
+        <th>Overs</th>
+        <th>Maidens</th>
+        <th>Runs against</th>
+        <th>Wickets</th>
+        <th>4-wickets</th>
+        <th>6-wickets</th>
+      </tr>
+      <tr class="success">
+        <th>Bowl</th>
+        <td><%= @player.ls_bowl_overs %></td>
+        <td><%= @player.ls_bowl_maidens %></td>
+        <td><%= @player.ls_bowl_runs %></td>
+        <td><%= @player.ls_bowl_wickets %></td>
+        <td><%= @player.ls_bowl_4_wickets %></td>
+        <td><%= @player.ls_bowl_6_wickets %></td>
+      </tr>
+      <tr>
+        <th></th>
+        <th>Catches</th>
+        <th>Runouts</th>
+        <th>Stumpings</th>
+        <th>Drops</th>
+      </tr>
+      <tr class="success">
+        <th>Field</th>
+        <td><%= @player.ls_field_catches %></td>
+        <td><%= @player.ls_field_runouts %></td>
+        <td><%= @player.ls_field_stumpings %></td>
+        <td><%= @player.ls_field_drops %></td>
+      </tr>
+      <tr>
+        <th></th>
+        <th>Man of match</th>
+      </tr>
+      <tr class="success">
+        <th>Bonus</th>
+        <td><%= "%d (%d awards)" % [20 * @player.ls_field_mom.to_i, @player.ls_field_mom.to_i] %></td>
+      </tr>
+    </table>
+    <p>
+      <strong>Man of the Match awards:</strong>
+      <%= @player.ls_field_mom %>
+    </p>
+  </div>
+</div>
+
+
+</row>
+
+<p class="timestamp">
+    Updated <%= time_ago_in_words(@player.updated_at) %> ago.
+</p>

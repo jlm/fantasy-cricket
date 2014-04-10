@@ -5,6 +5,8 @@ class PlayersController < ApplicationController
 
   helper_method :sort_column, :sort_direction
   
+  respond_to :js, :html, :json
+
   # GET /players
   # GET /players.json
   def index
@@ -35,7 +37,15 @@ class PlayersController < ApplicationController
   # POST /players
   # POST /players.json
   def create
+    @players = Player.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 10)
+    if params[:season].nil?
+      @season = :thisseason
+    else
+      @season = params[:season].to_sym
+    end
+    
     @player = Player.new(player_params)
+
     # I think the next line contains an SQL injection risk without player_params.
     @player.total = INITIAL_PLAYER_PRICES[player_params[:team].to_i]
     @player.field_mom = @player.field_mom.to_i
@@ -44,9 +54,11 @@ class PlayersController < ApplicationController
       if @player.save
         format.html { redirect_to @player, notice: 'Player was successfully created.' }
         format.json { render action: 'show', status: :created, location: @player }
+        format.js { }
       else
         format.html { render action: 'new' }
         format.json { render json: @player.errors, status: :unprocessable_entity }
+        format.js { }
       end
     end
   end
@@ -55,13 +67,22 @@ class PlayersController < ApplicationController
   # PATCH/PUT /players/1.json
   def update
     #binding.pry
+    @players = Player.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 10)
+    if params[:season].nil?
+      @season = :thisseason
+    else
+      @season = params[:season].to_sym
+    end
+    
     respond_to do |format|
       if @player.update(player_params)
         format.html { redirect_to @player, notice: 'Player was successfully updated.' }
         format.json { head :no_content }
+        format.js { }
       else
         format.html { render action: 'edit' }
         format.json { render json: @player.errors, status: :unprocessable_entity }
+        format.js { }
       end
     end
   end
