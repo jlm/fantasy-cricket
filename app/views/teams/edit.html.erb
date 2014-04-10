@@ -1,7 +1,22 @@
 <% provide(:title, "Edit #{@team.name}") %>
 <h1>Editing <%= @team.name %></h1>
+<p>
+<% if @season == :thisseason %>
+  Showing this season's scores. 
+  <%= link_to 'Last season', { url: edit_team_path(@team), season: :lastseason }, class: "btn btn-default" %>
+<% else %>
+  Showing last season's scores. 
+  <%= link_to 'This season', { url: edit_team_path(@team), season: :thisseason }, class: "btn btn-default" %>
+<% end %>
+</p>
 
 <%= render 'form' %>
 
 <%= link_to 'Add Players', players_path, :class => "btn btn-primary" %>
 <%= link_to 'Close', @team, :class => "btn btn-default" %>
+
+<div id="player-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div id="inner-player-modal" class="modal-content"></div>
+  </div>
+</div>

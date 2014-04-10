@@ -27,33 +27,30 @@
 
 <% end %>
 
-<table class="table table-hover">
+<table class="players table table-hover">
+<thead>
   <tr>
     <th colspan="4"/>
     <th colspan="4">Scores</th>
     <th colspan="2">Averages</th>
-    <th/>
-    <th/>
+    <th>Action for</th>
   </tr>
   <tr>
     <th>Name</th>
     <th>Age</th>
-    <th>Player type</th>
+    <th>Type</th>
     <th class="text-right">Price</th>
     <th class="text-right">Total</th>
     <th class="text-right">Batting</th>
     <th class="text-right">Bowling</th>
     <th class="text-right">Fielding</th>
-    <th class="text-right">Bat Avg</th>
-    <th class="text-right">Bowl Avg</th>
-    <th/>
+    <th class="text-right">Bat avg</th>
+    <th class="text-right">Bowl avg</th>
+    <th><%= current_user.teams.first.name if current_user.teams.any? %></th>
   </tr>
-  <% @team.players.each do |player| %>
-    <%= render partial: "players/playertab", object: player %>
-  <% end %>
-  <tr>
-    <th>Total</th>
-    <th colspan="3"/>
-    <th class="text-right"><%= @team.players.sum(:total) %></th>
+</thead>
+<tbody class="player-index">
+  <% @players = @team.players %>
+  <%= render "players/index", object: @team.players %>
+</tbody>
 </table>
-

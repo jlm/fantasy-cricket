@@ -13,6 +13,11 @@ class TeamsController < ApplicationController
   # GET /teams/1.json
   def show
     @team = Team.find(params[:id])
+    if params[:season].nil?
+      @season = :thisseason
+    else
+      @season = params[:season].to_sym
+    end
     unless @team.validated
       # meets_rules? is called for its side effect of setting error messages
       valid = @team.meets_rules?
@@ -27,7 +32,12 @@ class TeamsController < ApplicationController
 
   # GET /teams/1/edit
   def edit
-  end
+      if params[:season].nil?
+      @season = :thisseason
+    else
+      @season = params[:season].to_sym
+    end
+end
 
   # POST /teams
   # POST /teams.json
