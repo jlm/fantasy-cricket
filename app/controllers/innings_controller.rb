@@ -14,7 +14,7 @@ class InningsController < ApplicationController
   def show
     @match = Match.find(params[:match_id])
     @innings = @match.innings.find(params[:id])
-    @player_scores = @innings.player_scores.paginate(page: params[:page], per_page: 5)
+    @player_scores = @innings.player_scores.all
   end
 
   # GET /innings/new
