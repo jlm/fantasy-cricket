@@ -88,22 +88,30 @@ end
   def add_player
     @team = Team.find(params[:id])
     @player = Player.find(params[:player])
-    if @team.players.exists?(:id => @player.id)
-      redirect_to players_url, notice: "Player #{@player.name} is already a member of #{@team.name}"
-    else
-      if @team.user.teamcash < @player.price
-        flash[:warning] = "That player is too expensive!  Remaining team cash is only #{@team.user.teamcash}"
-        redirect_to players_url
+    respond_to do |format|
+      if @team.players.exists?(:id => @player.id)
+        @team.errors.add(:player, "is already a member of #{@team.name}")
+        format.html { redirect_to players_url, notice: "Player #{@player.name} is already a member of #{@team.name}" }
+        format.js   { }
       else
-        @team.user.teamcash -= @player.price
-        @team.players << @player
-        @team.validated = false
-        @team.save
-        flash[:success] = "Player #{@player.name} has been added to #{@team.name}"
-        # Here's where to add a JavaScript responder which does nothing (see http://edgeguides.rubyonrails.org/working_with_javascript_in_rails.html)
-        # And we'd need to create an app/views/teams/app_player.js.erb based on code from the first answer here: http://stackoverflow.com/questions/16045956/replacing-a-table-row-via-jquery
-        # Only I'm not user if that should be app/views/teams or app/views/players.
-        redirect_to players_url
+        if @team.user.teamcash < @player.price
+          @team.errors.add(:player, "is too expensive!  Remaining team cash is only £%0.1fm" % (@team.user.teamcash / 10.0))
+          format.html { redirect_to players_url, notice: "Player #{@player.name} is too expensive!  Remaining team cash is only £%0.1fm" % (@team.user.teamcash / 10.0) }
+          format.js   { }
+        else
+          @team.user.teamcash -= @player.price
+          @team.players << @player
+          @team.validated = false
+          @team.save
+          format.html {
+            flash[:success] = "Player #{@player.name} has been added to #{@team.name}"
+            redirect_to players_url
+          }
+          # Here's where to add a JavaScript responder which does nothing (see http://edgeguides.rubyonrails.org/working_with_javascript_in_rails.html)
+          format.js   { }
+          # And we'd need to create an app/views/teams/app_player.js.erb based on code from the first answer here: http://stackoverflow.com/questions/16045956/replacing-a-table-row-via-jquery
+          # Only I'm not user if that should be app/views/teams or app/views/players.
+        end
       end
     end
   end
@@ -111,20 +119,27 @@ end
   def remove_player
     @team = Team.find(params[:id])
     @player = Player.find(params[:player])
-    if !@team.players.exists?(:id => @player.id)
-      redirect_to players_url, notice: "Player #{@player.name} is not a member of #{@team.name}"
-    else
-      # This is where to credit the player's price to the user's account.
-      @team.user.teamcash += @player.price
-      # NB this delete operation does nothing if the player is not in the team.
-      @team.players.delete(@player)
-      @team.user.drop_available = false if @team.validated;
-      @team.validated = false
-      @team.captain_id = nil if @team.captain_id == @player.id
-      @team.save
-      raise @team.user.errors.full_messages.first unless @team.user.save
-      flash[:success] = "Player #{@player.name} has been removed from #{@team.name}"
-      redirect_to players_url
+    respond_to do |format|
+      if !@team.players.exists?(:id => @player.id)
+        @team.errors.add(:player, "is not a member of #{@team.name}")
+        format.html { redirect_to players_url, notice: "Player #{@player.name} is not a member of #{@team.name}" }
+        format.js   { }
+      else
+        # This is where to credit the player's price to the user's account.
+        @team.user.teamcash += @player.price
+        # NB this delete operation does nothing if the player is not in the team.
+        @team.players.delete(@player)
+        @team.user.drop_available = false if @team.validated;
+        @team.validated = false
+        @team.captain_id = nil if @team.captain_id == @player.id
+        @team.save
+        raise @team.user.errors.full_messages.first unless @team.user.save
+        format.html {
+          flash[:success] = "Player #{@player.name} has been removed from #{@team.name}"
+          redirect_to players_url
+        }
+        format.js   { }
+      end
     end
   end
 
