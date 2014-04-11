@@ -86,8 +86,15 @@ end
   end
 
   def add_player
+    #binding.pry
     @team = Team.find(params[:id])
     @player = Player.find(params[:player])
+    @players = Player.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 10)
+    if params[:season].nil?
+      @season = :thisseason
+    else
+      @season = params[:season].to_sym
+    end
     respond_to do |format|
       if @team.players.exists?(:id => @player.id)
         @team.errors.add(:player, "is already a member of #{@team.name}")
@@ -103,13 +110,13 @@ end
           @team.players << @player
           @team.validated = false
           @team.save
+          flash[:success] = "Player #{@player.name} has been added to #{@team.name}"
           format.html {
-            flash[:success] = "Player #{@player.name} has been added to #{@team.name}"
             redirect_to players_url
           }
           # Here's where to add a JavaScript responder which does nothing (see http://edgeguides.rubyonrails.org/working_with_javascript_in_rails.html)
           format.js   { }
-          # And we'd need to create an app/views/teams/app_player.js.erb based on code from the first answer here: http://stackoverflow.com/questions/16045956/replacing-a-table-row-via-jquery
+          # And we'd need to create an app/views/teams/add_player.js.erb based on code from the first answer here: http://stackoverflow.com/questions/16045956/replacing-a-table-row-via-jquery
           # Only I'm not user if that should be app/views/teams or app/views/players.
         end
       end
@@ -119,6 +126,12 @@ end
   def remove_player
     @team = Team.find(params[:id])
     @player = Player.find(params[:player])
+    @players = Player.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 10)
+    if params[:season].nil?
+      @season = :thisseason
+    else
+      @season = params[:season].to_sym
+    end
     respond_to do |format|
       if !@team.players.exists?(:id => @player.id)
         @team.errors.add(:player, "is not a member of #{@team.name}")
@@ -134,8 +147,8 @@ end
         @team.captain_id = nil if @team.captain_id == @player.id
         @team.save
         raise @team.user.errors.full_messages.first unless @team.user.save
+        flash[:success] = "Player #{@player.name} has been removed from #{@team.name}"
         format.html {
-          flash[:success] = "Player #{@player.name} has been removed from #{@team.name}"
           redirect_to players_url
         }
         format.js   { }
@@ -164,6 +177,17 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
       params.require(:team).permit(:name, :captain_id, :keeper_id)
+    end
+
+    # From http://railscasts.com/episodes/228-sortable-table-columns?autoplay=true
+    def sort_column
+      #binding.pry
+      $stderr.puts("+++ team sort column is " + (Player.column_names.include?(params[:sort]) ? params[:sort] : "name"))
+      Player.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+  
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 
     # Before actions
