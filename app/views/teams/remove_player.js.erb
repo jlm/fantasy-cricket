@@ -7,7 +7,7 @@ $("#inner-player-modal").html("<%= escape_javascript(render 'change') %>")
 	<% end %>
 	$("#player-modal").modal("show")
 <% else %>
-	$(".player-index").html("<%= escape_javascript(render 'players/index') %>")
+	$(".player-index").html("<%= @players = @team.players; escape_javascript(render 'players/index') %>")
 	$("div.flash-container").html("<%= escape_javascript(render 'layouts/flash') %>")
 	$("#player-modal").modal("hide")
 <% end %>
