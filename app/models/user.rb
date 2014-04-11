@@ -22,9 +22,22 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.password_reset(self).deliver
+  end
+
   private
     def create_remember_token
       self.remember_token = User.encrypt(User.new_remember_token)
+    end
+
+    def generate_token(column)
+      begin
+        self[column] = User.new_remember_token
+      end while User.exists?(column => self[column])
     end
 
     def update_totalscore(t)

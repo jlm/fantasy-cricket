@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140329130019) do
+ActiveRecord::Schema.define(version: 20140411185137) do
 
   create_table "innings", force: true do |t|
     t.string   "matchname"
@@ -204,6 +204,8 @@ ActiveRecord::Schema.define(version: 20140329130019) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "tokenstr"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

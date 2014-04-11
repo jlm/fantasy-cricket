@@ -9,4 +9,9 @@ class UserMailer < ActionMailer::Base
   		'&tokenstr=' + CGI.escape(@token.tokenstr)
   	mail(to: @token.email, subject: 'Sign up for Helperby Fantasy Cricket')
   end
+
+  def password_reset(user)
+  	@user = user
+  	mail(to: user.email, subject: "Password Reset for Helperby Fantasy Cricket")
+  end
 end

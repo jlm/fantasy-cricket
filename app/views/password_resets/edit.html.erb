@@ -1,0 +1,20 @@
+<% provide(:title, "Reset password") %>
+<h1>Reset password</h1>
+
+    <%= simple_form_for @user, url: password_reset_path(params[:id]), html: { class: "form-horizontal" } do |f| %>
+	    <% if @user.errors.any? %>
+    	  <div class="error_messages">
+    	    <h2>Form is invalid</h2>
+    	    <ul>
+    	    	<% @user.errors.full_messages.each do |msg| %>
+    	    		<li><%= msg %></li>
+    	    	<% end %>
+    	    </ul>
+    	  </div>
+    	<% end %>
+      	<%= f.input :password, placeholder: "New password" %>
+      	<%= f.input :password_confirmation, required: true, placeholder: "Same password again" %>
+	    <%= f.button :submit, "Update my password", class: "btn btn-large btn-primary" %>
+    <% end %>
+    
+<%= link_to 'Back', root_url %>
