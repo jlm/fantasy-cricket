@@ -1,0 +1,10 @@
+      <tr>
+      	<th>Player Total</th>
+        <th colspan="3" />
+      	<th class="text-right"><%= @team.players.sum(:total) %></th>
+      </tr>
+      <tr>
+      	<th>Team Total</th>
+        <th colspan="3" />
+      	<th class="text-right"><%= @team.totalscore %></th>
+      </tr>
