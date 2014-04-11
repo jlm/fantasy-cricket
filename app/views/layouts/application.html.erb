@@ -20,9 +20,9 @@
         <div class="content">
           <div class="row">
             <div class="span12">
-              <% flash.each do |key, value| %>
-                <div class="alert alert-<%= key %>"><%= value %></div>
-              <% end %>
+              <div class="flash-container">
+                <%= render('layouts/flash') %>
+              </div>
               <%#= yield :preamble %>
               <%= yield %>
               <%= debug(params) if Rails.env.development? %>
