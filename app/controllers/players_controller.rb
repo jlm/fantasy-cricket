@@ -165,6 +165,71 @@ class PlayersController < ApplicationController
   end
 =end
 
+# This routine doesn't seem to work when you just invoke it from the console, but it works if you cut and paste the code.
+
+  def transfer_season_scores
+    Player.all.each do |player|
+      player.ls_bat_innings = player.bat_innings
+      player.ls_bat_runs_scored = player.bat_runs_scored
+      player.ls_bat_fours = player.ls_bat_fours
+      player.ls_bat_sixes = player.ls_bat_sixes
+      player.ls_bat_fifties = player.bat_fifties
+      player.ls_bat_hundreds = player.bat_hundreds
+      player.ls_bat_ducks = player.bat_ducks
+      player.ls_bat_not_outs = player.bat_not_outs
+      player.ls_bowl_overs = player.bowl_overs
+      player.ls_bowl_runs = player.bowl_runs
+      player.ls_bowl_wickets = player.bowl_wickets
+      player.ls_bowl_4_wickets = player.bowl_4_wickets
+      player.ls_bowl_6_wickets = player.bowl_6_wickets
+      player.ls_bowl_maidens = player.bowl_maidens
+      player.ls_field_catches = player.field_catches
+      player.ls_field_runouts = player.field_runouts
+      player.ls_field_stumpings = player.field_stumpings
+      player.ls_field_drops = player.field_drops
+      player.ls_field_mom = player.field_mom
+      player.ls_bat_score = player.bat_score
+      player.ls_bowl_score = player.bowl_score
+      player.ls_field_score = player.field_score
+      player.ls_bonus = player.bonus
+      player.ls_total = player.total
+      player.ls_bat_avg = player.bat_avg
+      player.ls_bowl_avg = player.bowl_avg
+      player.ls_bat_avg_invalid = player.bat_avg_invalid
+      player.ls_bowl_avg_invalid = player.bowl_avg_invalid
+
+      player.bat_innings = 0
+      player.bat_runs_scored = 0
+      player.bat_fours = 0
+      player.bat_sixes = 0
+      player.bat_fifties = 0
+      player.bat_hundreds = 0
+      player.bat_ducks = 0
+      player.bat_not_outs = 0
+      player.bowl_overs = 0
+      player.bowl_runs = 0
+      player.bowl_wickets = 0
+      player.bowl_4_wickets = 0
+      player.bowl_6_wickets = 0
+      player.bowl_maidens = 0
+      player.field_catches = 0
+      player.field_runouts = 0
+      player.field_stumpings = 0
+      player.field_drops = 0
+      player.field_mom = 0
+      player.bat_score = 0
+      player.bowl_score = 0
+      player.field_score = 0
+      player.bonus = 0
+      player.total = 0
+      player.bat_avg = 0
+      player.bowl_avg = 0
+      player.bat_avg_invalid = true
+      player.bowl_avg_invalid = true
+      player.save
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_player
