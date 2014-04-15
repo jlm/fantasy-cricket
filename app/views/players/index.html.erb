@@ -8,6 +8,7 @@
   <%= link_to 'This season', { controller: "players", season: :thisseason }, class: "btn btn-default" %>
 <% end %>
 </p>
+<h1><small>Team cash: <%= "£%0.1fm" % (current_user.teamcash / 10.0) %></small></h1>
 <div class="new-player"></div>
 
 <table class="players table table-hover">
