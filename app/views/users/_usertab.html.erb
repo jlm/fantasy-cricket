@@ -4,8 +4,16 @@
   </td>
 
   <td class="team-name">
-    <%= usertab.teams.any? ? link_to(usertab.teams.first.name, usertab.teams.first) : "-"
-    %>
+    <% if usertab.teams.any? %>
+      <% if usertab.teams.first.validated %>
+        <span class="glyphicon glyphicon-ok"></span>
+      <% else %>
+        <span class="glyphicon glyphicon-thumbs-down"></span>
+      <% end %>
+      <%= link_to(usertab.teams.first.name, usertab.teams.first) %>
+    <% else %>
+      -
+    <% end %>
   </td>
   <td class="text-right">
     <%= usertab.totalscore %>
