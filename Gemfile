@@ -69,6 +69,8 @@ gem 'rails-settings-cached'
 # Use postmark to send emails
 gem 'postmark-rails'
 
+gem 'newrelic_rpm'
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 # Add loads of debug facilities including pry-rails:
