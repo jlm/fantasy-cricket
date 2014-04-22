@@ -43,6 +43,7 @@ class Player < ActiveRecord::Base
   	  #self.total = INITIAL_PLAYER_PRICES[self.team.to_i] + self.bat_score + self.bowl_score + self.field_score + self.bonus
       self.total = self.bat_score + self.bowl_score + self.field_score + self.bonus
       self.ts_increment = self.total.to_i - old_total
+      self.price = (self.ls_price + self.total * PRICE_PER_POINT).round
   	  self.bat_avg_invalid = (bat_innings.to_i - bat_not_outs.to_i == 0)
   	  self.bat_avg = (bat_runs_scored.to_i + 0.0) / (bat_innings.to_i - bat_not_outs.to_i) unless self.bat_avg_invalid
   	  self.bowl_avg_invalid = (bowl_wickets.to_i == 0)

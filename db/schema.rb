@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140411185137) do
+ActiveRecord::Schema.define(version: 20140422005036) do
 
   create_table "innings", force: true do |t|
     t.string   "matchname"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 20140411185137) do
     t.float    "ls_bowl_avg"
     t.boolean  "ls_bat_avg_invalid"
     t.boolean  "ls_bowl_avg_invalid"
+    t.integer  "ls_price"
   end
 
   create_table "players_teams", id: false, force: true do |t|

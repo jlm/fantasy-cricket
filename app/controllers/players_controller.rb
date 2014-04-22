@@ -46,8 +46,6 @@ class PlayersController < ApplicationController
     
     @player = Player.new(player_params)
 
-    # I think the next line contains an SQL injection risk without player_params.
-    @player.total = INITIAL_PLAYER_PRICES[player_params[:team].to_i]
     @player.field_mom = @player.field_mom.to_i
 
     respond_to do |format|
