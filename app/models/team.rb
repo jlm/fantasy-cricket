@@ -6,8 +6,8 @@ class Team < ActiveRecord::Base
 	after_save :update_parent_user_total
 	validates :name, presence: true, length: {maximum: 50}, uniqueness: true
 
-  def meets_rules?
-  	valid = true
+  def meets_composition_rules?
+    valid = true
   	#binding.pry
     if self.players.where(player_category: "bowler").count < 3
       self.errors.add(:players, "must include at least 3 bowlers")
@@ -29,6 +29,11 @@ class Team < ActiveRecord::Base
       self.errors.add(:players, "must include at least 2 junior players")
       valid = false
     end
+    return valid
+  end
+
+  def meets_completeness_rules?
+    valid = true
     if self.captain_id.nil?
       self.errors.add(:teams, "must have a captain")
       valid = false
@@ -50,6 +55,10 @@ class Team < ActiveRecord::Base
       valid = false
     end
     return valid
+  end
+
+  def meets_rules?
+    return (self.meets_composition_rules? and self.meets_completeness_rules?)
   end
 
 

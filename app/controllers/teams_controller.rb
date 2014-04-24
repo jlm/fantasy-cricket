@@ -45,6 +45,7 @@ end
     @team = current_user.teams.build(team_params)
     @team.name = @team.user.name + "'s team" if @team.name.nil?
     @team.totalscore = 0
+    @team.never_validated = true
 
     respond_to do |format|
       if @team.save
@@ -106,18 +107,25 @@ end
           format.html { redirect_to players_url, notice: "Player #{@player.name} is too expensive!  Remaining team cash is only £%0.1fm" % (@team.user.teamcash / 10.0) }
           format.js   { }
         else
-          @team.user.teamcash -= @player.price
           @team.players << @player
-          @team.validated = false
-          @team.save
-          flash[:success] = "Player #{@player.name} has been added to #{@team.name}"
-          format.html {
-            redirect_to players_url
-          }
-          # Here's where to add a JavaScript responder which does nothing (see http://edgeguides.rubyonrails.org/working_with_javascript_in_rails.html)
-          format.js   { }
-          # And we'd need to create an app/views/teams/add_player.js.erb based on code from the first answer here: http://stackoverflow.com/questions/16045956/replacing-a-table-row-via-jquery
-          # Only I'm not user if that should be app/views/teams or app/views/players.
+          # If the player is being added as the final player to a team which was previously validated, then the addition must make
+          # a valid team.  Otherwise, the user would be stuck with an invalid team until next time the administrator allows drops.
+          if (@team.players.count == PLAYERS_PER_TEAM and !@team.never_validated? and !@team.meets_composition_rules?)
+            @team.players.delete(@player)
+            format.html { redirect_to players_url, notice: "Player #{@player.name} cannot be added as resulting team is not validatable" }
+            format.js   { @team.errors.add(:team, "would not be valid if this player were added") }
+          else
+            @team.user.teamcash -= @player.price
+            @team.validated = false
+            @team.save
+            flash[:success] = "Player #{@player.name} has been added to #{@team.name}"
+            format.html {
+              redirect_to players_url
+            }
+            # Here's the JavaScript responder which does nothing (see http://edgeguides.rubyonrails.org/working_with_javascript_in_rails.html)
+            format.js   { }
+            # Now the app/views/teams/add_player.js.erb is invoked (for example, based on code from the first answer here: http://stackoverflow.com/questions/16045956/replacing-a-table-row-via-jquery)
+          end
         end
       end
     end
@@ -160,6 +168,7 @@ end
     @team = Team.find(params[:id])
     if @team.meets_rules?
       @team.validated = true
+      @team.never_validated = false
       flash[:success] = "Team validated! Your team will now earn points"
     else
       flash[:warning] = "Team does not meet validation requirements"

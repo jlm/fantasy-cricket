@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422005036) do
+ActiveRecord::Schema.define(version: 20140424203528) do
 
   create_table "innings", force: true do |t|
     t.string   "matchname"
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20140422005036) do
     t.integer  "captain_id"
     t.boolean  "validated"
     t.integer  "keeper_id"
+    t.boolean  "never_validated"
   end
 
   create_table "tokens", force: true do |t|
