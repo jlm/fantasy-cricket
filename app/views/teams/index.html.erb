@@ -8,5 +8,6 @@
   <% end %>
 </ul>
 <br>
-
+<% if admin_user? %>
 <%= link_to 'New Team', new_team_path, class: "btn btn-default" %>
+<% end %>

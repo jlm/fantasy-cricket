@@ -11,7 +11,7 @@
         </h1>
       </section>
       <section>
-        <% if current_user.id == @user.id and ! @user.teams.any? %>
+        <% if current_user and current_user.id == @user.id and ! @user.teams.any? %>
           <%= render 'shared/team_form' %> 
         <% end %>
       </section>
