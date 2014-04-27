@@ -71,6 +71,9 @@ gem 'postmark-rails'
 
 gem 'newrelic_rpm'
 
+# We use the Heroku API just to access the app's Heroku release name
+gem 'heroku-api'
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 # Add loads of debug facilities including pry-rails:
