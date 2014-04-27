@@ -4,7 +4,7 @@
   <tr>
     <td><h3><%= @player.age_category %></h3></td>
     <td><h3><%= @player.player_category %></h3></td>
-    <td><h3>Price: <%= "£%.1fm" % (@player.price / 10.0) %></h3></td>
+    <td><h3>Price: <%= format_teamcash(@player.price) %></h3></td>
     <td><h3>Team: <%= @player.team %></h3></td>
     <td><h3>Score: <%= @player.total %></h3></td>
   </tr>

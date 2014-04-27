@@ -8,7 +8,7 @@
         <%= @team.user.name %>
         <% if correct_user_for_team?(@team) %>
           <br/><small><%= @team.user.email %></small>
-          <br/><small>Team cash: <%= "£%0.1fm" % (@team.user.teamcash / 10.0) %></small>
+          <br/><small class="teamcash">Team cash: <%= format_teamcash(@team.user.teamcash) %></small>
         <% end %>
       </h1>
     </section>
@@ -121,6 +121,7 @@
       </tr>
     </table>
   </div>
+</div>
 
 <div id="player-modal" class="modal fade">
   <div class="modal-dialog">

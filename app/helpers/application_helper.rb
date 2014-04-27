@@ -21,4 +21,8 @@ module ApplicationHelper
       link_to title, {:sort => column, :direction => direction}, {:class => css_class}
     end
   end
+
+  def format_teamcash(tc)
+    "£%0.1fm" % (tc / 10.0)
+  end
 end

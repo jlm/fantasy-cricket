@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  include ApplicationHelper     # to get access to format_teamcash
   before_action :set_team, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user, only: [:create, :edit, :update, :destroy]
   before_action :correct_user_for_team,   only: [:edit, :update, :destroy]
@@ -103,8 +104,8 @@ end
         format.js   { }
       else
         if @team.user.teamcash < @player.price
-          @team.errors.add(:player, "is too expensive!  Remaining team cash is only £%0.1fm" % (@team.user.teamcash / 10.0))
-          format.html { redirect_to players_url, notice: "Player #{@player.name} is too expensive!  Remaining team cash is only £%0.1fm" % (@team.user.teamcash / 10.0) }
+          @team.errors.add(:player, "is too expensive!  Remaining team cash is only #{format_teamcash(@team.user.teamcash)}.")
+          format.html { redirect_to players_url, notice: "Player #{@player.name} is too expensive!  Remaining team cash is only #{format_teamcash(@team.user.teamcash)}." }
           format.js   { }
         else
           @team.players << @player
