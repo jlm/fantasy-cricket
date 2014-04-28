@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Hartlapp::Application.config.secret_key_base = 'a24eebe67d5455d34c5b25eef693ace362ef311debb7e139ac976c895efa26bafc7723497529ea5ec70213e07d0de271e1f3e8dc7ce0eb6a90ea71dbfaf511be'
+Hartlapp::Application.config.secret_key_base = ENV["SECRET_BASE_KEY"]
