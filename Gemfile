@@ -64,7 +64,7 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'rails-settings-cached'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

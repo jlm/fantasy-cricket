@@ -20,3 +20,4 @@ database.yml
 doc/
 hartleapp.sublime-workspace
 .env
+.ruby-version
