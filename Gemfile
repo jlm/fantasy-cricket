@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
 
-ruby '2.0.0'
+ruby '2.1.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.1.0'
 
 #group :development do
   # Use sqlite3 as the database for Active Record
@@ -17,14 +17,14 @@ gem 'pg'
 # Use SCSS for stylesheets
 #gem 'sass-rails', '~> 4.0.0'
 #gem 'bootstrap-sass', '2.3.2.2'
-gem 'bootstrap-sass-rails', '>= 3.0.2.1'
-gem 'simple_form'
+gem 'bootstrap-sass-rails', '>= 3.1.0.0'
+gem 'simple_form', github: 'plataformatec/simple_form'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.1'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
@@ -45,7 +45,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.1'
+gem 'bcrypt-ruby', '~> 3.1.2'
 
 # For hashkey
 #gem 'digest/sha1'
@@ -72,7 +72,7 @@ gem 'postmark-rails'
 gem 'newrelic_rpm'
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'debugger', '~> 1.6.6', group: [:development, :test]
 # Add loads of debug facilities including pry-rails:
 group :development, :test do
   gem 'jazz_hands'

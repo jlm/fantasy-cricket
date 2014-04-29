@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140424203528) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "innings", force: true do |t|
     t.string   "matchname"
     t.string   "inningsname"
@@ -94,9 +97,9 @@ ActiveRecord::Schema.define(version: 20140424203528) do
     t.integer  "field_stumpings"
     t.integer  "field_drops"
     t.integer  "field_mom"
+    t.integer  "team"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "team"
     t.integer  "bat_score"
     t.integer  "bowl_score"
     t.integer  "field_score"
@@ -196,15 +199,6 @@ ActiveRecord::Schema.define(version: 20140424203528) do
     t.integer  "teamcash"
     t.integer  "totalscore"
     t.boolean  "drop_available"
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
     t.string   "tokenstr"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
@@ -212,6 +206,5 @@ ActiveRecord::Schema.define(version: 20140424203528) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
