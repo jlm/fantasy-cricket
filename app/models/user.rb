@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
     end
 
     def update_totalscore(t)
-      $stderr.puts "+++Team #{t.name} added/removed to/from user #{self.name}"
+      $stderr.puts "+++User #{self.name} totalscore updated because a team was added to or removed from it"
       self.totalscore = self.teams.any? ? self.teams.sum(:totalscore) : 0
       self.save
     end

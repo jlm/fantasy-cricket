@@ -11,10 +11,12 @@ class UsersController < ApplicationController
 
   def show
 		@user = User.find(params[:id])
-    redirect_to team_path(@user.teams.first) if @user.teams.any?
-# 	    @teams = @user.teams.paginate(page: params[:page], per_page: 10)
-    @team = current_user.teams.build if signed_in?
-
+    if @user.teams.any?
+      redirect_to team_path(@user.teams.first)
+    else
+      #@teams = @user.teams.paginate(page: params[:page], per_page: 10)
+      @team = current_user.teams.build if signed_in?
+    end
 	end
 
 	def new
