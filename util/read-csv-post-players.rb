@@ -73,7 +73,7 @@ def post_item(item, postbase, posttrailer)
       #binding.pry
       exit unless $force
     end
-    print "#{resp.inspect}\n" if $debug > 0
+    print "#{resp.inspect} #{resp.body.to_str}\n" if $debug > 0
   else
     print "#{item.to_json}\n"
   end
