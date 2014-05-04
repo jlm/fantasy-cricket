@@ -74,7 +74,7 @@ class Player < ActiveRecord::Base
       fifties = (runs - centuries * 100) / 50
       p.bat_hundreds = p.bat_hundreds.to_i + pm*centuries
       p.bat_fifties = p.bat_fifties.to_i + pm*fifties
-      p.bat_ducks = p.bat_ducks.to_i + pm*1 if !ps.bat_runs_scored.nil? and ps.bat_runs_scored.to_i == 0
+      p.bat_ducks = p.bat_ducks.to_i + pm*1 if (!ps.bat_runs_scored.nil?) and (ps.bat_runs_scored.to_i == 0) and (ps.bat_not_outs.to_i == 0)
       p.bat_runs_scored = p.bat_runs_scored.to_i + pm*ps.bat_runs_scored.to_i
       p.bat_not_outs = p.bat_not_outs.to_i + pm*ps.bat_not_outs.to_i
       p.bat_fours = p.bat_fours.to_i + pm*ps.bat_fours.to_i
