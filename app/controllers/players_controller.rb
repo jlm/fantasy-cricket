@@ -195,6 +195,7 @@ class PlayersController < ApplicationController
       player.ls_bowl_avg = player.bowl_avg
       player.ls_bat_avg_invalid = player.bat_avg_invalid
       player.ls_bowl_avg_invalid = player.bowl_avg_invalid
+      player.ls_price = player.price
 
       player.bat_innings = 0
       player.bat_runs_scored = 0
