@@ -241,7 +241,7 @@ class PlayersController < ApplicationController
         :bat_runs_scored, :bat_fifties, :bat_hundreds, :bat_ducks, :bat_not_outs,
         :bowl_overs, :bowl_runs, :bowl_wickets, :bowl_4_wickets, :bowl_6_wickets,
         :bowl_maidens, :field_catches, :field_runouts, :field_stumpings,
-        :field_drops, :field_mom, :team, :match_id, :price)
+        :field_drops, :field_mom, :team, :match_id, :price, :ls_price)
     end
 
     def admin_user
